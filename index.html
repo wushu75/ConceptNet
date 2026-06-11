@@ -1572,19 +1572,40 @@
 
     // ---- Form handler ----
     function handleForm() {
-  const name  = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const company = document.getElementById('company').value.trim();
+  const name     = document.getElementById('name').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const company  = document.getElementById('company').value.trim();
   const investor = document.getElementById('investor').checked;
+
   if (!name || !email) {
     alert('Please enter your name and email.');
     return;
   }
-  const subject = encodeURIComponent('Early Access Request - ConceptNet');
-  const body = encodeURIComponent(
-    `Name: ${name}\nEmail: ${email}\nCompany: ${company}\nInvestor interest: ${investor ? 'Yes' : 'No'}`
-  );
-  window.location.href = `mailto:tonymomoh@icloud.com?subject=${subject}&body=${body}`;
+
+  const msg = document.getElementById('form-msg');
+  msg.style.display = 'block';
+  msg.textContent   = '⏳ Sending...';
+
+  fetch('https://formspree.io/f/xaqzdroz', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name:     name,
+      email:    email,
+      company:  company,
+      investor: investor ? 'Yes' : 'No'
+    })
+  })
+  .then(res => {
+    if (res.ok) {
+      msg.textContent = '✓ Thanks ' + name + '! We\'ll be in touch soon.';
+    } else {
+      msg.textContent = '⚠️ Something went wrong. Please email us directly.';
+    }
+  })
+  .catch(() => {
+    msg.textContent = '⚠️ Something went wrong. Please email us directly.';
+  });
 }
 
     // ---- Smooth scroll with offset for sticky nav ----
