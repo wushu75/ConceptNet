@@ -6,11 +6,11 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-cyan.svg)](https://python.org)
 [![Live Demo](https://img.shields.io/badge/demo-live-green)](https://demo.conceptnet.co.uk)
-[![Benchmarks](https://img.shields.io/badge/benchmarks-live-orange)](https://wushu75.github.io/ConceptNet/benchmarks/)
+[![Benchmarks](https://img.shields.io/badge/benchmarks-live-orange)](https://conceptnet.co.uk/benchmarks/)
 
 **Raising £500K Pre-Seed · EIS Eligible · London, UK**
 
-[🌐 Website](https://conceptnet.co.uk) · [🎮 Live Demo](https://demo.conceptnet.co.uk) · [🧪 Sandbox](https://wushu75.github.io/ConceptNet/sandbox/) · [📊 Benchmarks](https://wushu75.github.io/ConceptNet/benchmarks/) · [⭐ Star this repo](https://github.com/wushu75/ConceptNet)
+[🌐 Website](https://conceptnet.co.uk) · [🎮 Live Demo](https://demo.conceptnet.co.uk) · [🧪 Sandbox](https://conceptnet.co.uk/sandbox/) · [📊 Benchmarks](https://conceptnet.co.uk/benchmarks/) · [⭐ Star this repo](https://github.com/wushu75/ConceptNet)
 
 ---
 
@@ -88,7 +88,7 @@ Layer 3 — Predictive   "Alert manager before contract expires"    → CALENDAR
 Layer 4 — Autonomous   "Always update Salesforce after every call" → CRM.update_record + autonomous=True
 ```
 
-Try them live in the **[Voice IP Sandbox →](https://wushu75.github.io/ConceptNet/sandbox/)**
+Try them live in the **[Voice IP Sandbox →](https://conceptnet.co.uk/sandbox/)**
 
 ---
 
@@ -103,7 +103,7 @@ Try them live in the **[Voice IP Sandbox →](https://wushu75.github.io/ConceptN
 | Agent-to-agent protocol | ✅ We are the layer. Not a plugin. |
 | Enterprise voice IP stacking | ✅ 500+ companies build IP on us. Switching = losing years of IP. |
 
-**See live benchmarks → [benchmarks.conceptnet.co.uk](https://wushu75.github.io/ConceptNet/benchmarks/)**
+**See live benchmarks → [benchmarks.conceptnet.co.uk](https://conceptnet.co.uk/benchmarks/)**
 
 ---
 
