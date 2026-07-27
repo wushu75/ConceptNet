@@ -9,7 +9,7 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#060D1A;--bg2:#0C1628;--bg3:#111F36;
+  --bg:#060D1A;--bg2:#0C1628;--bg3:#111F36;--bg4:#0F1D35;
   --blue:#2563EB;--cyan:#06B6D4;--green:#10B981;
   --purple:#7C3AED;--amber:#F59E0B;--red:#EF4444;
   --white:#F1F5F9;--muted:#64748B;--border:rgba(255,255,255,.07);
@@ -28,173 +28,103 @@ nav{
 }
 .nav-logo{font-family:var(--mono);font-size:.88rem;color:var(--cyan)}
 .nav-links{display:flex;gap:20px;font-size:.82rem;color:var(--muted)}
+.nav-links a{color:var(--muted);text-decoration:none}
 .nav-links a:hover{color:var(--white)}
-.nav-tag{
-  font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;
-  color:var(--purple);background:rgba(124,58,237,.1);
-  border:1px solid rgba(124,58,237,.25);border-radius:100px;padding:4px 12px;
-}
+.nav-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--purple);background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);border-radius:100px;padding:4px 12px}
 
-.main{max-width:880px;margin:0 auto;padding:48px 24px 80px}
+.main{max-width:860px;margin:0 auto;padding:48px 24px 80px}
 
-/* HERO */
-.hero{text-align:center;margin-bottom:48px}
-.hero-tag{
-  display:inline-block;font-family:var(--mono);font-size:.7rem;
-  letter-spacing:.1em;color:var(--cyan);
-  background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);
-  border-radius:100px;padding:4px 14px;margin-bottom:18px;
-}
-.hero h1{font-size:clamp(1.6rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-.03em;margin-bottom:12px}
+.hero{text-align:center;margin-bottom:40px}
+.hero-tag{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--cyan);background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);border-radius:100px;padding:4px 14px;margin-bottom:18px}
+.hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-.03em;margin-bottom:12px;line-height:1.15}
 .hero h1 em{font-style:normal;color:var(--cyan)}
 .hero p{font-size:.95rem;color:var(--muted);max-width:520px;margin:0 auto}
 
-/* INPUT AREA */
-.input-card{
-  background:var(--bg2);border:1px solid var(--border);border-radius:16px;
-  padding:28px;margin-bottom:32px;
-}
+/* INPUT */
+.input-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:28px}
 .input-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;display:block}
-.input-row{display:flex;gap:12px;align-items:flex-start}
-textarea{
-  flex:1;background:rgba(255,255,255,.04);border:1px solid var(--border);
-  border-radius:10px;padding:14px 16px;color:var(--white);
-  font-family:var(--sans);font-size:.95rem;line-height:1.55;
-  resize:none;outline:none;min-height:72px;transition:border-color .2s;
-}
-textarea:focus{border-color:rgba(6,182,212,.4)}
+.input-row{display:flex;gap:12px;align-items:stretch;margin-bottom:16px}
+textarea{flex:1;background:rgba(255,255,255,.05);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--white);font-family:var(--sans);font-size:.95rem;line-height:1.55;resize:none;outline:none;min-height:72px;transition:border-color .2s}
+textarea:focus{border-color:rgba(6,182,212,.5)}
 textarea::placeholder{color:var(--muted)}
-.run-btn{
-  background:var(--blue);color:#fff;border:none;border-radius:10px;
-  padding:14px 22px;font-family:var(--sans);font-size:.9rem;font-weight:600;
-  cursor:pointer;transition:all .2s;flex-shrink:0;white-space:nowrap;
-}
-.run-btn:hover{background:#1d4ed8;transform:translateY(-1px);box-shadow:0 4px 16px rgba(37,99,235,.4)}
+.run-btn{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:0 24px;font-family:var(--sans);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap;min-width:130px}
+.run-btn:hover{background:#1d4ed8;transform:translateY(-1px)}
 .run-btn:active{transform:translateY(0)}
 
-/* EXAMPLES */
-.examples-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.ex-btn{
-  font-size:.78rem;background:rgba(255,255,255,.04);border:1px solid var(--border);
-  border-radius:100px;padding:5px 14px;color:var(--muted);cursor:pointer;
-  font-family:var(--sans);transition:all .15s;
-}
-.ex-btn:hover{border-color:rgba(6,182,212,.4);color:var(--cyan);background:rgba(6,182,212,.06)}
+.examples-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ex-label{font-size:.75rem;color:var(--muted);flex-shrink:0}
+.ex-btn{font-size:.78rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:100px;padding:6px 14px;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:all .15s;text-align:left}
+.ex-btn:hover{border-color:rgba(6,182,212,.5);color:var(--cyan);background:rgba(6,182,212,.06)}
 
 /* LAYER TABS */
-.layer-info{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:32px;
-}
-.layer-tab{
-  background:var(--bg2);border:1px solid var(--border);border-radius:10px;
-  padding:14px 16px;cursor:pointer;transition:all .2s;
-}
-.layer-tab.active{border-color:var(--layer-col)}
-.lt-num{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
-.lt-name{font-size:.88rem;font-weight:700}
-.lt-desc{font-size:.75rem;color:var(--muted);margin-top:4px;line-height:1.4}
+.layer-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px}
+.layer-tab{background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;transition:all .2s}
+.layer-tab.active-l1{border-color:var(--l1);background:rgba(37,99,235,.08)}
+.layer-tab.active-l2{border-color:var(--l2);background:rgba(245,158,11,.08)}
+.layer-tab.active-l3{border-color:var(--l3);background:rgba(124,58,237,.08)}
+.layer-tab.active-l4{border-color:var(--l4);background:rgba(16,185,129,.08)}
+.lt-num{font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+.lt-name{font-size:.88rem;font-weight:700;margin-bottom:2px}
+.lt-desc{font-size:.75rem;color:var(--muted)}
 
 /* RESULT */
-.result-section{display:none}
-.result-section.show{display:block}
+#result-section{display:none}
+#result-section.show{display:block}
 
-.result-header{
-  display:flex;align-items:center;gap:16px;
-  padding:20px 24px;border-radius:12px 12px 0 0;
-  border:1px solid var(--border);border-bottom:none;
-}
-.result-layer-badge{
-  font-family:var(--mono);font-size:.8rem;font-weight:500;
-  padding:6px 16px;border-radius:100px;
-}
-.result-confidence{font-size:.82rem;color:var(--muted)}
-.result-confidence span{font-family:var(--mono);color:var(--white)}
+.result-header{border-radius:12px 12px 0 0;border:1.5px solid var(--border);border-bottom:none;padding:18px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.result-badge{font-family:var(--mono);font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:100px;border:1.5px solid}
+.result-conf{font-size:.82rem;color:var(--muted)}
+.result-tool{font-size:.78rem;color:var(--muted);margin-left:auto}
 
-.result-body{
-  border:1px solid var(--border);border-radius:0 0 12px 12px;
-  overflow:hidden;
-}
+.result-body{border:1.5px solid var(--border);border-radius:0 0 12px 12px;overflow:hidden}
 
 .result-grid{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
-.result-item{padding:18px 24px;border-right:1px solid var(--border)}
-.result-item:last-child{border-right:none}
-.ri-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px;font-family:var(--mono)}
-.ri-val{font-size:1rem;font-weight:600;color:var(--white)}
+.r-item{padding:16px 22px;border-right:1px solid var(--border)}
+.r-item:last-child{border-right:none}
+.r-item:nth-child(3),.r-item:nth-child(4){border-top:1px solid var(--border)}
+.r-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:5px;font-family:var(--mono)}
+.r-val{font-size:1rem;font-weight:600}
 
-/* INTENT STACK VISUALISER */
-.stack-vis{padding:24px;border-bottom:1px solid var(--border)}
-.stack-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:14px;font-family:var(--mono)}
-.stack-layers{display:flex;flex-direction:column;gap:8px}
-.stack-layer{
-  display:flex;align-items:center;gap:14px;padding:12px 16px;
-  border-radius:8px;border:1px solid var(--border);
-  transition:all .3s;opacity:.35;
-}
-.stack-layer.reached{opacity:1;border-color:var(--layer-col)}
-.sl-num{
-  width:28px;height:28px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--mono);font-size:.75rem;font-weight:600;flex-shrink:0;
-}
-.sl-content{flex:1}
-.sl-name{font-size:.88rem;font-weight:600}
-.sl-example{font-size:.78rem;color:var(--muted);margin-top:2px}
-.sl-check{font-size:.9rem;margin-left:auto}
+/* STACK */
+.stack-wrap{padding:22px 24px;border-bottom:1px solid var(--border)}
+.stack-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:12px;font-family:var(--mono)}
+.stack-list{display:flex;flex-direction:column;gap:8px}
+.stack-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;border:1px solid var(--border);opacity:.3;transition:all .3s}
+.stack-row.reached{opacity:1}
+.snum{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.75rem;font-weight:600;flex-shrink:0}
+.scontent{flex:1}
+.scontent strong{display:block;font-size:.88rem}
+.scontent span{font-size:.75rem;color:var(--muted)}
+.scheck{font-size:.85rem;margin-left:auto}
 
-/* JSON OUTPUT */
-.json-out{padding:20px 24px}
-.json-header{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:12px;
-}
-.json-title{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:var(--mono)}
-.copy-btn{
-  font-size:.72rem;color:var(--cyan);background:rgba(6,182,212,.08);
-  border:1px solid rgba(6,182,212,.2);border-radius:6px;
-  padding:4px 12px;cursor:pointer;font-family:var(--sans);transition:all .15s;
-}
-.copy-btn:hover{background:rgba(6,182,212,.15)}
-pre{
-  background:rgba(0,0,0,.4);border-radius:8px;padding:16px;
-  font-family:var(--mono);font-size:.78rem;line-height:1.65;
-  overflow-x:auto;color:#CBD5E1;
-}
-.json-key{color:#67E8F9}
-.json-str{color:#86EFAC}
-.json-num{color:#FCD34D}
-.json-bool{color:#F472B6}
-.json-null{color:var(--muted)}
+/* JSON */
+.json-wrap{padding:18px 22px}
+.json-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.json-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:var(--mono)}
+.copy-btn{font-size:.72rem;color:var(--cyan);background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);border-radius:6px;padding:4px 12px;cursor:pointer;font-family:var(--sans);transition:all .15s}
+.copy-btn:hover{background:rgba(6,182,212,.18)}
+pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--mono);font-size:.76rem;line-height:1.7;overflow-x:auto;color:#CBD5E1}
 
 /* HISTORY */
-.history-section{margin-top:40px}
-.history-title{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:var(--mono);margin-bottom:14px}
-.history-list{display:flex;flex-direction:column;gap:8px}
-.history-item{
-  display:flex;align-items:center;gap:12px;
-  background:var(--bg2);border:1px solid var(--border);border-radius:8px;
-  padding:10px 16px;cursor:pointer;transition:border-color .15s;font-size:.85rem;
-}
-.history-item:hover{border-color:rgba(255,255,255,.15)}
-.hi-badge{
-  font-family:var(--mono);font-size:.68rem;padding:2px 8px;border-radius:4px;
-  flex-shrink:0;
-}
-.hi-text{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--muted)}
-.hi-time{font-family:var(--mono);font-size:.68rem;color:var(--muted);flex-shrink:0}
+.history-wrap{margin-top:36px;display:none}
+.history-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:var(--mono);margin-bottom:12px}
+.hist-list{display:flex;flex-direction:column;gap:8px}
+.hist-item{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:.85rem;transition:border-color .15s}
+.hist-item:hover{border-color:rgba(255,255,255,.18)}
+.hbadge{font-family:var(--mono);font-size:.68rem;padding:2px 8px;border-radius:4px;flex-shrink:0;border:1px solid}
+.htext{flex:1;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.htime{font-family:var(--mono);font-size:.68rem;color:var(--muted);flex-shrink:0}
 
 /* FOOTER */
-.sandbox-footer{
-  margin-top:56px;padding-top:24px;border-top:1px solid var(--border);
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
-  font-size:.78rem;color:var(--muted);
-}
-.sandbox-footer a{color:var(--cyan)}
+.footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem;color:var(--muted)}
+.footer a{color:var(--cyan);text-decoration:none}
 
 @media(max-width:640px){
-  .layer-info{grid-template-columns:1fr 1fr}
+  .layer-tabs{grid-template-columns:1fr 1fr}
   .result-grid{grid-template-columns:1fr}
-  .result-item{border-right:none;border-bottom:1px solid var(--border)}
+  .r-item{border-right:none;border-bottom:1px solid var(--border)}
   .input-row{flex-direction:column}
+  .run-btn{min-height:48px}
   .nav-links{display:none}
 }
 </style>
@@ -205,7 +135,7 @@ pre{
   <span class="nav-logo">ConceptNet / sandbox</span>
   <div class="nav-links">
     <a href="https://conceptnet.co.uk">Home</a>
-    <a href="https://wushu75.github.io/ConceptNet/benchmarks/">Benchmarks</a>
+    <a href="https://conceptnet.co.uk/benchmarks/">Benchmarks</a>
     <a href="https://github.com/wushu75/ConceptNet">GitHub</a>
   </div>
   <span class="nav-tag">VOICE IP SANDBOX</span>
@@ -213,48 +143,47 @@ pre{
 
 <div class="main">
 
-  <!-- HERO -->
   <div class="hero">
     <div class="hero-tag">Interactive Demo — No Signup Required</div>
     <h1>Type a command.<br>See your <em>Voice IP fingerprint.</em></h1>
     <p>ConceptNet classifies enterprise voice commands into 4 intent layers — the building blocks of your proprietary Voice IP.</p>
   </div>
 
-  <!-- INPUT -->
+  <!-- INPUT CARD -->
   <div class="input-card">
-    <label class="input-label">Your voice command</label>
+    <label class="input-label" for="cmd">Your voice command</label>
     <div class="input-row">
-      <textarea id="cmd-input" rows="2" placeholder='Try: "Send the Q3 report to the board when the auditor signs off"'></textarea>
-      <button class="run-btn" onclick="runClassify()">Classify →</button>
+      <textarea id="cmd" rows="2" placeholder='Try: "Send the Q3 report when the auditor signs off"'></textarea>
+      <button class="run-btn" id="classify-btn">Classify →</button>
     </div>
-    <div class="examples-row">
-      <span style="font-size:.75rem;color:var(--muted);align-self:center">Try:</span>
-      <button class="ex-btn" onclick="setEx(this)">Schedule a board meeting</button>
-      <button class="ex-btn" onclick="setEx(this)">Email the client when the proposal is approved</button>
-      <button class="ex-btn" onclick="setEx(this)">Alert the account manager before the contract expires</button>
-      <button class="ex-btn" onclick="setEx(this)">Automatically update Salesforce after every call</button>
-      <button class="ex-btn" onclick="setEx(this)">Create a Jira ticket and notify the team if the build fails</button>
+    <div class="examples-wrap">
+      <span class="ex-label">Try:</span>
+      <button class="ex-btn">Schedule a board meeting</button>
+      <button class="ex-btn">Email the client when the proposal is approved</button>
+      <button class="ex-btn">Alert the account manager before the contract expires</button>
+      <button class="ex-btn">Automatically update Salesforce after every call</button>
+      <button class="ex-btn">Create a Jira ticket and notify the team if the build fails</button>
     </div>
   </div>
 
-  <!-- LAYER INFO TABS -->
-  <div class="layer-info">
-    <div class="layer-tab" id="tab-1" style="--layer-col:var(--l1)">
+  <!-- LAYER TABS -->
+  <div class="layer-tabs">
+    <div class="layer-tab" id="tab1">
       <div class="lt-num">LAYER 1</div>
       <div class="lt-name" style="color:var(--l1)">Basic</div>
       <div class="lt-desc">"Do X"</div>
     </div>
-    <div class="layer-tab" id="tab-2" style="--layer-col:var(--l2)">
+    <div class="layer-tab" id="tab2">
       <div class="lt-num">LAYER 2</div>
       <div class="lt-name" style="color:var(--l2)">Context-Aware</div>
       <div class="lt-desc">"Do X when Y"</div>
     </div>
-    <div class="layer-tab" id="tab-3" style="--layer-col:var(--l3)">
+    <div class="layer-tab" id="tab3">
       <div class="lt-num">LAYER 3</div>
       <div class="lt-name" style="color:var(--l3)">Predictive</div>
       <div class="lt-desc">"Do X before Y"</div>
     </div>
-    <div class="layer-tab" id="tab-4" style="--layer-col:var(--l4)">
+    <div class="layer-tab" id="tab4">
       <div class="lt-num">LAYER 4</div>
       <div class="lt-name" style="color:var(--l4)">Autonomous</div>
       <div class="lt-desc">"Do X always"</div>
@@ -262,225 +191,299 @@ pre{
   </div>
 
   <!-- RESULT -->
-  <div class="result-section" id="result-section">
-
+  <div id="result-section">
     <div class="result-header" id="result-header">
-      <span class="result-layer-badge" id="r-badge">Layer 1 — Basic</span>
-      <span class="result-confidence">Confidence: <span id="r-conf">—</span></span>
-      <span style="flex:1"></span>
-      <span style="font-size:.78rem;color:var(--muted)" id="r-tool">Tool: —</span>
+      <span class="result-badge" id="r-badge">Layer 1</span>
+      <span class="result-conf">Confidence: <strong id="r-conf">—</strong></span>
+      <span class="result-tool" id="r-tool">Tool: —</span>
     </div>
-
     <div class="result-body">
-
-      <!-- Grid -->
       <div class="result-grid">
-        <div class="result-item">
-          <div class="ri-label">Primary Action</div>
-          <div class="ri-val" id="r-action">—</div>
+        <div class="r-item">
+          <div class="r-label">Primary Action</div>
+          <div class="r-val" id="r-action">—</div>
         </div>
-        <div class="result-item">
-          <div class="ri-label">Target</div>
-          <div class="ri-val" id="r-target">—</div>
+        <div class="r-item">
+          <div class="r-label">Target</div>
+          <div class="r-val" id="r-target">—</div>
         </div>
-        <div class="result-item" id="r-cond-wrap" style="display:none">
-          <div class="ri-label">Trigger Condition</div>
-          <div class="ri-val" id="r-condition" style="color:var(--amber)">—</div>
+        <div class="r-item" id="r-cond-wrap">
+          <div class="r-label">Trigger Condition</div>
+          <div class="r-val" id="r-cond" style="color:var(--amber)">—</div>
         </div>
-        <div class="result-item" id="r-pred-wrap" style="display:none">
-          <div class="ri-label">Prediction Window</div>
-          <div class="ri-val" id="r-prediction" style="color:var(--purple)">—</div>
+        <div class="r-item" id="r-pred-wrap">
+          <div class="r-label">Prediction Window</div>
+          <div class="r-val" id="r-pred" style="color:var(--purple)">—</div>
         </div>
       </div>
-
-      <!-- Stack visualiser -->
-      <div class="stack-vis">
+      <div class="stack-wrap">
         <div class="stack-label">Intent Layer Stack — Your Voice IP Fingerprint</div>
-        <div class="stack-layers" id="stack-layers"></div>
+        <div class="stack-list" id="stack-list"></div>
       </div>
-
-      <!-- JSON output -->
-      <div class="json-out">
-        <div class="json-header">
+      <div class="json-wrap">
+        <div class="json-head">
           <span class="json-title">Workflow JSON — ready for agent execution</span>
-          <button class="copy-btn" onclick="copyJSON()">Copy JSON</button>
+          <button class="copy-btn" id="copy-btn">Copy JSON</button>
         </div>
-        <pre id="json-display"></pre>
+        <pre id="json-out"></pre>
       </div>
-
     </div>
   </div>
 
   <!-- HISTORY -->
-  <div class="history-section" id="history-section" style="display:none">
+  <div class="history-wrap" id="history-wrap">
     <div class="history-title">Session history</div>
-    <div class="history-list" id="history-list"></div>
+    <div class="hist-list" id="hist-list"></div>
   </div>
 
-  <!-- FOOTER -->
-  <div class="sandbox-footer">
-    <span>
-      Built by <a href="https://conceptnet.co.uk">ConceptNet</a> — Voice IP Infrastructure for AI ·
-      <a href="https://github.com/wushu75/ConceptNet">Open-source on GitHub</a>
-    </span>
-    <span>
-      <a href="https://wushu75.github.io/ConceptNet/benchmarks/">Benchmarks</a> ·
-      <a href="mailto:tonymomoh@icloud.com">tonymomoh@icloud.com</a>
-    </span>
+  <div class="footer">
+    <span>Built by <a href="https://conceptnet.co.uk">ConceptNet</a> — Voice IP Infrastructure for AI · <a href="https://github.com/wushu75/ConceptNet">Open-source on GitHub</a></span>
+    <span><a href="https://conceptnet.co.uk/benchmarks/">Benchmarks</a> · <a href="mailto:tonymomoh@icloud.com">tonymomoh@icloud.com</a></span>
   </div>
 
 </div>
 
 <script>
-// ── Intent Classifier (mirrors Python core/intent_classifier.py) ──────────
-const ACTION_MAP = [
-  {re:/\b(schedule|book|arrange|set up|create).*(meeting|call|event|appointment)\b/i, tool:'CALENDAR', action:'create_event', verb:'schedule'},
-  {re:/\b(send|email|message|notify|ping|dm)\b/i, tool:'EMAIL', action:'send_message', verb:'send'},
-  {re:/\b(update|log|record|note|add).*(crm|salesforce|hubspot|contact|lead|deal)\b/i, tool:'CRM', action:'update_record', verb:'update'},
-  {re:/\b(create|open|add|make|file).*(ticket|issue|task|jira|bug|request)\b/i, tool:'TASKS', action:'create_ticket', verb:'create'},
-  {re:/\b(summarise|summarize|recap|brief|tldr)\b/i, tool:'AI', action:'summarise', verb:'summarise'},
-  {re:/\b(pull|fetch|get|retrieve|show).*(report|data|stats|pipeline|dashboard)\b/i, tool:'ANALYTICS', action:'fetch_report', verb:'fetch'},
-  {re:/\b(post|share|publish|announce).*(slack|teams|channel)\b/i, tool:'COMMS', action:'post_message', verb:'post'},
-  {re:/\b(draft|write|compose|prepare).*(email|proposal|doc|document|report)\b/i, tool:'DOCS', action:'draft_document', verb:'draft'},
+// ── Classifier ──────────────────────────────────────────────────────────
+var ACTION_MAP = [
+  {re:/\b(schedule|book|arrange|set.?up|create).{0,20}(meeting|call|event|appointment)\b/i, tool:'CALENDAR', action:'create_event', verb:'schedule'},
+  {re:/\b(send|email|message|notify|ping)\b/i, tool:'EMAIL', action:'send_message', verb:'send'},
+  {re:/\b(update|log|record|note|add).{0,15}(crm|salesforce|hubspot|contact|lead|deal)\b/i, tool:'CRM', action:'update_record', verb:'update'},
+  {re:/\b(create|open|add|file).{0,15}(ticket|issue|task|jira|bug)\b/i, tool:'TASKS', action:'create_ticket', verb:'create'},
+  {re:/\b(summar[iy]|recap|brief|tldr)\b/i, tool:'AI', action:'summarise', verb:'summarise'},
+  {re:/\b(pull|fetch|get|retrieve|show).{0,15}(report|data|stats|pipeline|dashboard)\b/i, tool:'ANALYTICS', action:'fetch_report', verb:'fetch'},
+  {re:/\b(post|share|publish|announce).{0,15}(slack|teams|channel)\b/i, tool:'COMMS', action:'post_message', verb:'post'},
+  {re:/\b(draft|write|compose|prepare).{0,15}(email|proposal|doc|report)\b/i, tool:'DOCS', action:'draft_document', verb:'draft'},
   {re:/\b(remind|reminder|alert|follow.?up)\b/i, tool:'CALENDAR', action:'set_reminder', verb:'remind'},
-  {re:/\b(approve|review|sign.?off|authorise|authorize)\b/i, tool:'WORKFLOW', action:'request_approval', verb:'approve'},
+  {re:/\b(approve|review|sign.?off|authoris|authoriz)\b/i, tool:'WORKFLOW', action:'request_approval', verb:'approve'},
 ];
-const COND  = [/\bwhen\s+(.+?)(?:\s*,|\s+and\b|$)/i,/\bif\s+(.+?)(?:\s*,|\s+and\b|$)/i,/\bafter\s+(.+?)(?:\s*,|\s+and\b|$)/i,/\bonce\s+(.+?)(?:\s*,|\s+and\b|$)/i];
-const PRED  = [/\bbefore\s+(.+?)(?:\s*,|\s+and\b|$)/i,/\bin advance of\s+(.+?)(?:\s*,|\s+and\b|$)/i];
-const AUTO  = ['automatically','autonomously','on its own','without asking','without being told','always','every time','whenever','continuously','keep doing','auto-'];
-const LAYERS= [{n:1,label:'Basic',col:'var(--l1)',ex:'"Do X"'},{n:2,label:'Context-Aware',col:'var(--l2)',ex:'"Do X when Y"'},{n:3,label:'Predictive',col:'var(--l3)',ex:'"Do X before Y"'},{n:4,label:'Autonomous',col:'var(--l4)',ex:'"Do X always"'}];
 
-function classify(text){
-  const t=text.toLowerCase();
-  let tool='WORKFLOW',action='execute',verb='process';
-  for(const m of ACTION_MAP){ if(m.re.test(t)){tool=m.tool;action=m.action;verb=m.verb;break} }
-  const tm=t.match(/(?:the |a |an )?([\w\s]{3,35}?)(?:\s+for|\s+to|\s+when|\s+if|$)/);
-  const target=(tm?tm[1].trim():'task').replace(/^(schedule|send|update|create|fetch|post|draft|remind|approve)\s+/i,'').trim()||'task';
-  let condition=null; for(const p of COND){const m=t.match(p);if(m){condition=m[1].trim();break}}
-  let prediction=null; for(const p of PRED){const m=t.match(p);if(m){prediction=m[1].trim();break}}
-  const autonomous=AUTO.some(k=>t.includes(k));
-  let layer=1,label='Basic';
-  if(autonomous){layer=4;label='Autonomous'}
-  else if(prediction){layer=3;label='Predictive'}
-  else if(condition){layer=2;label='Context-Aware'}
-  const confidence=Math.min(0.97,0.62+(layer*0.08)+(tool!=='WORKFLOW'?0.05:0));
-  return {raw_input:text,intent_layer:layer,intent_label:label,action:verb,target,condition,prediction,autonomous,confidence,
-    workflow_json:{version:'1.0',tool,action,parameters:{raw_command:text,target},
-      triggers:{...(condition&&{condition}),(prediction&&{prediction}),(autonomous&&{autonomous:true})},
-      execution_mode:label.toLowerCase().replace('-','_'),confidence}};
+var COND_RE  = [/\bwhen\s+(.+?)(?:,|$)/i, /\bif\s+(.+?)(?:,|$)/i, /\bafter\s+(.+?)(?:,|$)/i, /\bonce\s+(.+?)(?:,|$)/i];
+var PRED_RE  = [/\bbefore\s+(.+?)(?:,|$)/i, /\bin advance of\s+(.+?)(?:,|$)/i];
+var AUTO_KW  = ['automatically','autonomously','without asking','without being told','always','every time','whenever','continuously','auto-'];
+
+var LAYER_INFO = [
+  {n:1, label:'Basic',        col:'#2563EB', bg:'rgba(37,99,235,.12)',    ex:'"Do X"'},
+  {n:2, label:'Context-Aware',col:'#F59E0B', bg:'rgba(245,158,11,.12)',   ex:'"Do X when Y"'},
+  {n:3, label:'Predictive',   col:'#7C3AED', bg:'rgba(124,58,237,.12)',   ex:'"Do X before Y"'},
+  {n:4, label:'Autonomous',   col:'#10B981', bg:'rgba(16,185,129,.12)',   ex:'"Do X always"'},
+];
+
+function classify(text) {
+  var t = text.toLowerCase();
+  var tool = 'WORKFLOW', action = 'execute', verb = 'process';
+  for (var i = 0; i < ACTION_MAP.length; i++) {
+    if (ACTION_MAP[i].re.test(t)) {
+      tool = ACTION_MAP[i].tool;
+      action = ACTION_MAP[i].action;
+      verb = ACTION_MAP[i].verb;
+      break;
+    }
+  }
+  var tm = t.match(/(?:the |a |an )?([\w\s]{3,35}?)(?:\s+for|\s+to|\s+when|\s+if|$)/);
+  var target = tm ? tm[1].trim().replace(/^(schedule|send|update|create|fetch|post|draft|remind|approve)\s+/i,'').trim() : 'task';
+  if (!target) target = 'task';
+
+  var condition = null;
+  for (var j = 0; j < COND_RE.length; j++) {
+    var m = t.match(COND_RE[j]);
+    if (m) { condition = m[1].trim(); break; }
+  }
+  var prediction = null;
+  for (var k = 0; k < PRED_RE.length; k++) {
+    var m2 = t.match(PRED_RE[k]);
+    if (m2) { prediction = m2[1].trim(); break; }
+  }
+  var autonomous = false;
+  for (var l = 0; l < AUTO_KW.length; l++) {
+    if (t.indexOf(AUTO_KW[l]) !== -1) { autonomous = true; break; }
+  }
+
+  var layer = 1, layerLabel = 'Basic';
+  if (autonomous)      { layer = 4; layerLabel = 'Autonomous'; }
+  else if (prediction) { layer = 3; layerLabel = 'Predictive'; }
+  else if (condition)  { layer = 2; layerLabel = 'Context-Aware'; }
+
+  var confidence = Math.min(0.97, 0.62 + (layer * 0.08) + (tool !== 'WORKFLOW' ? 0.05 : 0));
+
+  var triggers = {};
+  if (condition)  triggers.condition = condition;
+  if (prediction) triggers.prediction = prediction;
+  if (autonomous) triggers.autonomous = true;
+
+  return {
+    raw_input: text,
+    intent_layer: layer,
+    intent_label: layerLabel,
+    action: verb,
+    target: target,
+    condition: condition,
+    prediction: prediction,
+    autonomous: autonomous,
+    confidence: confidence,
+    workflow_json: {
+      version: '1.0',
+      tool: tool,
+      action: action,
+      parameters: { raw_command: text, target: target },
+      triggers: triggers,
+      execution_mode: layerLabel.toLowerCase().replace('-','_'),
+      confidence: Math.round(confidence * 100) / 100
+    }
+  };
 }
 
-const LAYER_COLS=['','var(--l1)','var(--l2)','var(--l3)','var(--l4)'];
-const LAYER_BG  =['','rgba(37,99,235,.12)','rgba(245,158,11,.12)','rgba(124,58,237,.12)','rgba(16,185,129,.12)'];
-let history=[], lastResult=null;
+// ── Render ──────────────────────────────────────────────────────────────
+var history = [];
+var lastResult = null;
 
-function runClassify(){
-  const text=document.getElementById('cmd-input').value.trim();
-  if(!text){document.getElementById('cmd-input').focus();return}
-  const r=classify(text);
-  lastResult=r;
-  renderResult(r);
+function run() {
+  var text = document.getElementById('cmd').value.trim();
+  if (!text) {
+    document.getElementById('cmd').focus();
+    document.getElementById('cmd').style.borderColor = 'rgba(239,68,68,.6)';
+    setTimeout(function(){ document.getElementById('cmd').style.borderColor = ''; }, 1000);
+    return;
+  }
+  var r = classify(text);
+  lastResult = r;
+  render(r);
   addHistory(r);
 }
 
-function renderResult(r){
-  const sec=document.getElementById('result-section');
+function render(r) {
+  var sec = document.getElementById('result-section');
   sec.classList.add('show');
 
+  var li = LAYER_INFO[r.intent_layer - 1];
+
   // Header
-  const col=LAYER_COLS[r.intent_layer];
-  const bg=LAYER_BG[r.intent_layer];
-  const hdr=document.getElementById('result-header');
-  hdr.style.background=bg;
-  hdr.style.borderColor=`${col.replace('var(','').replace(')','').replace('--','').trim()}`;
-  const badge=document.getElementById('r-badge');
-  badge.textContent=`Layer ${r.intent_layer} — ${r.intent_label}`;
-  badge.style.background=bg; badge.style.color=col;
-  badge.style.border=`1px solid ${col}`;
-  document.getElementById('r-conf').textContent=`${Math.round(r.confidence*100)}%`;
-  document.getElementById('r-tool').textContent=`Tool: ${r.workflow_json.tool} → ${r.workflow_json.action}`;
+  var hdr = document.getElementById('result-header');
+  hdr.style.background = li.bg;
+  hdr.style.borderColor = li.col;
+
+  var badge = document.getElementById('r-badge');
+  badge.textContent = 'Layer ' + r.intent_layer + ' — ' + r.intent_label;
+  badge.style.color = li.col;
+  badge.style.borderColor = li.col;
+  badge.style.background = 'rgba(0,0,0,.2)';
+
+  document.getElementById('r-conf').textContent = Math.round(r.confidence * 100) + '%';
+  document.getElementById('r-tool').textContent = 'Tool: ' + r.workflow_json.tool + ' → ' + r.workflow_json.action;
 
   // Grid
-  document.getElementById('r-action').textContent=r.action;
-  document.getElementById('r-target').textContent=r.target;
-  const cw=document.getElementById('r-cond-wrap');
-  const pw=document.getElementById('r-pred-wrap');
-  if(r.condition){cw.style.display='';document.getElementById('r-condition').textContent=r.condition}else cw.style.display='none';
-  if(r.prediction){pw.style.display='';document.getElementById('r-prediction').textContent=r.prediction}else pw.style.display='none';
+  document.getElementById('r-action').textContent = r.action;
+  document.getElementById('r-target').textContent = r.target || '—';
+
+  var cw = document.getElementById('r-cond-wrap');
+  var pw = document.getElementById('r-pred-wrap');
+  if (r.condition) {
+    cw.style.display = '';
+    document.getElementById('r-cond').textContent = r.condition;
+  } else {
+    cw.style.display = 'none';
+  }
+  if (r.prediction) {
+    pw.style.display = '';
+    document.getElementById('r-pred').textContent = r.prediction;
+  } else {
+    pw.style.display = 'none';
+  }
+
+  // Tabs
+  for (var i = 1; i <= 4; i++) {
+    var tab = document.getElementById('tab' + i);
+    tab.className = 'layer-tab';
+    if (i <= r.intent_layer) {
+      tab.classList.add('active-l' + i);
+    }
+  }
 
   // Stack
-  const sl=document.getElementById('stack-layers');
-  sl.innerHTML='';
-  LAYERS.forEach(l=>{
-    const reached=r.intent_layer>=l.n;
-    sl.innerHTML+=`<div class="stack-layer ${reached?'reached':''}" style="--layer-col:${l.col};${reached?`border-color:${l.col};background:${LAYER_BG[l.n]}`:``}">
-      <div class="sl-num" style="background:${reached?l.col:'rgba(255,255,255,.06)'};color:${reached?'#fff':LAYER_COLS[l.n]}">${l.n}</div>
-      <div class="sl-content">
-        <div class="sl-name" style="color:${reached?l.col:'var(--muted)'}">${l.label}</div>
-        <div class="sl-example">${l.ex}</div>
-      </div>
-      <div class="sl-check">${reached?'<span style="color:'+l.col+'">✓ Detected</span>':'<span style="color:var(--border)">○</span>'}</div>
-    </div>`;
+  var sl = document.getElementById('stack-list');
+  sl.innerHTML = '';
+  LAYER_INFO.forEach(function(l) {
+    var reached = r.intent_layer >= l.n;
+    var row = document.createElement('div');
+    row.className = 'stack-row' + (reached ? ' reached' : '');
+    if (reached) {
+      row.style.borderColor = l.col;
+      row.style.background = l.bg;
+    }
+    row.innerHTML =
+      '<div class="snum" style="background:' + (reached ? l.col : 'rgba(255,255,255,.06)') + ';color:' + (reached ? '#fff' : l.col) + '">' + l.n + '</div>' +
+      '<div class="scontent"><strong style="color:' + (reached ? l.col : '#64748B') + '">' + l.label + '</strong><span>' + l.ex + '</span></div>' +
+      '<div class="scheck">' + (reached ? '<span style="color:' + l.col + '">✓ Detected</span>' : '<span style="color:#1E3A5F">○</span>') + '</div>';
+    sl.appendChild(row);
   });
 
   // JSON
-  document.getElementById('json-display').innerHTML=syntaxHL(JSON.stringify(r.workflow_json,null,2));
+  var json = JSON.stringify(r.workflow_json, null, 2);
+  document.getElementById('json-out').textContent = json;
 
-  // Tab highlight
-  document.querySelectorAll('.layer-tab').forEach((t,i)=>{
-    t.classList.toggle('active',i+1===r.intent_layer);
-  });
-
-  sec.scrollIntoView({behavior:'smooth',block:'nearest'});
+  sec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-function syntaxHL(json){
-  return json
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/"([^"]+)":/g,'<span class="json-key">"$1"</span>:')
-    .replace(/: "([^"]*)"/g,': <span class="json-str">"$1"</span>')
-    .replace(/: (\d+\.?\d*)/g,': <span class="json-num">$1</span>')
-    .replace(/: (true|false)/g,': <span class="json-bool">$1</span>')
-    .replace(/: (null)/g,': <span class="json-null">$1</span>');
-}
+function addHistory(r) {
+  var li = LAYER_INFO[r.intent_layer - 1];
+  var now = new Date();
+  var time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+  history.unshift({ text: r.raw_input, layer: r.intent_layer, label: r.intent_label, col: li.col, time: time });
+  if (history.length > 6) history.pop();
 
-function copyJSON(){
-  if(!lastResult) return;
-  navigator.clipboard.writeText(JSON.stringify(lastResult.workflow_json,null,2))
-    .then(()=>{ const b=document.querySelector('.copy-btn'); b.textContent='Copied ✓'; setTimeout(()=>b.textContent='Copy JSON',1800) });
-}
-
-function addHistory(r){
-  const now=new Date();
-  const time=now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
-  history.unshift({text:r.raw_input,layer:r.intent_layer,label:r.intent_label,time,col:LAYER_COLS[r.intent_layer]});
-  if(history.length>6) history.pop();
-  const hs=document.getElementById('history-section');
-  const hl=document.getElementById('history-list');
-  hs.style.display='block';
-  hl.innerHTML='';
-  history.forEach((h,i)=>{
-    hl.innerHTML+=`<div class="history-item" onclick="rerun(${i})">
-      <span class="hi-badge" style="color:${h.col};background:rgba(255,255,255,.05);border:1px solid ${h.col}">L${h.layer}</span>
-      <span class="hi-text">${h.text}</span>
-      <span class="hi-time">${h.time}</span>
-    </div>`;
+  var wrap = document.getElementById('history-wrap');
+  var list = document.getElementById('hist-list');
+  wrap.style.display = 'block';
+  list.innerHTML = '';
+  history.forEach(function(h, idx) {
+    var item = document.createElement('div');
+    item.className = 'hist-item';
+    item.innerHTML =
+      '<span class="hbadge" style="color:' + h.col + ';border-color:' + h.col + ';background:rgba(0,0,0,.2)">L' + h.layer + '</span>' +
+      '<span class="htext">' + h.text + '</span>' +
+      '<span class="htime">' + h.time + '</span>';
+    item.addEventListener('click', (function(i){ return function(){ document.getElementById('cmd').value = history[i].text; run(); }; })(idx));
+    list.appendChild(item);
   });
 }
 
-function rerun(i){
-  document.getElementById('cmd-input').value=history[i].text;
-  runClassify();
+// ── Event listeners ─────────────────────────────────────────────────────
+document.getElementById('classify-btn').addEventListener('click', run);
+
+document.getElementById('cmd').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); run(); }
+});
+
+// Example buttons
+var exBtns = document.querySelectorAll('.ex-btn');
+for (var b = 0; b < exBtns.length; b++) {
+  (function(btn) {
+    btn.addEventListener('click', function() {
+      document.getElementById('cmd').value = btn.textContent;
+      run();
+    });
+  })(exBtns[b]);
 }
 
-function setEx(btn){
-  document.getElementById('cmd-input').value=btn.textContent;
-  runClassify();
-}
-
-// Enter to run
-document.getElementById('cmd-input').addEventListener('keydown',e=>{
-  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();runClassify()}
+// Copy JSON
+document.getElementById('copy-btn').addEventListener('click', function() {
+  if (!lastResult) return;
+  var text = JSON.stringify(lastResult.workflow_json, null, 2);
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      document.getElementById('copy-btn').textContent = 'Copied ✓';
+      setTimeout(function(){ document.getElementById('copy-btn').textContent = 'Copy JSON'; }, 1800);
+    });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    document.getElementById('copy-btn').textContent = 'Copied ✓';
+    setTimeout(function(){ document.getElementById('copy-btn').textContent = 'Copy JSON'; }, 1800);
+  }
 });
 </script>
 </body>
