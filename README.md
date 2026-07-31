@@ -6,11 +6,26 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-cyan.svg)](https://python.org)
 [![Live Demo](https://img.shields.io/badge/demo-live-green)](https://demo.conceptnet.co.uk)
+[![Sandbox](https://img.shields.io/badge/sandbox-live-purple)](https://conceptnet.co.uk/sandbox/)
 [![Benchmarks](https://img.shields.io/badge/benchmarks-live-orange)](https://conceptnet.co.uk/benchmarks/)
+[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Space-yellow)](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox)
 
 **Raising £500K Pre-Seed · EIS Eligible · London, UK**
 
-[🌐 Website](https://conceptnet.co.uk) · [🎮 Live Demo](https://demo.conceptnet.co.uk) · [🧪 Sandbox](https://conceptnet.co.uk/sandbox/) · [📊 Benchmarks](https://conceptnet.co.uk/benchmarks/) · [⭐ Star this repo](https://github.com/wushu75/ConceptNet)
+---
+
+## 🔗 Live Links
+
+| Asset | URL |
+|-------|-----|
+| 🌐 Website | [conceptnet.co.uk](https://conceptnet.co.uk) |
+| 🎮 Interactive Demo | [demo.conceptnet.co.uk](https://demo.conceptnet.co.uk) |
+| 🧪 Voice IP Sandbox | [conceptnet.co.uk/sandbox/](https://conceptnet.co.uk/sandbox/) |
+| 📊 Live Benchmarks | [conceptnet.co.uk/benchmarks/](https://conceptnet.co.uk/benchmarks/) |
+| 📄 Investor One-Pager | [conceptnet.co.uk/docs/investor.html](https://conceptnet.co.uk/docs/investor.html) |
+| 🤗 Hugging Face Space | [huggingface.co/spaces/conceptnetUk/voice-ip-sandbox](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox) |
+| 💼 LinkedIn | [linkedin.com/company/conceptnet-voice-ip](https://www.linkedin.com/company/conceptnet-voice-ip/) |
+| ⭐ Star this repo | [github.com/wushu75/ConceptNet](https://github.com/wushu75/ConceptNet) |
 
 ---
 
@@ -83,12 +98,13 @@ Most platforms collect your data. ConceptNet lets enterprises **own** their voic
 
 ```
 Layer 1 — Basic        "Schedule a meeting"                      → CALENDAR.create_event
-Layer 2 — Context      "Send report when deal closes"             → EMAIL.send_message + trigger
-Layer 3 — Predictive   "Alert manager before contract expires"    → CALENDAR.set_reminder + prediction
+Layer 2 — Context      "Send report when deal closes"            → EMAIL.send_message + trigger
+Layer 3 — Predictive   "Alert manager before contract expires"   → CALENDAR.set_reminder + prediction
 Layer 4 — Autonomous   "Always update Salesforce after every call" → CRM.update_record + autonomous=True
 ```
 
-Try them live in the **[Voice IP Sandbox →](https://conceptnet.co.uk/sandbox/)**
+🧪 **[Try the Voice IP Sandbox →](https://conceptnet.co.uk/sandbox/)**
+🤗 **[Try on Hugging Face →](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox)**
 
 ---
 
@@ -103,7 +119,7 @@ Try them live in the **[Voice IP Sandbox →](https://conceptnet.co.uk/sandbox/)
 | Agent-to-agent protocol | ✅ We are the layer. Not a plugin. |
 | Enterprise voice IP stacking | ✅ 500+ companies build IP on us. Switching = losing years of IP. |
 
-**See live benchmarks → [benchmarks.conceptnet.co.uk](https://conceptnet.co.uk/benchmarks/)**
+📊 **[See live benchmarks vs GPT-4o →](https://conceptnet.co.uk/benchmarks/)**
 
 ---
 
@@ -154,7 +170,8 @@ ConceptNet/
 ├── sandbox/
 │   └── index.html             # Interactive Voice IP Sandbox
 ├── docs/
-│   └── star.html              # GitHub star campaign page
+│   ├── star.html              # GitHub star campaign page
+│   └── investor.html          # Investor one-pager
 ├── requirements.txt
 └── README.md
 ```
@@ -177,7 +194,8 @@ Co-funded alongside Innovate UK AI & Data Economy grant application. **EIS eligi
 - **Pre-money valuation:** £3–5M
 - **Use of funds:** Engineering (65%), cloud compute (20%), enterprise pilots (10%), ops (5%)
 - **Contact:** tonymomoh@icloud.com · 07733 246865
-- **Website:** [conceptnet.co.uk](https://conceptnet.co.uk)
+- **Investor one-pager:** [conceptnet.co.uk/docs/investor.html](https://conceptnet.co.uk/docs/investor.html)
+- **LinkedIn:** [linkedin.com/company/conceptnet-voice-ip](https://www.linkedin.com/company/conceptnet-voice-ip/)
 
 ---
 
@@ -193,6 +211,6 @@ SaaS → Data → IP → Enterprise Voice IP → Leverage → New Use Cases → 
 
 If you find this useful or believe in open-source voice AI infrastructure, a GitHub star helps more developers discover ConceptNet.
 
-[**→ Star on GitHub**](https://github.com/wushu75/ConceptNet)
+[**→ Star on GitHub**](https://github.com/wushu75/ConceptNet) · [**→ Try the Sandbox**](https://conceptnet.co.uk/sandbox/) · [**→ View on Hugging Face**](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox)
 
 *Built in London. Open-source. Voice-native. 10-year moat.*
