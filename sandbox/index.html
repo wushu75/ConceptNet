@@ -145,6 +145,19 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
 /* NO VOICE SUPPORT MSG */
 .no-voice{display:none;font-size:.75rem;color:var(--amber);font-family:var(--mono);margin-top:6px;text-align:center}
 
+
+/* LANGUAGE TABS */
+.lang-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.lang-tab{
+  font-size:.78rem;font-family:var(--mono);letter-spacing:.04em;
+  background:rgba(255,255,255,.04);border:1.5px solid var(--border);
+  border-radius:8px;padding:6px 14px;cursor:pointer;
+  color:var(--muted);transition:all .15s;display:flex;align-items:center;gap:6px;
+}
+.lang-tab:hover{border-color:rgba(6,182,212,.4);color:var(--cyan)}
+.lang-tab.active{border-color:var(--cyan);color:var(--cyan);background:rgba(6,182,212,.08)}
+.lang-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;font-family:var(--mono)}
+
 /* FOOTER */
 .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem;color:var(--muted)}
 .footer a{color:var(--cyan);text-decoration:none}
@@ -192,7 +205,15 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
     </div>
     <div class="mic-status" id="mic-status"></div>
     <div class="no-voice" id="no-voice">⚠ Voice input not supported in this browser. Please type your command.</div>
-    <div class="examples-wrap">
+    <div class="lang-label">Language</div>
+    <div class="lang-tabs" id="lang-tabs">
+      <button class="lang-tab active" data-lang="en">🇬🇧 English</button>
+      <button class="lang-tab" data-lang="fr">🇫🇷 French</button>
+      <button class="lang-tab" data-lang="es">🇪🇸 Spanish</button>
+      <button class="lang-tab" data-lang="zh">🇨🇳 Chinese</button>
+      <button class="lang-tab" data-lang="ru">🇷🇺 Russian</button>
+    </div>
+    <div class="examples-wrap" id="examples-wrap">
       <span class="ex-label">Try:</span>
       <button class="ex-btn">Schedule a board meeting</button>
       <button class="ex-btn">Email the client when the proposal is approved</button>
@@ -282,13 +303,32 @@ var COND_RE = [
   /\bwhen\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
   /\bif\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
   /\bafter\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
-  /\bonce\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i
+  /\bonce\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
+  // French
+  /\bquand\s+(.+?)(?:\s*,|$)/i,
+  /\blorsque\s+(.+?)(?:\s*,|$)/i,
+  /\bsi\s+(.+?)(?:\s*,|$)/i,
+  // Spanish
+  /\bcuando\s+(.+?)(?:\s*,|$)/i,
+  // Chinese
+  /当(.+?)(?:时|后)/,
+  // Russian
+  /когда\s+(.+?)(?:\s*,|$)/i,
+  /если\s+(.+?)(?:\s*,|$)/i
 ];
 
 // Prediction patterns — Layer 3
 var PRED_RE = [
   /\bbefore\s+(.+?)(?:\s*,|\s+and\b|$)/i,
-  /\bin advance of\s+(.+?)(?:\s*,|$)/i
+  /\bin advance of\s+(.+?)(?:\s*,|$)/i,
+  // French
+  /\bavant\s+(.+?)(?:\s*,|$)/i,
+  // Spanish
+  /\bantes de\s+(.+?)(?:\s*,|$)/i,
+  // Chinese
+  /(.+?)前(?:提醒|通知|准备)/,
+  // Russian
+  /до\s+(.+?)(?:\s*,|$)/i
 ];
 
 // Autonomous keywords — Layer 4
@@ -635,6 +675,124 @@ if (SpeechRecognition) {
     document.getElementById('no-voice').style.display = 'block';
   });
 }
+
+// ── MULTILINGUAL EXAMPLES ───────────────────────────────────────────────
+var LANG_EXAMPLES = {
+  en: {
+    name: 'English',
+    flag: 'en-GB',
+    placeholder: 'Speak or type: "Send the Q3 report when the auditor signs off"',
+    examples: [
+      'Schedule a board meeting',
+      'Email the client when the proposal is approved',
+      'Alert the account manager before the contract expires',
+      'Automatically update Salesforce after every call\',
+      'Create a Jira ticket and notify the team if the build fails'
+    ]
+  },
+  fr: {
+    name: 'French',
+    flag: 'fr-FR',
+    placeholder: 'Parlez ou tapez: "Envoyer le rapport quand l\'auditeur valide"',
+    examples: [
+      'Planifier une réunion du conseil\',
+      'Envoyer le rapport au client quand le contrat est signé',
+      'Alerter le responsable avant l\'expiration du contrat',
+      'Mettre à jour automatiquement le CRM après chaque appel\',
+      'Créer un ticket Jira si le déploiement échoue'
+    ]
+  },
+  es: {
+    name: 'Spanish',
+    flag: 'es-ES',
+    placeholder: 'Habla o escribe: "Enviar el informe cuando el auditor lo apruebe"',
+    examples: [
+      'Programar una reunión del consejo',
+      'Enviar el informe cuando se firme el contrato',
+      'Alertar al gerente antes de que venza el contrato',
+      'Actualizar automáticamente el CRM después de cada llamada',
+      'Crear un ticket de Jira si falla la compilación'
+    ]
+  },
+  zh: {
+    name: 'Chinese',
+    flag: 'zh-CN',
+    placeholder: '说话或输入: "审计师签字后发送Q3报告"',
+    examples: [
+      '安排董事会会议',
+      '合同签署后发送报告给客户',
+      '合同到期前提醒客户经理',
+      '每次通话后自动更新CRM系统',
+      '如果构建失败则创建Jira工单并通知团队'
+    ]
+  },
+  ru: {
+    name: 'Russian',
+    flag: 'ru-RU',
+    placeholder: 'Говорите или печатайте: "Отправить отчёт когда аудитор подпишет"',
+    examples: [
+      'Запланировать заседание совета директоров',
+      'Отправить отчёт клиенту когда контракт подписан',
+      'Уведомить менеджера до истечения срока контракта',
+      'Автоматически обновлять CRM после каждого звонка',
+      'Создать задачу в Jira если сборка не удалась'
+    ]
+  }
+};
+
+var currentLang = 'en';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  var data = LANG_EXAMPLES[lang];
+
+  // Update placeholder
+  document.getElementById('cmd').placeholder = data.placeholder;
+
+  // Update example buttons
+  var wrap = document.getElementById('examples-wrap');
+  wrap.innerHTML = '<span class="ex-label">Try:</span>';
+  for (var i = 0; i < data.examples.length; i++) {
+    (function(ex) {
+      var btn = document.createElement('button');
+      btn.className = 'ex-btn';
+      btn.textContent = ex;
+      btn.addEventListener('click', function() {
+        document.getElementById('cmd').value = ex;
+        run();
+      });
+      wrap.appendChild(btn);
+    })(data.examples[i]);
+  }
+
+  // Update mic language
+  if (recognition) {
+    recognition.lang = data.flag;
+  }
+
+  // Update tab styles
+  var tabs = document.querySelectorAll('.lang-tab');
+  for (var t = 0; t < tabs.length; t++) {
+    tabs[t].classList.remove('active');
+    if (tabs[t].getAttribute('data-lang') === lang) {
+      tabs[t].classList.add('active');
+    }
+  }
+
+  // Clear input
+  document.getElementById('cmd').value = '';
+}
+
+// Wire up language tabs
+var langTabs = document.querySelectorAll('.lang-tab');
+for (var lt = 0; lt < langTabs.length; lt++) {
+  (function(tab) {
+    tab.addEventListener('click', function() {
+      setLanguage(tab.getAttribute('data-lang'));
+    });
+  })(langTabs[lt]);
+}
+
 </script>
 </body>
 </html>
