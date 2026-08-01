@@ -43,11 +43,37 @@ nav{
 /* INPUT */
 .input-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:28px}
 .input-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;display:block}
-.input-row{display:flex;gap:12px;align-items:stretch;margin-bottom:16px}
+.input-row{display:flex;gap:10px;align-items:stretch;margin-bottom:16px}
 textarea{flex:1;background:rgba(255,255,255,.05);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--white);font-family:var(--sans);font-size:.95rem;line-height:1.55;resize:none;outline:none;min-height:72px;transition:border-color .2s}
 textarea:focus{border-color:rgba(6,182,212,.5)}
 textarea::placeholder{color:var(--muted)}
-.run-btn{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:0 24px;font-family:var(--sans);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap;min-width:130px}
+
+/* MIC BUTTON */
+.mic-btn{
+  background:var(--bg4);border:1.5px solid var(--border);border-radius:10px;
+  width:56px;flex-shrink:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;position:relative;
+}
+.mic-btn:hover{border-color:rgba(6,182,212,.4);background:rgba(6,182,212,.08)}
+.mic-btn.listening{border-color:var(--red);background:rgba(239,68,68,.12);animation:mic-pulse 1.2s infinite}
+.mic-btn.listening .mic-icon{color:var(--red)}
+.mic-icon{font-size:1.3rem;color:var(--muted);transition:color .2s}
+.mic-tooltip{
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--bg3);border:1px solid var(--border);border-radius:6px;
+  padding:4px 10px;font-size:.7rem;color:var(--muted);white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .2s;font-family:var(--mono);
+}
+.mic-btn:hover .mic-tooltip{opacity:1}
+.mic-status{font-family:var(--mono);font-size:.72rem;text-align:center;margin-top:8px;min-height:16px;transition:all .2s}
+
+@keyframes mic-pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}
+  50%{box-shadow:0 0 0 8px rgba(239,68,68,0)}
+}
+
+.run-btn{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:0 22px;font-family:var(--sans);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap;min-width:120px}
 .run-btn:hover{background:#1d4ed8;transform:translateY(-1px)}
 .run-btn:active{transform:translateY(0)}
 
@@ -78,10 +104,11 @@ textarea::placeholder{color:var(--muted)}
 
 .result-body{border:1.5px solid var(--border);border-radius:0 0 12px 12px;overflow:hidden}
 
-.result-grid{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
-.r-item{padding:16px 22px;border-right:1px solid var(--border)}
-.r-item:last-child{border-right:none}
-.r-item:nth-child(3),.r-item:nth-child(4){border-top:1px solid var(--border)}
+.result-grid{display:grid;grid-template-columns:1fr 1fr}
+.r-item{padding:16px 22px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.r-item:nth-child(even){border-right:none}
+.r-item:last-child{border-bottom:none}
+.r-item:nth-last-child(2){border-bottom:none}
 .r-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:5px;font-family:var(--mono)}
 .r-val{font-size:1rem;font-weight:600}
 
@@ -115,6 +142,9 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
 .htext{flex:1;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .htime{font-family:var(--mono);font-size:.68rem;color:var(--muted);flex-shrink:0}
 
+/* NO VOICE SUPPORT MSG */
+.no-voice{display:none;font-size:.75rem;color:var(--amber);font-family:var(--mono);margin-top:6px;text-align:center}
+
 /* FOOTER */
 .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem;color:var(--muted)}
 .footer a{color:var(--cyan);text-decoration:none}
@@ -122,10 +152,11 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
 @media(max-width:640px){
   .layer-tabs{grid-template-columns:1fr 1fr}
   .result-grid{grid-template-columns:1fr}
-  .r-item{border-right:none;border-bottom:1px solid var(--border)}
+  .r-item{border-right:none}
   .input-row{flex-direction:column}
   .run-btn{min-height:48px}
   .nav-links{display:none}
+  .mic-btn{width:100%;height:48px}
 }
 </style>
 </head>
@@ -144,18 +175,23 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
 <div class="main">
 
   <div class="hero">
-    <div class="hero-tag">Interactive Demo — No Signup Required</div>
-    <h1>Type a command.<br>See your <em>Voice IP fingerprint.</em></h1>
-    <p>ConceptNet classifies enterprise voice commands into 4 intent layers — the building blocks of your proprietary Voice IP.</p>
+    <div class="hero-tag">Interactive Demo — Speak or Type — No Signup</div>
+    <h1>Speak a command.<br>See your <em>Voice IP fingerprint.</em></h1>
+    <p>ConceptNet classifies enterprise voice commands into 4 intent layers — the building blocks of your proprietary Voice IP. Use the microphone or type below.</p>
   </div>
 
-  <!-- INPUT CARD -->
   <div class="input-card">
     <label class="input-label" for="cmd">Your voice command</label>
     <div class="input-row">
-      <textarea id="cmd" rows="2" placeholder='Try: "Send the Q3 report when the auditor signs off"'></textarea>
+      <textarea id="cmd" rows="2" placeholder='Speak or type: "Send the Q3 report when the auditor signs off"'></textarea>
+      <button class="mic-btn" id="mic-btn" title="Click to speak">
+        <span class="mic-icon">🎙</span>
+        <span class="mic-tooltip">Click to speak</span>
+      </button>
       <button class="run-btn" id="classify-btn">Classify →</button>
     </div>
+    <div class="mic-status" id="mic-status"></div>
+    <div class="no-voice" id="no-voice">⚠ Voice input not supported in this browser. Please type your command.</div>
     <div class="examples-wrap">
       <span class="ex-label">Try:</span>
       <button class="ex-btn">Schedule a board meeting</button>
@@ -166,7 +202,6 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
     </div>
   </div>
 
-  <!-- LAYER TABS -->
   <div class="layer-tabs">
     <div class="layer-tab" id="tab1">
       <div class="lt-num">LAYER 1</div>
@@ -190,34 +225,16 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
     </div>
   </div>
 
-  <!-- RESULT -->
   <div id="result-section">
     <div class="result-header" id="result-header">
       <span class="result-badge" id="r-badge">Layer 1</span>
-      <span class="result-conf">Confidence: <strong id="r-conf">—</strong></span>
-      <span class="result-tool" id="r-tool">Tool: —</span>
+      <span class="result-conf">Confidence: <strong id="r-conf">-</strong></span>
+      <span class="result-tool" id="r-tool">Tool: -</span>
     </div>
     <div class="result-body">
-      <div class="result-grid">
-        <div class="r-item">
-          <div class="r-label">Primary Action</div>
-          <div class="r-val" id="r-action">—</div>
-        </div>
-        <div class="r-item">
-          <div class="r-label">Target</div>
-          <div class="r-val" id="r-target">—</div>
-        </div>
-        <div class="r-item" id="r-cond-wrap">
-          <div class="r-label">Trigger Condition</div>
-          <div class="r-val" id="r-cond" style="color:var(--amber)">—</div>
-        </div>
-        <div class="r-item" id="r-pred-wrap">
-          <div class="r-label">Prediction Window</div>
-          <div class="r-val" id="r-pred" style="color:var(--purple)">—</div>
-        </div>
-      </div>
+      <div class="result-grid" id="result-grid"></div>
       <div class="stack-wrap">
-        <div class="stack-label">Intent Layer Stack — Your Voice IP Fingerprint</div>
+        <div class="stack-label">Intent Layer Stack</div>
         <div class="stack-list" id="stack-list"></div>
       </div>
       <div class="json-wrap">
@@ -230,7 +247,6 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
     </div>
   </div>
 
-  <!-- HISTORY -->
   <div class="history-wrap" id="history-wrap">
     <div class="history-title">Session history</div>
     <div class="hist-list" id="hist-list"></div>
@@ -238,13 +254,16 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
 
   <div class="footer">
     <span>Built by <a href="https://conceptnet.co.uk">ConceptNet</a> — Voice IP Infrastructure for AI · <a href="https://github.com/wushu75/ConceptNet">Open-source on GitHub</a></span>
-    <span><a href="https://conceptnet.co.uk/benchmarks/">Benchmarks</a> · <a href="mailto:tonymomoh@icloud.com">tonymomoh@icloud.com</a></span>
+    <span><a href="https://conceptnet.co.uk/benchmarks/">Benchmarks</a> · <a href="https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox">Hugging Face</a> · <a href="mailto:tonymomoh@icloud.com">tonymomoh@icloud.com</a></span>
   </div>
 
 </div>
 
 <script>
-// ── Classifier ──────────────────────────────────────────────────────────
+// ── CLASSIFIER ──────────────────────────────────────────────────────────
+// Fixed layer priority: check Autonomous LAST so L2/L3 patterns
+// don't get overridden by incidental "always/every" words
+
 var ACTION_MAP = [
   {re:/\b(schedule|book|arrange|set.?up|create).{0,20}(meeting|call|event|appointment)\b/i, tool:'CALENDAR', action:'create_event', verb:'schedule'},
   {re:/\b(send|email|message|notify|ping)\b/i, tool:'EMAIL', action:'send_message', verb:'send'},
@@ -258,19 +277,42 @@ var ACTION_MAP = [
   {re:/\b(approve|review|sign.?off|authoris|authoriz)\b/i, tool:'WORKFLOW', action:'request_approval', verb:'approve'},
 ];
 
-var COND_RE  = [/\bwhen\s+(.+?)(?:,|$)/i, /\bif\s+(.+?)(?:,|$)/i, /\bafter\s+(.+?)(?:,|$)/i, /\bonce\s+(.+?)(?:,|$)/i];
-var PRED_RE  = [/\bbefore\s+(.+?)(?:,|$)/i, /\bin advance of\s+(.+?)(?:,|$)/i];
-var AUTO_KW  = ['automatically','autonomously','without asking','without being told','always','every time','whenever','continuously','auto-'];
+// Condition patterns — Layer 2
+var COND_RE = [
+  /\bwhen\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
+  /\bif\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
+  /\bafter\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
+  /\bonce\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i
+];
+
+// Prediction patterns — Layer 3
+var PRED_RE = [
+  /\bbefore\s+(.+?)(?:\s*,|\s+and\b|$)/i,
+  /\bin advance of\s+(.+?)(?:\s*,|$)/i
+];
+
+// Autonomous keywords — Layer 4
+// Only trigger Layer 4 if NONE of the L2/L3 patterns fire
+// and STRONG autonomous signal is present
+var AUTO_STRONG = [
+  'automatically', 'autonomously', 'without being told',
+  'without asking', 'on its own', 'auto-'
+];
+var AUTO_REPEAT = [
+  'always ', 'every time', 'whenever ', 'continuously', 'keep doing'
+];
 
 var LAYER_INFO = [
-  {n:1, label:'Basic',        col:'#2563EB', bg:'rgba(37,99,235,.12)',    ex:'"Do X"'},
-  {n:2, label:'Context-Aware',col:'#F59E0B', bg:'rgba(245,158,11,.12)',   ex:'"Do X when Y"'},
-  {n:3, label:'Predictive',   col:'#7C3AED', bg:'rgba(124,58,237,.12)',   ex:'"Do X before Y"'},
-  {n:4, label:'Autonomous',   col:'#10B981', bg:'rgba(16,185,129,.12)',   ex:'"Do X always"'},
+  {n:1, label:'Basic',         col:'#2563EB', bg:'rgba(37,99,235,.1)',   ex:'"Do X"'},
+  {n:2, label:'Context-Aware', col:'#F59E0B', bg:'rgba(245,158,11,.1)',  ex:'"Do X when Y"'},
+  {n:3, label:'Predictive',    col:'#7C3AED', bg:'rgba(124,58,237,.1)',  ex:'"Do X before Y"'},
+  {n:4, label:'Autonomous',    col:'#10B981', bg:'rgba(16,185,129,.1)',  ex:'"Do X always"'},
 ];
 
 function classify(text) {
-  var t = text.toLowerCase();
+  var t = text.toLowerCase().trim();
+
+  // Detect tool
   var tool = 'WORKFLOW', action = 'execute', verb = 'process';
   for (var i = 0; i < ACTION_MAP.length; i++) {
     if (ACTION_MAP[i].re.test(t)) {
@@ -280,78 +322,102 @@ function classify(text) {
       break;
     }
   }
-  var tm = t.match(/(?:the |a |an )?([\w\s]{3,35}?)(?:\s+for|\s+to|\s+when|\s+if|$)/);
-  var target = tm ? tm[1].trim().replace(/^(schedule|send|update|create|fetch|post|draft|remind|approve)\s+/i,'').trim() : 'task';
+
+  // Extract target
+  var tm = t.match(/(?:the |a |an )?([\w\s]{3,35}?)(?:\s+for|\s+to|\s+when|\s+if|\s+before|\s+after|\s+once|$)/);
+  var target = tm ? tm[1].trim() : 'task';
+  target = target.replace(/^(schedule|send|update|create|fetch|post|draft|remind|approve|alert|notify|log|record)\s+/i, '').trim();
   if (!target) target = 'task';
 
-  var condition = null;
-  for (var j = 0; j < COND_RE.length; j++) {
-    var m = t.match(COND_RE[j]);
-    if (m) { condition = m[1].trim(); break; }
-  }
+  // ── LAYER DETECTION (strict priority order) ────────────────────────
+  // Check L3 FIRST — "before" is more specific than "when"
   var prediction = null;
-  for (var k = 0; k < PRED_RE.length; k++) {
-    var m2 = t.match(PRED_RE[k]);
-    if (m2) { prediction = m2[1].trim(); break; }
+  for (var p = 0; p < PRED_RE.length; p++) {
+    var pm = t.match(PRED_RE[p]);
+    if (pm) { prediction = pm[1].trim(); break; }
   }
+
+  // Check L2 — but only if "before" wasn't the trigger
+  var condition = null;
+  if (!prediction) {
+    for (var c = 0; c < COND_RE.length; c++) {
+      var cm = t.match(COND_RE[c]);
+      if (cm) { condition = cm[1].trim(); break; }
+    }
+  }
+
+  // Check L4 — ONLY if no L2 or L3 pattern found
+  // AND a strong autonomous signal exists
   var autonomous = false;
-  for (var l = 0; l < AUTO_KW.length; l++) {
-    if (t.indexOf(AUTO_KW[l]) !== -1) { autonomous = true; break; }
+  if (!condition && !prediction) {
+    var strongAuto = false;
+    for (var a = 0; a < AUTO_STRONG.length; a++) {
+      if (t.indexOf(AUTO_STRONG[a]) !== -1) { strongAuto = true; break; }
+    }
+    if (!strongAuto) {
+      for (var r = 0; r < AUTO_REPEAT.length; r++) {
+        if (t.indexOf(AUTO_REPEAT[r]) !== -1) { strongAuto = true; break; }
+      }
+    }
+    autonomous = strongAuto;
   }
 
-  var layer = 1, layerLabel = 'Basic';
-  if (autonomous)      { layer = 4; layerLabel = 'Autonomous'; }
-  else if (prediction) { layer = 3; layerLabel = 'Predictive'; }
-  else if (condition)  { layer = 2; layerLabel = 'Context-Aware'; }
+  // Assign layer
+  var layer, layerLabel;
+  if (prediction)       { layer = 3; layerLabel = 'Predictive'; }
+  else if (condition)   { layer = 2; layerLabel = 'Context-Aware'; }
+  else if (autonomous)  { layer = 4; layerLabel = 'Autonomous'; }
+  else                  { layer = 1; layerLabel = 'Basic'; }
 
-  var confidence = Math.min(0.97, 0.62 + (layer * 0.08) + (tool !== 'WORKFLOW' ? 0.05 : 0));
+  var confidence = Math.min(0.97, 0.65 + (layer * 0.07) + (tool !== 'WORKFLOW' ? 0.05 : 0));
 
   var triggers = {};
-  if (condition)  triggers.condition = condition;
+  if (condition)  triggers.condition  = condition;
   if (prediction) triggers.prediction = prediction;
   if (autonomous) triggers.autonomous = true;
 
   return {
-    raw_input: text,
+    raw_input:    text,
     intent_layer: layer,
     intent_label: layerLabel,
-    action: verb,
-    target: target,
-    condition: condition,
-    prediction: prediction,
-    autonomous: autonomous,
-    confidence: confidence,
+    action:       verb,
+    target:       target,
+    condition:    condition,
+    prediction:   prediction,
+    autonomous:   autonomous,
+    confidence:   confidence,
     workflow_json: {
-      version: '1.0',
-      tool: tool,
-      action: action,
-      parameters: { raw_command: text, target: target },
-      triggers: triggers,
+      version:        '1.0',
+      tool:           tool,
+      action:         action,
+      parameters:     {raw_command: text, target: target},
+      triggers:       triggers,
       execution_mode: layerLabel.toLowerCase().replace('-','_'),
-      confidence: Math.round(confidence * 100) / 100
+      confidence:     Math.round(confidence * 100) / 100
     }
   };
 }
 
-// ── Render ──────────────────────────────────────────────────────────────
+// ── RENDER ──────────────────────────────────────────────────────────────
 var history = [];
 var lastResult = null;
 
 function run() {
   var text = document.getElementById('cmd').value.trim();
   if (!text) {
-    document.getElementById('cmd').focus();
-    document.getElementById('cmd').style.borderColor = 'rgba(239,68,68,.6)';
-    setTimeout(function(){ document.getElementById('cmd').style.borderColor = ''; }, 1000);
+    var el = document.getElementById('cmd');
+    el.style.borderColor = 'rgba(239,68,68,.6)';
+    el.focus();
+    setTimeout(function(){ el.style.borderColor = ''; }, 1000);
     return;
   }
   var r = classify(text);
   lastResult = r;
-  render(r);
+  renderResult(r);
   addHistory(r);
 }
 
-function render(r) {
+function renderResult(r) {
   var sec = document.getElementById('result-section');
   sec.classList.add('show');
 
@@ -363,98 +429,110 @@ function render(r) {
   hdr.style.borderColor = li.col;
 
   var badge = document.getElementById('r-badge');
-  badge.textContent = 'Layer ' + r.intent_layer + ' — ' + r.intent_label;
+  badge.textContent = 'Layer ' + r.intent_layer + ' - ' + r.intent_label;
   badge.style.color = li.col;
   badge.style.borderColor = li.col;
   badge.style.background = 'rgba(0,0,0,.2)';
 
   document.getElementById('r-conf').textContent = Math.round(r.confidence * 100) + '%';
-  document.getElementById('r-tool').textContent = 'Tool: ' + r.workflow_json.tool + ' → ' + r.workflow_json.action;
+  document.getElementById('r-tool').textContent = 'Tool: ' + r.workflow_json.tool + ' > ' + r.workflow_json.action;
 
   // Grid
-  document.getElementById('r-action').textContent = r.action;
-  document.getElementById('r-target').textContent = r.target || '—';
+  var grid = document.getElementById('result-grid');
+  grid.innerHTML = '';
 
-  var cw = document.getElementById('r-cond-wrap');
-  var pw = document.getElementById('r-pred-wrap');
-  if (r.condition) {
-    cw.style.display = '';
-    document.getElementById('r-cond').textContent = r.condition;
-  } else {
-    cw.style.display = 'none';
+  function addCell(label, val, color) {
+    var cell = document.createElement('div');
+    cell.className = 'r-item';
+    cell.innerHTML = '<div class="r-label">' + label + '</div><div class="r-val" style="color:' + (color||'#F1F5F9') + '">' + (val||'-') + '</div>';
+    grid.appendChild(cell);
   }
-  if (r.prediction) {
-    pw.style.display = '';
-    document.getElementById('r-pred').textContent = r.prediction;
-  } else {
-    pw.style.display = 'none';
-  }
+
+  addCell('PRIMARY ACTION', r.action);
+  addCell('TARGET', r.target);
+  if (r.condition)  addCell('TRIGGER CONDITION', r.condition, '#FCD34D');
+  if (r.prediction) addCell('PREDICTION WINDOW', r.prediction, '#C4B5FD');
+  if (r.autonomous) addCell('EXECUTION MODE', 'Autonomous - self-directing', '#34D399');
+  if (!r.condition && !r.prediction && !r.autonomous) addCell('MODE', 'Basic execution', '#64748B');
 
   // Tabs
   for (var i = 1; i <= 4; i++) {
     var tab = document.getElementById('tab' + i);
     tab.className = 'layer-tab';
-    if (i <= r.intent_layer) {
-      tab.classList.add('active-l' + i);
-    }
+    if (i === r.intent_layer) tab.classList.add('active-l' + i);
   }
 
   // Stack
   var sl = document.getElementById('stack-list');
   sl.innerHTML = '';
-  LAYER_INFO.forEach(function(l) {
-    var reached = r.intent_layer >= l.n;
+  for (var n = 0; n < LAYER_INFO.length; n++) {
+    var l = LAYER_INFO[n];
+    var reached = r.intent_layer === l.n;
+    var passed  = r.intent_layer > l.n;
     var row = document.createElement('div');
-    row.className = 'stack-row' + (reached ? ' reached' : '');
+    row.className = 'stack-row' + (reached || passed ? ' reached' : '');
     if (reached) {
       row.style.borderColor = l.col;
       row.style.background = l.bg;
+    } else if (passed) {
+      row.style.borderColor = 'rgba(255,255,255,.12)';
+      row.style.opacity = '0.5';
     }
+    var numBg  = reached ? l.col : (passed ? 'rgba(255,255,255,.1)' : 'rgba(255,255,255,.05)');
+    var numCol = reached ? '#fff' : l.col;
+    var checkHtml = reached
+      ? '<span style="color:' + l.col + ';font-weight:700">DETECTED</span>'
+      : (passed ? '<span style="color:#64748B">below</span>' : '<span style="color:#1E3A5F">-</span>');
     row.innerHTML =
-      '<div class="snum" style="background:' + (reached ? l.col : 'rgba(255,255,255,.06)') + ';color:' + (reached ? '#fff' : l.col) + '">' + l.n + '</div>' +
+      '<div class="snum" style="background:' + numBg + ';color:' + numCol + '">' + l.n + '</div>' +
       '<div class="scontent"><strong style="color:' + (reached ? l.col : '#64748B') + '">' + l.label + '</strong><span>' + l.ex + '</span></div>' +
-      '<div class="scheck">' + (reached ? '<span style="color:' + l.col + '">✓ Detected</span>' : '<span style="color:#1E3A5F">○</span>') + '</div>';
+      '<div class="scheck">' + checkHtml + '</div>';
     sl.appendChild(row);
-  });
+  }
 
   // JSON
   var json = JSON.stringify(r.workflow_json, null, 2);
   document.getElementById('json-out').textContent = json;
 
-  sec.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  sec.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
 function addHistory(r) {
   var li = LAYER_INFO[r.intent_layer - 1];
   var now = new Date();
-  var time = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-  history.unshift({ text: r.raw_input, layer: r.intent_layer, label: r.intent_label, col: li.col, time: time });
+  var time = now.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
+  history.unshift({text:r.raw_input, layer:r.intent_layer, col:li.col, time:time});
   if (history.length > 6) history.pop();
 
   var wrap = document.getElementById('history-wrap');
   var list = document.getElementById('hist-list');
   wrap.style.display = 'block';
   list.innerHTML = '';
-  history.forEach(function(h, idx) {
-    var item = document.createElement('div');
-    item.className = 'hist-item';
-    item.innerHTML =
-      '<span class="hbadge" style="color:' + h.col + ';border-color:' + h.col + ';background:rgba(0,0,0,.2)">L' + h.layer + '</span>' +
-      '<span class="htext">' + h.text + '</span>' +
-      '<span class="htime">' + h.time + '</span>';
-    item.addEventListener('click', (function(i){ return function(){ document.getElementById('cmd').value = history[i].text; run(); }; })(idx));
-    list.appendChild(item);
-  });
+
+  for (var i = 0; i < history.length; i++) {
+    (function(idx, h) {
+      var item = document.createElement('div');
+      item.className = 'hist-item';
+      item.innerHTML =
+        '<span class="hbadge" style="color:' + h.col + ';border-color:' + h.col + ';background:rgba(0,0,0,.2)">L' + h.layer + '</span>' +
+        '<span class="htext">' + h.text + '</span>' +
+        '<span class="htime">' + h.time + '</span>';
+      item.addEventListener('click', function() {
+        document.getElementById('cmd').value = history[idx].text;
+        run();
+      });
+      list.appendChild(item);
+    })(i, history[i]);
+  }
 }
 
-// ── Event listeners ─────────────────────────────────────────────────────
+// ── EVENTS ──────────────────────────────────────────────────────────────
 document.getElementById('classify-btn').addEventListener('click', run);
 
 document.getElementById('cmd').addEventListener('keydown', function(e) {
   if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); run(); }
 });
 
-// Example buttons
 var exBtns = document.querySelectorAll('.ex-btn');
 for (var b = 0; b < exBtns.length; b++) {
   (function(btn) {
@@ -465,13 +543,12 @@ for (var b = 0; b < exBtns.length; b++) {
   })(exBtns[b]);
 }
 
-// Copy JSON
 document.getElementById('copy-btn').addEventListener('click', function() {
   if (!lastResult) return;
   var text = JSON.stringify(lastResult.workflow_json, null, 2);
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(text).then(function() {
-      document.getElementById('copy-btn').textContent = 'Copied ✓';
+      document.getElementById('copy-btn').textContent = 'Copied!';
       setTimeout(function(){ document.getElementById('copy-btn').textContent = 'Copy JSON'; }, 1800);
     });
   } else {
@@ -481,10 +558,83 @@ document.getElementById('copy-btn').addEventListener('click', function() {
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-    document.getElementById('copy-btn').textContent = 'Copied ✓';
+    document.getElementById('copy-btn').textContent = 'Copied!';
     setTimeout(function(){ document.getElementById('copy-btn').textContent = 'Copy JSON'; }, 1800);
   }
 });
+
+// ── VOICE INPUT ─────────────────────────────────────────────────────────
+var recognition = null;
+var isListening = false;
+var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+if (SpeechRecognition) {
+  recognition = new SpeechRecognition();
+  recognition.continuous = false;
+  recognition.interimResults = true;
+  recognition.lang = 'en-GB';
+
+  recognition.onstart = function() {
+    isListening = true;
+    var btn = document.getElementById('mic-btn');
+    btn.classList.add('listening');
+    btn.querySelector('.mic-icon').textContent = '🔴';
+    document.getElementById('mic-status').innerHTML = '<span style="color:#EF4444">Listening... speak your command</span>';
+    document.getElementById('cmd').placeholder = 'Listening...';
+  };
+
+  recognition.onresult = function(event) {
+    var transcript = '';
+    for (var i = event.resultIndex; i < event.results.length; i++) {
+      transcript += event.results[i][0].transcript;
+    }
+    document.getElementById('cmd').value = transcript;
+    if (event.results[event.results.length - 1].isFinal) {
+      document.getElementById('mic-status').innerHTML = '<span style="color:#10B981">Got it! Classifying...</span>';
+      setTimeout(run, 300);
+    }
+  };
+
+  recognition.onend = function() {
+    isListening = false;
+    var btn = document.getElementById('mic-btn');
+    btn.classList.remove('listening');
+    btn.querySelector('.mic-icon').textContent = '🎙';
+    document.getElementById('mic-status').textContent = '';
+    document.getElementById('cmd').placeholder = 'Speak or type: "Send the Q3 report when the auditor signs off"';
+  };
+
+  recognition.onerror = function(event) {
+    isListening = false;
+    var btn = document.getElementById('mic-btn');
+    btn.classList.remove('listening');
+    btn.querySelector('.mic-icon').textContent = '🎙';
+    var msg = 'Microphone error. Please type your command.';
+    if (event.error === 'not-allowed') msg = 'Microphone access denied. Please type your command.';
+    if (event.error === 'no-speech')   msg = 'No speech detected. Try again or type below.';
+    document.getElementById('mic-status').innerHTML = '<span style="color:#F59E0B">' + msg + '</span>';
+    setTimeout(function(){ document.getElementById('mic-status').textContent = ''; }, 3000);
+  };
+
+  document.getElementById('mic-btn').addEventListener('click', function() {
+    if (isListening) {
+      recognition.stop();
+    } else {
+      document.getElementById('cmd').value = '';
+      recognition.start();
+    }
+  });
+
+} else {
+  // No browser support
+  document.getElementById('mic-btn').style.opacity = '0.4';
+  document.getElementById('mic-btn').style.cursor = 'not-allowed';
+  document.getElementById('mic-btn').title = 'Voice not supported in this browser';
+  document.getElementById('no-voice').style.display = 'block';
+  document.getElementById('mic-btn').addEventListener('click', function() {
+    document.getElementById('no-voice').style.display = 'block';
+  });
+}
 </script>
 </body>
 </html>
