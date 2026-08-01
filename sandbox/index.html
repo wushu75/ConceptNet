@@ -3,178 +3,103 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ConceptNet Voice IP Sandbox — Try the Intent Engine</title>
+<title>ConceptNet Voice IP Sandbox</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#060D1A;--bg2:#0C1628;--bg3:#111F36;--bg4:#0F1D35;
+  --bg:#060D1A;--bg2:#0C1628;--bg4:#0F1D35;
   --blue:#2563EB;--cyan:#06B6D4;--green:#10B981;
   --purple:#7C3AED;--amber:#F59E0B;--red:#EF4444;
   --white:#F1F5F9;--muted:#64748B;--border:rgba(255,255,255,.07);
-  --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;
+  --mono:"DM Mono",monospace;--sans:"DM Sans",sans-serif;
   --l1:#2563EB;--l2:#F59E0B;--l3:#7C3AED;--l4:#10B981;
 }
 html{font-size:16px}
 body{font-family:var(--sans);background:var(--bg);color:var(--white);min-height:100vh;line-height:1.6}
-
-nav{
-  position:sticky;top:0;z-index:50;
-  background:rgba(6,13,26,.9);backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border);
-  padding:0 32px;height:56px;
-  display:flex;align-items:center;justify-content:space-between;
-}
+nav{position:sticky;top:0;z-index:50;background:rgba(6,13,26,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 32px;height:56px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--mono);font-size:.88rem;color:var(--cyan)}
-.nav-links{display:flex;gap:20px;font-size:.82rem;color:var(--muted)}
+.nav-links{display:flex;gap:20px;font-size:.82rem}
 .nav-links a{color:var(--muted);text-decoration:none}
 .nav-links a:hover{color:var(--white)}
 .nav-tag{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;color:var(--purple);background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.25);border-radius:100px;padding:4px 12px}
-
 .main{max-width:860px;margin:0 auto;padding:48px 24px 80px}
-
 .hero{text-align:center;margin-bottom:40px}
 .hero-tag{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--cyan);background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);border-radius:100px;padding:4px 14px;margin-bottom:18px}
 .hero h1{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;letter-spacing:-.03em;margin-bottom:12px;line-height:1.15}
 .hero h1 em{font-style:normal;color:var(--cyan)}
 .hero p{font-size:.95rem;color:var(--muted);max-width:520px;margin:0 auto}
-
-/* INPUT */
 .input-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:28px;margin-bottom:28px}
-.input-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;display:block}
-.input-row{display:flex;gap:10px;align-items:stretch;margin-bottom:16px}
+.section-label{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;display:block}
+.lang-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.lang-btn{font-size:.78rem;font-family:var(--mono);background:rgba(255,255,255,.04);border:1.5px solid var(--border);border-radius:8px;padding:6px 12px;cursor:pointer;color:var(--muted);transition:all .15s}
+.lang-btn:hover{border-color:rgba(6,182,212,.4);color:var(--cyan)}
+.lang-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(6,182,212,.08)}
+.input-row{display:flex;gap:10px;align-items:stretch;margin-bottom:14px}
 textarea{flex:1;background:rgba(255,255,255,.05);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--white);font-family:var(--sans);font-size:.95rem;line-height:1.55;resize:none;outline:none;min-height:72px;transition:border-color .2s}
 textarea:focus{border-color:rgba(6,182,212,.5)}
 textarea::placeholder{color:var(--muted)}
-
-/* MIC BUTTON */
-.mic-btn{
-  background:var(--bg4);border:1.5px solid var(--border);border-radius:10px;
-  width:56px;flex-shrink:0;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .2s;position:relative;
-}
+.mic-btn{background:var(--bg4);border:1.5px solid var(--border);border-radius:10px;width:54px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:all .2s}
 .mic-btn:hover{border-color:rgba(6,182,212,.4);background:rgba(6,182,212,.08)}
-.mic-btn.listening{border-color:var(--red);background:rgba(239,68,68,.12);animation:mic-pulse 1.2s infinite}
-.mic-btn.listening .mic-icon{color:var(--red)}
-.mic-icon{font-size:1.3rem;color:var(--muted);transition:color .2s}
-.mic-tooltip{
-  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
-  background:var(--bg3);border:1px solid var(--border);border-radius:6px;
-  padding:4px 10px;font-size:.7rem;color:var(--muted);white-space:nowrap;
-  opacity:0;pointer-events:none;transition:opacity .2s;font-family:var(--mono);
-}
-.mic-btn:hover .mic-tooltip{opacity:1}
-.mic-status{font-family:var(--mono);font-size:.72rem;text-align:center;margin-top:8px;min-height:16px;transition:all .2s}
-
-@keyframes mic-pulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}
-  50%{box-shadow:0 0 0 8px rgba(239,68,68,0)}
-}
-
+.mic-btn.listening{border-color:var(--red);background:rgba(239,68,68,.12);animation:pulse 1.2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.4)}50%{box-shadow:0 0 0 8px rgba(239,68,68,0)}}
 .run-btn{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:0 22px;font-family:var(--sans);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap;min-width:120px}
 .run-btn:hover{background:#1d4ed8;transform:translateY(-1px)}
-.run-btn:active{transform:translateY(0)}
-
-.examples-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mic-status{font-family:var(--mono);font-size:.72rem;text-align:center;min-height:18px;margin-bottom:8px}
+.ex-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .ex-label{font-size:.75rem;color:var(--muted);flex-shrink:0}
-.ex-btn{font-size:.78rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:100px;padding:6px 14px;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:all .15s;text-align:left}
+.ex-btn{font-size:.78rem;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:100px;padding:6px 14px;color:var(--muted);cursor:pointer;font-family:var(--sans);transition:all .15s}
 .ex-btn:hover{border-color:rgba(6,182,212,.5);color:var(--cyan);background:rgba(6,182,212,.06)}
-
-/* LAYER TABS */
 .layer-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px}
 .layer-tab{background:var(--bg2);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;transition:all .2s}
-.layer-tab.active-l1{border-color:var(--l1);background:rgba(37,99,235,.08)}
-.layer-tab.active-l2{border-color:var(--l2);background:rgba(245,158,11,.08)}
-.layer-tab.active-l3{border-color:var(--l3);background:rgba(124,58,237,.08)}
-.layer-tab.active-l4{border-color:var(--l4);background:rgba(16,185,129,.08)}
 .lt-num{font-family:var(--mono);font-size:.65rem;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
 .lt-name{font-size:.88rem;font-weight:700;margin-bottom:2px}
 .lt-desc{font-size:.75rem;color:var(--muted)}
-
-/* RESULT */
-#result-section{display:none}
-#result-section.show{display:block}
-
-.result-header{border-radius:12px 12px 0 0;border:1.5px solid var(--border);border-bottom:none;padding:18px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.result-badge{font-family:var(--mono);font-size:.8rem;font-weight:500;padding:6px 16px;border-radius:100px;border:1.5px solid}
-.result-conf{font-size:.82rem;color:var(--muted)}
-.result-tool{font-size:.78rem;color:var(--muted);margin-left:auto}
-
-.result-body{border:1.5px solid var(--border);border-radius:0 0 12px 12px;overflow:hidden}
-
-.result-grid{display:grid;grid-template-columns:1fr 1fr}
-.r-item{padding:16px 22px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
-.r-item:nth-child(even){border-right:none}
-.r-item:last-child{border-bottom:none}
-.r-item:nth-last-child(2){border-bottom:none}
-.r-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:5px;font-family:var(--mono)}
-.r-val{font-size:1rem;font-weight:600}
-
-/* STACK */
-.stack-wrap{padding:22px 24px;border-bottom:1px solid var(--border)}
-.stack-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:12px;font-family:var(--mono)}
-.stack-list{display:flex;flex-direction:column;gap:8px}
-.stack-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;border:1px solid var(--border);opacity:.3;transition:all .3s}
-.stack-row.reached{opacity:1}
-.snum{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.75rem;font-weight:600;flex-shrink:0}
-.scontent{flex:1}
-.scontent strong{display:block;font-size:.88rem}
-.scontent span{font-size:.75rem;color:var(--muted)}
-.scheck{font-size:.85rem;margin-left:auto}
-
-/* JSON */
+#result-box{display:none;margin-bottom:28px}
+.result-hdr{border-radius:12px 12px 0 0;border:1.5px solid var(--border);border-bottom:none;padding:16px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.r-badge{font-family:var(--mono);font-size:.8rem;font-weight:500;padding:5px 14px;border-radius:100px;border:1.5px solid}
+.result-body{border:1.5px solid var(--border);border-radius:0 0 12px 12px}
+.r-grid{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.r-cell{padding:14px 20px;border-right:1px solid var(--border)}
+.r-cell:nth-child(even){border-right:none}
+.r-cell:nth-last-child(-n+2){border-bottom:none}
+.r-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px;font-family:var(--mono)}
+.r-val{font-size:.95rem;font-weight:600}
+.stack-wrap{padding:20px 22px;border-bottom:1px solid var(--border)}
+.stack-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px;font-family:var(--mono)}
+.stack-row{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:8px;border:1px solid var(--border);margin-bottom:7px;opacity:.3;transition:all .3s}
+.stack-row.hit{opacity:1}
+.s-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.72rem;font-weight:600;flex-shrink:0}
+.s-name{flex:1;font-size:.86rem;font-weight:600}
+.s-ex{font-size:.75rem;color:var(--muted)}
+.s-check{font-size:.78rem;font-family:var(--mono)}
 .json-wrap{padding:18px 22px}
-.json-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.json-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:var(--mono)}
+.json-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.json-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:var(--mono)}
 .copy-btn{font-size:.72rem;color:var(--cyan);background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);border-radius:6px;padding:4px 12px;cursor:pointer;font-family:var(--sans);transition:all .15s}
 .copy-btn:hover{background:rgba(6,182,212,.18)}
-pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--mono);font-size:.76rem;line-height:1.7;overflow-x:auto;color:#CBD5E1}
-
-/* HISTORY */
-.history-wrap{margin-top:36px;display:none}
-.history-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:var(--mono);margin-bottom:12px}
-.hist-list{display:flex;flex-direction:column;gap:8px}
-.hist-item{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:.85rem;transition:border-color .15s}
+pre{background:rgba(0,0,0,.4);border-radius:8px;padding:14px;font-family:var(--mono);font-size:.76rem;line-height:1.7;overflow-x:auto;color:#CBD5E1}
+.hist-wrap{margin-top:32px;display:none}
+.hist-lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-family:var(--mono);margin-bottom:10px}
+.hist-item{display:flex;align-items:center;gap:10px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:9px 14px;cursor:pointer;font-size:.84rem;margin-bottom:7px;transition:border-color .15s}
 .hist-item:hover{border-color:rgba(255,255,255,.18)}
-.hbadge{font-family:var(--mono);font-size:.68rem;padding:2px 8px;border-radius:4px;flex-shrink:0;border:1px solid}
-.htext{flex:1;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.htime{font-family:var(--mono);font-size:.68rem;color:var(--muted);flex-shrink:0}
-
-/* NO VOICE SUPPORT MSG */
-.no-voice{display:none;font-size:.75rem;color:var(--amber);font-family:var(--mono);margin-top:6px;text-align:center}
-
-
-/* LANGUAGE TABS */
-.lang-tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-.lang-tab{
-  font-size:.78rem;font-family:var(--mono);letter-spacing:.04em;
-  background:rgba(255,255,255,.04);border:1.5px solid var(--border);
-  border-radius:8px;padding:6px 14px;cursor:pointer;
-  color:var(--muted);transition:all .15s;display:flex;align-items:center;gap:6px;
-}
-.lang-tab:hover{border-color:rgba(6,182,212,.4);color:var(--cyan)}
-.lang-tab.active{border-color:var(--cyan);color:var(--cyan);background:rgba(6,182,212,.08)}
-.lang-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:8px;font-family:var(--mono)}
-
-/* FOOTER */
+.h-badge{font-family:var(--mono);font-size:.68rem;padding:2px 8px;border-radius:4px;flex-shrink:0;border:1px solid}
+.h-text{flex:1;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h-time{font-family:var(--mono);font-size:.68rem;color:var(--muted);flex-shrink:0}
 .footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem;color:var(--muted)}
 .footer a{color:var(--cyan);text-decoration:none}
-
 @media(max-width:640px){
   .layer-tabs{grid-template-columns:1fr 1fr}
-  .result-grid{grid-template-columns:1fr}
-  .r-item{border-right:none}
+  .r-grid{grid-template-columns:1fr}
+  .r-cell{border-right:none;border-bottom:1px solid var(--border)}
   .input-row{flex-direction:column}
-  .run-btn{min-height:48px}
-  .nav-links{display:none}
   .mic-btn{width:100%;height:48px}
+  .nav-links{display:none}
 }
 </style>
 </head>
 <body>
-
 <nav>
   <span class="nav-logo">ConceptNet / sandbox</span>
   <div class="nav-links">
@@ -186,81 +111,55 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
 </nav>
 
 <div class="main">
-
   <div class="hero">
-    <div class="hero-tag">Interactive Demo — Speak or Type — No Signup</div>
-    <h1>Speak a command.<br>See your <em>Voice IP fingerprint.</em></h1>
-    <p>ConceptNet classifies enterprise voice commands into 4 intent layers — the building blocks of your proprietary Voice IP. Use the microphone or type below.</p>
+    <div class="hero-tag">Speak or Type — No Signup Required</div>
+    <h1>Type or speak a command.<br>See your <em>Voice IP fingerprint.</em></h1>
+    <p>ConceptNet classifies enterprise voice commands into 4 intent layers in real time — across 5 languages.</p>
   </div>
 
   <div class="input-card">
-    <label class="input-label" for="cmd">Your voice command</label>
+    <span class="section-label">Language</span>
+    <div class="lang-row" id="lang-row">
+      <button class="lang-btn active" data-lang="en">GB English</button>
+      <button class="lang-btn" data-lang="fr">FR French</button>
+      <button class="lang-btn" data-lang="es">ES Spanish</button>
+      <button class="lang-btn" data-lang="zh">CN Chinese</button>
+      <button class="lang-btn" data-lang="ru">RU Russian</button>
+    </div>
+    <span class="section-label">Your command</span>
     <div class="input-row">
-      <textarea id="cmd" rows="2" placeholder='Speak or type: "Send the Q3 report when the auditor signs off"'></textarea>
-      <button class="mic-btn" id="mic-btn" title="Click to speak">
-        <span class="mic-icon">🎙</span>
-        <span class="mic-tooltip">Click to speak</span>
-      </button>
-      <button class="run-btn" id="classify-btn">Classify →</button>
+      <textarea id="cmd" rows="2" placeholder="Speak or type your command here..."></textarea>
+      <button class="mic-btn" id="mic-btn" title="Click to speak">&#127897;</button>
+      <button class="run-btn" id="run-btn">Classify</button>
     </div>
     <div class="mic-status" id="mic-status"></div>
-    <div class="no-voice" id="no-voice">⚠ Voice input not supported in this browser. Please type your command.</div>
-    <div class="lang-label">Language</div>
-    <div class="lang-tabs" id="lang-tabs">
-      <button class="lang-tab active" data-lang="en">🇬🇧 English</button>
-      <button class="lang-tab" data-lang="fr">🇫🇷 French</button>
-      <button class="lang-tab" data-lang="es">🇪🇸 Spanish</button>
-      <button class="lang-tab" data-lang="zh">🇨🇳 Chinese</button>
-      <button class="lang-tab" data-lang="ru">🇷🇺 Russian</button>
-    </div>
-    <div class="examples-wrap" id="examples-wrap">
+    <div class="ex-row" id="ex-row">
       <span class="ex-label">Try:</span>
-      <button class="ex-btn">Schedule a board meeting</button>
-      <button class="ex-btn">Email the client when the proposal is approved</button>
-      <button class="ex-btn">Alert the account manager before the contract expires</button>
-      <button class="ex-btn">Automatically update Salesforce after every call</button>
-      <button class="ex-btn">Create a Jira ticket and notify the team if the build fails</button>
     </div>
   </div>
 
   <div class="layer-tabs">
-    <div class="layer-tab" id="tab1">
-      <div class="lt-num">LAYER 1</div>
-      <div class="lt-name" style="color:var(--l1)">Basic</div>
-      <div class="lt-desc">"Do X"</div>
-    </div>
-    <div class="layer-tab" id="tab2">
-      <div class="lt-num">LAYER 2</div>
-      <div class="lt-name" style="color:var(--l2)">Context-Aware</div>
-      <div class="lt-desc">"Do X when Y"</div>
-    </div>
-    <div class="layer-tab" id="tab3">
-      <div class="lt-num">LAYER 3</div>
-      <div class="lt-name" style="color:var(--l3)">Predictive</div>
-      <div class="lt-desc">"Do X before Y"</div>
-    </div>
-    <div class="layer-tab" id="tab4">
-      <div class="lt-num">LAYER 4</div>
-      <div class="lt-name" style="color:var(--l4)">Autonomous</div>
-      <div class="lt-desc">"Do X always"</div>
-    </div>
+    <div class="layer-tab" id="tab1"><div class="lt-num">LAYER 1</div><div class="lt-name" style="color:var(--l1)">Basic</div><div class="lt-desc">"Do X"</div></div>
+    <div class="layer-tab" id="tab2"><div class="lt-num">LAYER 2</div><div class="lt-name" style="color:var(--l2)">Context-Aware</div><div class="lt-desc">"Do X when Y"</div></div>
+    <div class="layer-tab" id="tab3"><div class="lt-num">LAYER 3</div><div class="lt-name" style="color:var(--l3)">Predictive</div><div class="lt-desc">"Do X before Y"</div></div>
+    <div class="layer-tab" id="tab4"><div class="lt-num">LAYER 4</div><div class="lt-name" style="color:var(--l4)">Autonomous</div><div class="lt-desc">"Do X always"</div></div>
   </div>
 
-  <div id="result-section">
-    <div class="result-header" id="result-header">
-      <span class="result-badge" id="r-badge">Layer 1</span>
-      <span class="result-conf">Confidence: <strong id="r-conf">-</strong></span>
-      <span class="result-tool" id="r-tool">Tool: -</span>
+  <div id="result-box">
+    <div class="result-hdr" id="result-hdr">
+      <span class="r-badge" id="r-badge">Layer 1</span>
+      <span style="font-size:.82rem;color:var(--muted)">Confidence: <strong id="r-conf"></strong></span>
+      <span style="font-size:.78rem;color:var(--muted);margin-left:auto" id="r-tool"></span>
     </div>
     <div class="result-body">
-      <div class="result-grid" id="result-grid"></div>
+      <div class="r-grid" id="r-grid"></div>
       <div class="stack-wrap">
-        <div class="stack-label">Intent Layer Stack</div>
-        <div class="stack-list" id="stack-list"></div>
+        <div class="stack-lbl">Intent Layer Stack — Your Voice IP Fingerprint</div>
+        <div id="stack"></div>
       </div>
       <div class="json-wrap">
-        <div class="json-head">
-          <span class="json-title">Workflow JSON — ready for agent execution</span>
+        <div class="json-hdr">
+          <span class="json-lbl">Workflow JSON — ready for agent execution</span>
           <button class="copy-btn" id="copy-btn">Copy JSON</button>
         </div>
         <pre id="json-out"></pre>
@@ -268,153 +167,212 @@ pre{background:rgba(0,0,0,.45);border-radius:8px;padding:14px;font-family:var(--
     </div>
   </div>
 
-  <div class="history-wrap" id="history-wrap">
-    <div class="history-title">Session history</div>
-    <div class="hist-list" id="hist-list"></div>
+  <div class="hist-wrap" id="hist-wrap">
+    <div class="hist-lbl">Session history</div>
+    <div id="hist-list"></div>
   </div>
 
   <div class="footer">
-    <span>Built by <a href="https://conceptnet.co.uk">ConceptNet</a> — Voice IP Infrastructure for AI · <a href="https://github.com/wushu75/ConceptNet">Open-source on GitHub</a></span>
-    <span><a href="https://conceptnet.co.uk/benchmarks/">Benchmarks</a> · <a href="https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox">Hugging Face</a> · <a href="mailto:tonymomoh@icloud.com">tonymomoh@icloud.com</a></span>
+    <span>Built by <a href="https://conceptnet.co.uk">ConceptNet</a> — Voice IP Infrastructure for AI &nbsp;·&nbsp; <a href="https://github.com/wushu75/ConceptNet">Open-source GitHub</a></span>
+    <span><a href="https://conceptnet.co.uk/benchmarks/">Benchmarks</a> &nbsp;·&nbsp; <a href="https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox">Hugging Face</a> &nbsp;·&nbsp; <a href="mailto:tonymomoh@icloud.com">tonymomoh@icloud.com</a></span>
   </div>
-
 </div>
 
 <script>
-// ── CLASSIFIER ──────────────────────────────────────────────────────────
-// Fixed layer priority: check Autonomous LAST so L2/L3 patterns
-// don't get overridden by incidental "always/every" words
-
-var ACTION_MAP = [
-  {re:/\b(schedule|book|arrange|set.?up|create).{0,20}(meeting|call|event|appointment)\b/i, tool:'CALENDAR', action:'create_event', verb:'schedule'},
-  {re:/\b(send|email|message|notify|ping)\b/i, tool:'EMAIL', action:'send_message', verb:'send'},
-  {re:/\b(update|log|record|note|add).{0,15}(crm|salesforce|hubspot|contact|lead|deal)\b/i, tool:'CRM', action:'update_record', verb:'update'},
-  {re:/\b(create|open|add|file).{0,15}(ticket|issue|task|jira|bug)\b/i, tool:'TASKS', action:'create_ticket', verb:'create'},
-  {re:/\b(summar[iy]|recap|brief|tldr)\b/i, tool:'AI', action:'summarise', verb:'summarise'},
-  {re:/\b(pull|fetch|get|retrieve|show).{0,15}(report|data|stats|pipeline|dashboard)\b/i, tool:'ANALYTICS', action:'fetch_report', verb:'fetch'},
-  {re:/\b(post|share|publish|announce).{0,15}(slack|teams|channel)\b/i, tool:'COMMS', action:'post_message', verb:'post'},
-  {re:/\b(draft|write|compose|prepare).{0,15}(email|proposal|doc|report)\b/i, tool:'DOCS', action:'draft_document', verb:'draft'},
-  {re:/\b(remind|reminder|alert|follow.?up)\b/i, tool:'CALENDAR', action:'set_reminder', verb:'remind'},
-  {re:/\b(approve|review|sign.?off|authoris|authoriz)\b/i, tool:'WORKFLOW', action:'request_approval', verb:'approve'},
-];
-
-// Condition patterns — Layer 2
-var COND_RE = [
-  /\bwhen\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
-  /\bif\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
-  /\bafter\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
-  /\bonce\s+(.+?)(?:\s*,|\s+and\b|\s+before\b|$)/i,
-  // French
-  /\bquand\s+(.+?)(?:\s*,|$)/i,
-  /\blorsque\s+(.+?)(?:\s*,|$)/i,
-  /\bsi\s+(.+?)(?:\s*,|$)/i,
-  // Spanish
-  /\bcuando\s+(.+?)(?:\s*,|$)/i,
-  // Chinese
-  /当(.+?)(?:时|后)/,
-  // Russian
-  /когда\s+(.+?)(?:\s*,|$)/i,
-  /если\s+(.+?)(?:\s*,|$)/i
-];
-
-// Prediction patterns — Layer 3
-var PRED_RE = [
-  /\bbefore\s+(.+?)(?:\s*,|\s+and\b|$)/i,
-  /\bin advance of\s+(.+?)(?:\s*,|$)/i,
-  // French
-  /\bavant\s+(.+?)(?:\s*,|$)/i,
-  // Spanish
-  /\bantes de\s+(.+?)(?:\s*,|$)/i,
-  // Chinese
-  /(.+?)前(?:提醒|通知|准备)/,
-  // Russian
-  /до\s+(.+?)(?:\s*,|$)/i
-];
-
-// Autonomous keywords — Layer 4
-// Only trigger Layer 4 if NONE of the L2/L3 patterns fire
-// and STRONG autonomous signal is present
-var AUTO_STRONG = [
-  'automatically', 'autonomously', 'without being told',
-  'without asking', 'on its own', 'auto-'
-];
-var AUTO_REPEAT = [
-  'always ', 'every time', 'whenever ', 'continuously', 'keep doing'
-];
+// =========================================================
+// DATA
+// =========================================================
+var LANGS = {
+  en: {
+    bcp: "en-GB",
+    ph:  "Try: Schedule a board meeting when the results are ready",
+    ex:  [
+      "Schedule a board meeting",
+      "Email the client when the proposal is approved",
+      "Alert the manager before the contract expires",
+      "Automatically update Salesforce after every call",
+      "Create a Jira ticket if the build fails"
+    ]
+  },
+  fr: {
+    bcp: "fr-FR",
+    ph:  "Essayez: Planifier une reunion du conseil",
+    ex:  [
+      "Planifier une reunion du conseil",
+      "Envoyer le rapport quand le contrat est signe",
+      "Alerter le responsable avant la fin du contrat",
+      "Mettre a jour le CRM automatiquement apres chaque appel",
+      "Creer un ticket Jira si le deploiement echoue"
+    ]
+  },
+  es: {
+    bcp: "es-ES",
+    ph:  "Intente: Programar una reunion del consejo",
+    ex:  [
+      "Programar una reunion del consejo",
+      "Enviar el informe cuando se firme el contrato",
+      "Alertar al gerente antes de que venza el contrato",
+      "Actualizar el CRM automaticamente despues de cada llamada",
+      "Crear un ticket si falla la compilacion"
+    ]
+  },
+  zh: {
+    bcp: "zh-CN",
+    ph:  "试试: 安排董事会会议",
+    ex:  [
+      "安排董事会会议",
+      "合同签署后发送报告给客户",
+      "合同到期前提醒客户经理",
+      "每次通话后自动更新CRM系统",
+      "如果构建失败则创建工单"
+    ]
+  },
+  ru: {
+    bcp: "ru-RU",
+    ph:  "Попробуйте: Запланировать заседание совета",
+    ex:  [
+      "Запланировать заседание совета директоров",
+      "Otpravit otchet kogda kontrakt podpisan",
+      "Uvedomit menedzhera do istecheniia kontrakta",
+      "Avtomaticheski obnovliat CRM posle kazhdogo zvonka",
+      "Sozdat zadachu esli sborka ne udalas"
+    ]
+  }
+};
 
 var LAYER_INFO = [
-  {n:1, label:'Basic',         col:'#2563EB', bg:'rgba(37,99,235,.1)',   ex:'"Do X"'},
-  {n:2, label:'Context-Aware', col:'#F59E0B', bg:'rgba(245,158,11,.1)',  ex:'"Do X when Y"'},
-  {n:3, label:'Predictive',    col:'#7C3AED', bg:'rgba(124,58,237,.1)',  ex:'"Do X before Y"'},
-  {n:4, label:'Autonomous',    col:'#10B981', bg:'rgba(16,185,129,.1)',  ex:'"Do X always"'},
+  { n:1, label:"Basic",         col:"#2563EB", bg:"rgba(37,99,235,.1)",   ex:'"Do X"' },
+  { n:2, label:"Context-Aware", col:"#F59E0B", bg:"rgba(245,158,11,.1)",  ex:'"Do X when Y"' },
+  { n:3, label:"Predictive",    col:"#7C3AED", bg:"rgba(124,58,237,.1)",  ex:'"Do X before Y"' },
+  { n:4, label:"Autonomous",    col:"#10B981", bg:"rgba(16,185,129,.1)",  ex:'"Do X always"' }
 ];
 
-function classify(text) {
-  var t = text.toLowerCase().trim();
+var ACTION_MAP = [
+  { re:/\b(schedule|book|arrange|create).{0,20}(meeting|call|event|appointment)\b/i,  tool:"CALENDAR",  action:"create_event",   verb:"schedule" },
+  { re:/\b(send|email|message|notify|ping)\b/i,                                         tool:"EMAIL",     action:"send_message",   verb:"send" },
+  { re:/\b(update|log|record|add).{0,15}(crm|salesforce|hubspot|contact|lead|deal)\b/i,tool:"CRM",       action:"update_record",  verb:"update" },
+  { re:/\b(create|open|file).{0,15}(ticket|issue|task|jira|bug)\b/i,                   tool:"TASKS",     action:"create_ticket",  verb:"create" },
+  { re:/\b(summar|recap|brief|tldr)/i,                                                   tool:"AI",        action:"summarise",      verb:"summarise" },
+  { re:/\b(pull|fetch|get|show).{0,15}(report|data|stats|pipeline|dashboard)\b/i,      tool:"ANALYTICS", action:"fetch_report",   verb:"fetch" },
+  { re:/\b(post|share|publish).{0,15}(slack|teams|channel)\b/i,                        tool:"COMMS",     action:"post_message",   verb:"post" },
+  { re:/\b(draft|write|compose|prepare).{0,15}(email|proposal|doc|report)\b/i,         tool:"DOCS",      action:"draft_document", verb:"draft" },
+  { re:/\b(remind|reminder|alert|follow)/i,                                              tool:"CALENDAR",  action:"set_reminder",   verb:"remind" },
+  { re:/\b(planifier|programmer|reserver|organiser)/i,                                   tool:"CALENDAR",  action:"create_event",   verb:"schedule" },
+  { re:/\b(envoyer|notifier|informer|alerter)/i,                                         tool:"EMAIL",     action:"send_message",   verb:"send" },
+  { re:/\b(mettre.{0,5}jour|actualiser|enregistrer)/i,                                  tool:"CRM",       action:"update_record",  verb:"update" },
+  { re:/\b(programar|reservar|organizar|agendar)/i,                                      tool:"CALENDAR",  action:"create_event",   verb:"schedule" },
+  { re:/\b(enviar|notificar|informar|avisar)/i,                                           tool:"EMAIL",     action:"send_message",   verb:"send" },
+  { re:/安排|预约|计划/,                                                                   tool:"CALENDAR",  action:"create_event",   verb:"schedule" },
+  { re:/发送|通知|提醒/,                                                                   tool:"EMAIL",     action:"send_message",   verb:"send" },
+  { re:/更新|记录|添加/,                                                                   tool:"CRM",       action:"update_record",  verb:"update" }
+];
 
-  // Detect tool
-  var tool = 'WORKFLOW', action = 'execute', verb = 'process';
+// Layer 3 triggers (check FIRST - most specific)
+var PRED_PATTERNS = [
+  /\bbefore\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bin advance of\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bavant\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bantes de\s+(.{3,60}?)(?:\s*,|$)/i,
+  /(.{2,20})前(?:提醒|通知|准备)/,
+  /до\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bdo istecheni/i
+];
+
+// Layer 2 triggers (check SECOND)
+var COND_PATTERNS = [
+  /\bwhen\s+(.{3,60}?)(?:\s*,|\s+and\b|$)/i,
+  /\bif\s+(.{3,60}?)(?:\s*,|\s+and\b|$)/i,
+  /\bafter\s+(?!every|each)(.{3,60}?)(?:\s*,|\s+and\b|$)/i,
+  /\bonce\s+(.{3,60}?)(?:\s*,|\s+and\b|$)/i,
+  /\bquand\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\blorsque\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bsi\s+(?!falla|le|la)(.{3,60}?)(?:\s*,|$)/i,
+  /\bcuando\s+(.{3,60}?)(?:\s*,|$)/i,
+  /(.{2,20})(?:签署|签订|完成|结束)后/,
+  /\bkogda\b/i,
+  /когда\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\besli\b/i,
+  /если\s+(.{3,60}?)(?:\s*,|$)/i
+];
+
+// Layer 4 triggers (check LAST - only if no L2/L3)
+var AUTO_WORDS = [
+  "automatically","autonomously","auto-","without asking","without being told",
+  "always ","every time","whenever ","continuously","keep doing",
+  "automatiquement","toujours","chaque fois",
+  "automaticamente","siempre","cada vez",
+  "自动","每次","始终",
+  "avtomaticheski","vsegda"
+];
+
+// =========================================================
+// CLASSIFIER
+// =========================================================
+function classify(text) {
+  var t = text.toLowerCase();
+
+  // Tool detection
+  var tool = "WORKFLOW", action = "execute", verb = "process";
   for (var i = 0; i < ACTION_MAP.length; i++) {
     if (ACTION_MAP[i].re.test(t)) {
-      tool = ACTION_MAP[i].tool;
+      tool   = ACTION_MAP[i].tool;
       action = ACTION_MAP[i].action;
-      verb = ACTION_MAP[i].verb;
+      verb   = ACTION_MAP[i].verb;
       break;
     }
   }
 
-  // Extract target
+  // Target
   var tm = t.match(/(?:the |a |an )?([\w\s]{3,35}?)(?:\s+for|\s+to|\s+when|\s+if|\s+before|\s+after|\s+once|$)/);
-  var target = tm ? tm[1].trim() : 'task';
-  target = target.replace(/^(schedule|send|update|create|fetch|post|draft|remind|approve|alert|notify|log|record)\s+/i, '').trim();
-  if (!target) target = 'task';
+  var target = tm ? tm[1].trim().replace(/^(schedule|send|update|create|fetch|post|draft|remind|alert|notify|log)\s+/i,"").trim() : "task";
+  if (!target) { target = "task"; }
 
-  // ── LAYER DETECTION (strict priority order) ────────────────────────
-  // Check L3 FIRST — "before" is more specific than "when"
+  // L3 - Predictive (most specific - check first)
   var prediction = null;
-  for (var p = 0; p < PRED_RE.length; p++) {
-    var pm = t.match(PRED_RE[p]);
-    if (pm) { prediction = pm[1].trim(); break; }
+  for (var p = 0; p < PRED_PATTERNS.length; p++) {
+    var pm = t.match(PRED_PATTERNS[p]);
+    if (pm) {
+      prediction = pm[1] ? pm[1].trim() : "event";
+      break;
+    }
   }
 
-  // Check L2 — but only if "before" wasn't the trigger
+  // L2 - Context-Aware (only if not L3)
   var condition = null;
   if (!prediction) {
-    for (var c = 0; c < COND_RE.length; c++) {
-      var cm = t.match(COND_RE[c]);
-      if (cm) { condition = cm[1].trim(); break; }
+    for (var c = 0; c < COND_PATTERNS.length; c++) {
+      var cm = t.match(COND_PATTERNS[c]);
+      if (cm) {
+        condition = cm[1] ? cm[1].trim() : "trigger";
+        break;
+      }
     }
   }
 
-  // Check L4 — ONLY if no L2 or L3 pattern found
-  // AND a strong autonomous signal exists
+  // L4 - Autonomous (only if not L2 or L3)
   var autonomous = false;
-  if (!condition && !prediction) {
-    var strongAuto = false;
-    for (var a = 0; a < AUTO_STRONG.length; a++) {
-      if (t.indexOf(AUTO_STRONG[a]) !== -1) { strongAuto = true; break; }
-    }
-    if (!strongAuto) {
-      for (var r = 0; r < AUTO_REPEAT.length; r++) {
-        if (t.indexOf(AUTO_REPEAT[r]) !== -1) { strongAuto = true; break; }
+  if (!prediction && !condition) {
+    for (var a = 0; a < AUTO_WORDS.length; a++) {
+      if (t.indexOf(AUTO_WORDS[a]) !== -1) {
+        autonomous = true;
+        break;
       }
     }
-    autonomous = strongAuto;
   }
 
   // Assign layer
   var layer, layerLabel;
-  if (prediction)       { layer = 3; layerLabel = 'Predictive'; }
-  else if (condition)   { layer = 2; layerLabel = 'Context-Aware'; }
-  else if (autonomous)  { layer = 4; layerLabel = 'Autonomous'; }
-  else                  { layer = 1; layerLabel = 'Basic'; }
+  if (prediction)      { layer = 3; layerLabel = "Predictive"; }
+  else if (condition)  { layer = 2; layerLabel = "Context-Aware"; }
+  else if (autonomous) { layer = 4; layerLabel = "Autonomous"; }
+  else                 { layer = 1; layerLabel = "Basic"; }
 
-  var confidence = Math.min(0.97, 0.65 + (layer * 0.07) + (tool !== 'WORKFLOW' ? 0.05 : 0));
+  var confidence = Math.min(0.97, 0.65 + layer * 0.07 + (tool !== "WORKFLOW" ? 0.05 : 0));
 
   var triggers = {};
-  if (condition)  triggers.condition  = condition;
-  if (prediction) triggers.prediction = prediction;
-  if (autonomous) triggers.autonomous = true;
+  if (condition)  { triggers.condition  = condition; }
+  if (prediction) { triggers.prediction = prediction; }
+  if (autonomous) { triggers.autonomous = true; }
 
   return {
     raw_input:    text,
@@ -427,28 +385,33 @@ function classify(text) {
     autonomous:   autonomous,
     confidence:   confidence,
     workflow_json: {
-      version:        '1.0',
+      version:        "1.0",
       tool:           tool,
       action:         action,
-      parameters:     {raw_command: text, target: target},
+      parameters:     { raw_command: text, target: target },
       triggers:       triggers,
-      execution_mode: layerLabel.toLowerCase().replace('-','_'),
+      execution_mode: layerLabel.toLowerCase().replace("-","_"),
       confidence:     Math.round(confidence * 100) / 100
     }
   };
 }
 
-// ── RENDER ──────────────────────────────────────────────────────────────
-var history = [];
-var lastResult = null;
+// =========================================================
+// RENDER
+// =========================================================
+var lastResult  = null;
+var historyLog  = [];
+var currentLang = "en";
+var recognition = null;
+var listening   = false;
 
-function run() {
-  var text = document.getElementById('cmd').value.trim();
+function doRun() {
+  var text = document.getElementById("cmd").value.trim();
   if (!text) {
-    var el = document.getElementById('cmd');
-    el.style.borderColor = 'rgba(239,68,68,.6)';
+    var el = document.getElementById("cmd");
+    el.style.borderColor = "rgba(239,68,68,.6)";
     el.focus();
-    setTimeout(function(){ el.style.borderColor = ''; }, 1000);
+    setTimeout(function() { el.style.borderColor = ""; }, 1000);
     return;
   }
   var r = classify(text);
@@ -458,341 +421,249 @@ function run() {
 }
 
 function renderResult(r) {
-  var sec = document.getElementById('result-section');
-  sec.classList.add('show');
-
   var li = LAYER_INFO[r.intent_layer - 1];
 
+  // Show box
+  var box = document.getElementById("result-box");
+  box.style.display = "block";
+
   // Header
-  var hdr = document.getElementById('result-header');
-  hdr.style.background = li.bg;
-  hdr.style.borderColor = li.col;
-
-  var badge = document.getElementById('r-badge');
-  badge.textContent = 'Layer ' + r.intent_layer + ' - ' + r.intent_label;
-  badge.style.color = li.col;
+  var hdr = document.getElementById("result-hdr");
+  hdr.style.background    = li.bg;
+  hdr.style.borderColor   = li.col;
+  var badge = document.getElementById("r-badge");
+  badge.textContent       = "Layer " + r.intent_layer + " - " + r.intent_label;
+  badge.style.color       = li.col;
   badge.style.borderColor = li.col;
-  badge.style.background = 'rgba(0,0,0,.2)';
-
-  document.getElementById('r-conf').textContent = Math.round(r.confidence * 100) + '%';
-  document.getElementById('r-tool').textContent = 'Tool: ' + r.workflow_json.tool + ' > ' + r.workflow_json.action;
+  badge.style.background  = "rgba(0,0,0,.2)";
+  document.getElementById("r-conf").textContent = Math.round(r.confidence * 100) + "%";
+  document.getElementById("r-tool").textContent = "Tool: " + r.workflow_json.tool + " > " + r.workflow_json.action;
 
   // Grid
-  var grid = document.getElementById('result-grid');
-  grid.innerHTML = '';
-
-  function addCell(label, val, color) {
-    var cell = document.createElement('div');
-    cell.className = 'r-item';
-    cell.innerHTML = '<div class="r-label">' + label + '</div><div class="r-val" style="color:' + (color||'#F1F5F9') + '">' + (val||'-') + '</div>';
-    grid.appendChild(cell);
+  var grid = document.getElementById("r-grid");
+  grid.innerHTML = "";
+  function cell(lbl, val, col) {
+    var d = document.createElement("div");
+    d.className = "r-cell";
+    d.innerHTML = "<div class='r-lbl'>" + lbl + "</div><div class='r-val' style='color:" + (col || "#F1F5F9") + "'>" + (val || "-") + "</div>";
+    grid.appendChild(d);
   }
+  cell("Primary Action", r.action);
+  cell("Target", r.target);
+  if (r.condition)  { cell("Trigger Condition", r.condition, "#FCD34D"); }
+  if (r.prediction) { cell("Prediction Window", r.prediction, "#C4B5FD"); }
+  if (r.autonomous) { cell("Execution Mode", "Autonomous - self-directing", "#34D399"); }
+  if (!r.condition && !r.prediction && !r.autonomous) { cell("Mode", "Basic execution", "#64748B"); }
 
-  addCell('PRIMARY ACTION', r.action);
-  addCell('TARGET', r.target);
-  if (r.condition)  addCell('TRIGGER CONDITION', r.condition, '#FCD34D');
-  if (r.prediction) addCell('PREDICTION WINDOW', r.prediction, '#C4B5FD');
-  if (r.autonomous) addCell('EXECUTION MODE', 'Autonomous - self-directing', '#34D399');
-  if (!r.condition && !r.prediction && !r.autonomous) addCell('MODE', 'Basic execution', '#64748B');
-
-  // Tabs
+  // Layer tabs highlight
   for (var i = 1; i <= 4; i++) {
-    var tab = document.getElementById('tab' + i);
-    tab.className = 'layer-tab';
-    if (i === r.intent_layer) tab.classList.add('active-l' + i);
+    var tab = document.getElementById("tab" + i);
+    tab.style.borderColor = "var(--border)";
+    tab.style.background  = "var(--bg2)";
   }
+  var activeTab = document.getElementById("tab" + r.intent_layer);
+  activeTab.style.borderColor = li.col;
+  activeTab.style.background  = li.bg;
 
   // Stack
-  var sl = document.getElementById('stack-list');
-  sl.innerHTML = '';
+  var stack = document.getElementById("stack");
+  stack.innerHTML = "";
   for (var n = 0; n < LAYER_INFO.length; n++) {
-    var l = LAYER_INFO[n];
-    var reached = r.intent_layer === l.n;
-    var passed  = r.intent_layer > l.n;
-    var row = document.createElement('div');
-    row.className = 'stack-row' + (reached || passed ? ' reached' : '');
-    if (reached) {
-      row.style.borderColor = l.col;
-      row.style.background = l.bg;
-    } else if (passed) {
-      row.style.borderColor = 'rgba(255,255,255,.12)';
-      row.style.opacity = '0.5';
-    }
-    var numBg  = reached ? l.col : (passed ? 'rgba(255,255,255,.1)' : 'rgba(255,255,255,.05)');
-    var numCol = reached ? '#fff' : l.col;
-    var checkHtml = reached
-      ? '<span style="color:' + l.col + ';font-weight:700">DETECTED</span>'
-      : (passed ? '<span style="color:#64748B">below</span>' : '<span style="color:#1E3A5F">-</span>');
+    var l    = LAYER_INFO[n];
+    var hit  = r.intent_layer === l.n;
+    var row  = document.createElement("div");
+    row.className = "stack-row" + (hit ? " hit" : "");
+    if (hit) { row.style.borderColor = l.col; row.style.background = l.bg; }
+    var numBg  = hit ? l.col : "rgba(255,255,255,.05)";
+    var numCol = hit ? "#fff" : l.col;
+    var check  = hit ? "<span style='color:" + l.col + ";font-weight:700'>DETECTED</span>" : "<span style='color:#1E3A5F'>-</span>";
     row.innerHTML =
-      '<div class="snum" style="background:' + numBg + ';color:' + numCol + '">' + l.n + '</div>' +
-      '<div class="scontent"><strong style="color:' + (reached ? l.col : '#64748B') + '">' + l.label + '</strong><span>' + l.ex + '</span></div>' +
-      '<div class="scheck">' + checkHtml + '</div>';
-    sl.appendChild(row);
+      "<div class='s-num' style='background:" + numBg + ";color:" + numCol + "'>" + l.n + "</div>" +
+      "<div style='flex:1'><div class='s-name' style='color:" + (hit ? l.col : "#64748B") + "'>" + l.label + "</div><div class='s-ex'>" + l.ex + "</div></div>" +
+      "<div class='s-check'>" + check + "</div>";
+    stack.appendChild(row);
   }
 
   // JSON
-  var json = JSON.stringify(r.workflow_json, null, 2);
-  document.getElementById('json-out').textContent = json;
+  document.getElementById("json-out").textContent = JSON.stringify(r.workflow_json, null, 2);
 
-  sec.scrollIntoView({behavior:'smooth', block:'nearest'});
+  box.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 function addHistory(r) {
-  var li = LAYER_INFO[r.intent_layer - 1];
-  var now = new Date();
-  var time = now.toLocaleTimeString('en-GB', {hour:'2-digit', minute:'2-digit'});
-  history.unshift({text:r.raw_input, layer:r.intent_layer, col:li.col, time:time});
-  if (history.length > 6) history.pop();
+  var li   = LAYER_INFO[r.intent_layer - 1];
+  var now  = new Date();
+  var time = now.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" });
+  historyLog.unshift({ text: r.raw_input, layer: r.intent_layer, col: li.col, time: time });
+  if (historyLog.length > 6) { historyLog.pop(); }
 
-  var wrap = document.getElementById('history-wrap');
-  var list = document.getElementById('hist-list');
-  wrap.style.display = 'block';
-  list.innerHTML = '';
+  var wrap = document.getElementById("hist-wrap");
+  var list = document.getElementById("hist-list");
+  wrap.style.display = "block";
+  list.innerHTML = "";
 
-  for (var i = 0; i < history.length; i++) {
-    (function(idx, h) {
-      var item = document.createElement('div');
-      item.className = 'hist-item';
+  for (var i = 0; i < historyLog.length; i++) {
+    (function(h) {
+      var item = document.createElement("div");
+      item.className = "hist-item";
       item.innerHTML =
-        '<span class="hbadge" style="color:' + h.col + ';border-color:' + h.col + ';background:rgba(0,0,0,.2)">L' + h.layer + '</span>' +
-        '<span class="htext">' + h.text + '</span>' +
-        '<span class="htime">' + h.time + '</span>';
-      item.addEventListener('click', function() {
-        document.getElementById('cmd').value = history[idx].text;
-        run();
-      });
+        "<span class='h-badge' style='color:" + h.col + ";border-color:" + h.col + ";background:rgba(0,0,0,.2)'>L" + h.layer + "</span>" +
+        "<span class='h-text'>" + h.text + "</span>" +
+        "<span class='h-time'>" + h.time + "</span>";
+      item.onclick = function() {
+        document.getElementById("cmd").value = h.text;
+        doRun();
+      };
       list.appendChild(item);
-    })(i, history[i]);
+    })(historyLog[i]);
   }
 }
 
-// ── EVENTS ──────────────────────────────────────────────────────────────
-document.getElementById('classify-btn').addEventListener('click', run);
-
-document.getElementById('cmd').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); run(); }
-});
-
-var exBtns = document.querySelectorAll('.ex-btn');
-for (var b = 0; b < exBtns.length; b++) {
-  (function(btn) {
-    btn.addEventListener('click', function() {
-      document.getElementById('cmd').value = btn.textContent;
-      run();
-    });
-  })(exBtns[b]);
-}
-
-document.getElementById('copy-btn').addEventListener('click', function() {
-  if (!lastResult) return;
-  var text = JSON.stringify(lastResult.workflow_json, null, 2);
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(text).then(function() {
-      document.getElementById('copy-btn').textContent = 'Copied!';
-      setTimeout(function(){ document.getElementById('copy-btn').textContent = 'Copy JSON'; }, 1800);
-    });
-  } else {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    document.getElementById('copy-btn').textContent = 'Copied!';
-    setTimeout(function(){ document.getElementById('copy-btn').textContent = 'Copy JSON'; }, 1800);
-  }
-});
-
-// ── VOICE INPUT ─────────────────────────────────────────────────────────
-var recognition = null;
-var isListening = false;
-var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-if (SpeechRecognition) {
-  recognition = new SpeechRecognition();
-  recognition.continuous = false;
-  recognition.interimResults = true;
-  recognition.lang = 'en-GB';
-
-  recognition.onstart = function() {
-    isListening = true;
-    var btn = document.getElementById('mic-btn');
-    btn.classList.add('listening');
-    btn.querySelector('.mic-icon').textContent = '🔴';
-    document.getElementById('mic-status').innerHTML = '<span style="color:#EF4444">Listening... speak your command</span>';
-    document.getElementById('cmd').placeholder = 'Listening...';
-  };
-
-  recognition.onresult = function(event) {
-    var transcript = '';
-    for (var i = event.resultIndex; i < event.results.length; i++) {
-      transcript += event.results[i][0].transcript;
-    }
-    document.getElementById('cmd').value = transcript;
-    if (event.results[event.results.length - 1].isFinal) {
-      document.getElementById('mic-status').innerHTML = '<span style="color:#10B981">Got it! Classifying...</span>';
-      setTimeout(run, 300);
-    }
-  };
-
-  recognition.onend = function() {
-    isListening = false;
-    var btn = document.getElementById('mic-btn');
-    btn.classList.remove('listening');
-    btn.querySelector('.mic-icon').textContent = '🎙';
-    document.getElementById('mic-status').textContent = '';
-    document.getElementById('cmd').placeholder = 'Speak or type: "Send the Q3 report when the auditor signs off"';
-  };
-
-  recognition.onerror = function(event) {
-    isListening = false;
-    var btn = document.getElementById('mic-btn');
-    btn.classList.remove('listening');
-    btn.querySelector('.mic-icon').textContent = '🎙';
-    var msg = 'Microphone error. Please type your command.';
-    if (event.error === 'not-allowed') msg = 'Microphone access denied. Please type your command.';
-    if (event.error === 'no-speech')   msg = 'No speech detected. Try again or type below.';
-    document.getElementById('mic-status').innerHTML = '<span style="color:#F59E0B">' + msg + '</span>';
-    setTimeout(function(){ document.getElementById('mic-status').textContent = ''; }, 3000);
-  };
-
-  document.getElementById('mic-btn').addEventListener('click', function() {
-    if (isListening) {
-      recognition.stop();
-    } else {
-      document.getElementById('cmd').value = '';
-      recognition.start();
-    }
-  });
-
-} else {
-  // No browser support
-  document.getElementById('mic-btn').style.opacity = '0.4';
-  document.getElementById('mic-btn').style.cursor = 'not-allowed';
-  document.getElementById('mic-btn').title = 'Voice not supported in this browser';
-  document.getElementById('no-voice').style.display = 'block';
-  document.getElementById('mic-btn').addEventListener('click', function() {
-    document.getElementById('no-voice').style.display = 'block';
-  });
-}
-
-// ── MULTILINGUAL EXAMPLES ───────────────────────────────────────────────
-var LANG_EXAMPLES = {
-  en: {
-    name: 'English',
-    flag: 'en-GB',
-    placeholder: 'Speak or type: "Send the Q3 report when the auditor signs off"',
-    examples: [
-      'Schedule a board meeting',
-      'Email the client when the proposal is approved',
-      'Alert the account manager before the contract expires',
-      'Automatically update Salesforce after every call\',
-      'Create a Jira ticket and notify the team if the build fails'
-    ]
-  },
-  fr: {
-    name: 'French',
-    flag: 'fr-FR',
-    placeholder: 'Parlez ou tapez: "Envoyer le rapport quand l\'auditeur valide"',
-    examples: [
-      'Planifier une réunion du conseil\',
-      'Envoyer le rapport au client quand le contrat est signé',
-      'Alerter le responsable avant l\'expiration du contrat',
-      'Mettre à jour automatiquement le CRM après chaque appel\',
-      'Créer un ticket Jira si le déploiement échoue'
-    ]
-  },
-  es: {
-    name: 'Spanish',
-    flag: 'es-ES',
-    placeholder: 'Habla o escribe: "Enviar el informe cuando el auditor lo apruebe"',
-    examples: [
-      'Programar una reunión del consejo',
-      'Enviar el informe cuando se firme el contrato',
-      'Alertar al gerente antes de que venza el contrato',
-      'Actualizar automáticamente el CRM después de cada llamada',
-      'Crear un ticket de Jira si falla la compilación'
-    ]
-  },
-  zh: {
-    name: 'Chinese',
-    flag: 'zh-CN',
-    placeholder: '说话或输入: "审计师签字后发送Q3报告"',
-    examples: [
-      '安排董事会会议',
-      '合同签署后发送报告给客户',
-      '合同到期前提醒客户经理',
-      '每次通话后自动更新CRM系统',
-      '如果构建失败则创建Jira工单并通知团队'
-    ]
-  },
-  ru: {
-    name: 'Russian',
-    flag: 'ru-RU',
-    placeholder: 'Говорите или печатайте: "Отправить отчёт когда аудитор подпишет"',
-    examples: [
-      'Запланировать заседание совета директоров',
-      'Отправить отчёт клиенту когда контракт подписан',
-      'Уведомить менеджера до истечения срока контракта',
-      'Автоматически обновлять CRM после каждого звонка',
-      'Создать задачу в Jira если сборка не удалась'
-    ]
-  }
-};
-
-var currentLang = 'en';
-
-function setLanguage(lang) {
+// =========================================================
+// LANGUAGE SWITCHING
+// =========================================================
+function setLang(lang) {
   currentLang = lang;
-  var data = LANG_EXAMPLES[lang];
+  var data = LANGS[lang];
 
   // Update placeholder
-  document.getElementById('cmd').placeholder = data.placeholder;
-
-  // Update example buttons
-  var wrap = document.getElementById('examples-wrap');
-  wrap.innerHTML = '<span class="ex-label">Try:</span>';
-  for (var i = 0; i < data.examples.length; i++) {
-    (function(ex) {
-      var btn = document.createElement('button');
-      btn.className = 'ex-btn';
-      btn.textContent = ex;
-      btn.addEventListener('click', function() {
-        document.getElementById('cmd').value = ex;
-        run();
-      });
-      wrap.appendChild(btn);
-    })(data.examples[i]);
-  }
+  document.getElementById("cmd").placeholder = data.ph;
+  document.getElementById("cmd").value = "";
 
   // Update mic language
-  if (recognition) {
-    recognition.lang = data.flag;
+  if (recognition) { recognition.lang = data.bcp; }
+
+  // Update lang buttons
+  var btns = document.querySelectorAll(".lang-btn");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].className = "lang-btn" + (btns[i].getAttribute("data-lang") === lang ? " active" : "");
   }
 
-  // Update tab styles
-  var tabs = document.querySelectorAll('.lang-tab');
-  for (var t = 0; t < tabs.length; t++) {
-    tabs[t].classList.remove('active');
-    if (tabs[t].getAttribute('data-lang') === lang) {
-      tabs[t].classList.add('active');
+  // Rebuild example buttons
+  var row = document.getElementById("ex-row");
+  row.innerHTML = "<span class='ex-label'>Try:</span>";
+  for (var j = 0; j < data.ex.length; j++) {
+    (function(ex) {
+      var btn = document.createElement("button");
+      btn.className = "ex-btn";
+      btn.textContent = ex;
+      btn.onclick = function() {
+        document.getElementById("cmd").value = ex;
+        doRun();
+      };
+      row.appendChild(btn);
+    })(data.ex[j]);
+  }
+}
+
+// =========================================================
+// WIRE UP EVENTS
+// =========================================================
+window.onload = function() {
+
+  // Initial language load
+  setLang("en");
+
+  // Run button
+  document.getElementById("run-btn").onclick = doRun;
+
+  // Enter key
+  document.getElementById("cmd").onkeydown = function(e) {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); doRun(); }
+  };
+
+  // Language buttons
+  var langBtns = document.querySelectorAll(".lang-btn");
+  for (var i = 0; i < langBtns.length; i++) {
+    (function(btn) {
+      btn.onclick = function() { setLang(btn.getAttribute("data-lang")); };
+    })(langBtns[i]);
+  }
+
+  // Copy JSON
+  document.getElementById("copy-btn").onclick = function() {
+    if (!lastResult) { return; }
+    var text = JSON.stringify(lastResult.workflow_json, null, 2);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() {
+        document.getElementById("copy-btn").textContent = "Copied!";
+        setTimeout(function() { document.getElementById("copy-btn").textContent = "Copy JSON"; }, 1800);
+      });
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+      document.getElementById("copy-btn").textContent = "Copied!";
+      setTimeout(function() { document.getElementById("copy-btn").textContent = "Copy JSON"; }, 1800);
     }
+  };
+
+  // Microphone
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var micBtn = document.getElementById("mic-btn");
+
+  if (SR) {
+    recognition = new SR();
+    recognition.continuous      = false;
+    recognition.interimResults  = true;
+    recognition.lang            = "en-GB";
+
+    recognition.onstart = function() {
+      listening = true;
+      micBtn.classList.add("listening");
+      micBtn.innerHTML = "&#128308;";
+      document.getElementById("mic-status").innerHTML = "<span style='color:#EF4444'>Listening... speak now</span>";
+    };
+
+    recognition.onresult = function(e) {
+      var t = "";
+      for (var i = e.resultIndex; i < e.results.length; i++) { t += e.results[i][0].transcript; }
+      document.getElementById("cmd").value = t;
+      if (e.results[e.results.length - 1].isFinal) {
+        document.getElementById("mic-status").innerHTML = "<span style='color:#10B981'>Got it! Classifying...</span>";
+        setTimeout(doRun, 300);
+      }
+    };
+
+    recognition.onend = function() {
+      listening = false;
+      micBtn.classList.remove("listening");
+      micBtn.innerHTML = "&#127897;";
+      document.getElementById("mic-status").textContent = "";
+    };
+
+    recognition.onerror = function(e) {
+      listening = false;
+      micBtn.classList.remove("listening");
+      micBtn.innerHTML = "&#127897;";
+      var msg = "Microphone error — please type your command.";
+      if (e.error === "not-allowed") { msg = "Mic access denied — please type instead."; }
+      if (e.error === "no-speech")   { msg = "No speech detected — try again."; }
+      document.getElementById("mic-status").innerHTML = "<span style='color:#F59E0B'>" + msg + "</span>";
+      setTimeout(function() { document.getElementById("mic-status").textContent = ""; }, 3000);
+    };
+
+    micBtn.onclick = function() {
+      if (listening) { recognition.stop(); }
+      else {
+        recognition.lang = LANGS[currentLang].bcp;
+        document.getElementById("cmd").value = "";
+        recognition.start();
+      }
+    };
+
+  } else {
+    micBtn.style.opacity = "0.4";
+    micBtn.style.cursor  = "not-allowed";
+    micBtn.title         = "Voice input not supported in this browser — please type";
+    micBtn.onclick       = function() {
+      document.getElementById("mic-status").innerHTML = "<span style='color:#F59E0B'>Voice not supported here — please type your command</span>";
+    };
   }
-
-  // Clear input
-  document.getElementById('cmd').value = '';
-}
-
-// Wire up language tabs
-var langTabs = document.querySelectorAll('.lang-tab');
-for (var lt = 0; lt < langTabs.length; lt++) {
-  (function(tab) {
-    tab.addEventListener('click', function() {
-      setLanguage(tab.getAttribute('data-lang'));
-    });
-  })(langTabs[lt]);
-}
-
+};
 </script>
 </body>
 </html>
