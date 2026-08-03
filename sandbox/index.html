@@ -38,6 +38,7 @@ nav{position:sticky;top:0;z-index:50;background:rgba(6,13,26,.9);backdrop-filter
 .lang-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(6,182,212,.08)}
 .input-row{display:flex;gap:10px;align-items:stretch;margin-bottom:14px}
 textarea{flex:1;background:rgba(255,255,255,.05);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;color:var(--white);font-family:var(--sans);font-size:.95rem;line-height:1.55;resize:none;outline:none;min-height:72px;transition:border-color .2s}
+textarea.rtl{direction:rtl;text-align:right;font-size:1.05rem}
 textarea:focus{border-color:rgba(6,182,212,.5)}
 textarea::placeholder{color:var(--muted)}
 .mic-btn{background:var(--bg4);border:1.5px solid var(--border);border-radius:10px;width:54px;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:all .2s}
@@ -125,6 +126,7 @@ pre{background:rgba(0,0,0,.4);border-radius:8px;padding:14px;font-family:var(--m
       <button class="lang-btn" data-lang="es">ES Spanish</button>
       <button class="lang-btn" data-lang="zh">CN Chinese</button>
       <button class="lang-btn" data-lang="ru">RU Russian</button>
+      <button class="lang-btn" data-lang="ar">AR Arabic</button>
     </div>
     <span class="section-label">Your command</span>
     <div class="input-row">
@@ -237,6 +239,17 @@ var LANGS = {
       "Avtomaticheski obnovliat CRM posle kazhdogo zvonka",
       "Sozdat zadachu esli sborka ne udalas"
     ]
+  },
+  ar: {
+    bcp: "ar-SA",
+    ph:  "\u062c\u0631\u0628: \u062c\u062f\u0648\u0644\u0629 \u0627\u062c\u062a\u0645\u0627\u0639 \u0645\u062c\u0644\u0633 \u0627\u0644\u0627\u062f\u0627\u0631\u0629",
+    ex:  [
+      "\u062c\u062f\u0648\u0644\u0629 \u0627\u062c\u062a\u0645\u0627\u0639 \u0645\u062c\u0644\u0633 \u0627\u0644\u0627\u062f\u0627\u0631\u0629",
+      "\u0627\u0631\u0633\u0627\u0644 \u0627\u0644\u062a\u0642\u0631\u064a\u0631 \u0644\u0644\u0639\u0645\u064a\u0644 \u0639\u0646\u062f \u062a\u0648\u0642\u064a\u0639 \u0627\u0644\u0639\u0642\u062f",
+      "\u062a\u0646\u0628\u064a\u0647 \u0627\u0644\u0645\u062f\u064a\u0631 \u0642\u0628\u0644 \u0627\u0646\u062a\u0647\u0627\u0621 \u0627\u0644\u0639\u0642\u062f",
+      "\u062a\u062d\u062f\u064a\u062b \u0646\u0638\u0627\u0645 CRM \u062a\u0644\u0642\u0627\u0626\u064a\u0627 \u0628\u0639\u062f \u0643\u0644 \u0645\u0643\u0627\u0644\u0645\u0629",
+      "\u0627\u0646\u0634\u0627\u0621 \u062a\u0630\u0643\u0631\u0629 \u062c\u064a\u0631\u0627 \u0627\u0630\u0627 \u0641\u0634\u0644 \u0627\u0644\u0646\u0634\u0631"
+    ]
   }
 };
 
@@ -264,7 +277,14 @@ var ACTION_MAP = [
   { re:/\b(enviar|notificar|informar|avisar)/i,                                           tool:"EMAIL",     action:"send_message",   verb:"send" },
   { re:/安排|预约|计划/,                                                                   tool:"CALENDAR",  action:"create_event",   verb:"schedule" },
   { re:/发送|通知|提醒/,                                                                   tool:"EMAIL",     action:"send_message",   verb:"send" },
-  { re:/更新|记录|添加/,                                                                   tool:"CRM",       action:"update_record",  verb:"update" }
+  { re:/更新|记录|添加/,                                                                   tool:"CRM",       action:"update_record",  verb:"update" },
+  { re:/جدولة|حجز|ترتيب|انشاء.{0,10}اجتماع/,                                              tool:"CALENDAR",  action:"create_event",   verb:"schedule" },
+  { re:/ارسال|اخطار|تنبيه|ابلاغ/,                                                          tool:"EMAIL",     action:"send_message",   verb:"send" },
+  { re:/تحديث|تسجيل|اضافة.{0,10}(crm|سيلزفورس|هبسبوت)/,                                  tool:"CRM",       action:"update_record",  verb:"update" },
+  { re:/انشاء.{0,10}(تذكرة|مهمة|طلب)/,                                                    tool:"TASKS",     action:"create_ticket",  verb:"create" },
+  { re:/تلخيص|ملخص|موجز/,                                                                  tool:"AI",        action:"summarise",      verb:"summarise" },
+  { re:/نشر|مشاركة|اعلان.{0,10}(سلاك|قناة)/,                                              tool:"COMMS",     action:"post_message",   verb:"post" },
+  { re:/صياغة|كتابة|اعداد.{0,10}(بريد|مقترح|تقرير)/,                                     tool:"DOCS",      action:"draft_document", verb:"draft" }
 ];
 
 // Layer 3 triggers (check FIRST - most specific)
@@ -275,7 +295,9 @@ var PRED_PATTERNS = [
   /\bantes de\s+(.{3,60}?)(?:\s*,|$)/i,
   /(.{2,20})前(?:提醒|通知|准备)/,
   /до\s+(.{3,60}?)(?:\s*,|$)/i,
-  /\bdo istecheni/i
+  /\bdo istecheni/i,
+  /قبل\s+(.{3,60}?)(?:\s*,|$)/,
+  /قبل\s+انتهاء\s+(.{3,60}?)(?:\s*,|$)/
 ];
 
 // Layer 2 triggers (check SECOND)
@@ -292,7 +314,11 @@ var COND_PATTERNS = [
   /\bkogda\b/i,
   /когда\s+(.{3,60}?)(?:\s*,|$)/i,
   /\besli\b/i,
-  /если\s+(.{3,60}?)(?:\s*,|$)/i
+  /если\s+(.{3,60}?)(?:\s*,|$)/i,
+  /عند\s+(.{3,60}?)(?:\s*,|$)/,
+  /عندما\s+(.{3,60}?)(?:\s*,|$)/,
+  /اذا\s+(.{3,60}?)(?:\s*,|$)/,
+  /بعد\s+(?!كل|كلما)(.{3,60}?)(?:\s*,|$)/
 ];
 
 // Layer 4 triggers (check LAST - only if no L2/L3)
@@ -302,7 +328,8 @@ var AUTO_WORDS = [
   "automatiquement","toujours","chaque fois",
   "automaticamente","siempre","cada vez",
   "自动","每次","始终",
-  "avtomaticheski","vsegda"
+  "avtomaticheski","vsegda",
+  "تلقائيا","تلقائي","كلما","دائما","باستمرار","بشكل تلقائي"
 ];
 
 // =========================================================
@@ -537,6 +564,16 @@ function setLang(lang) {
   var btns = document.querySelectorAll(".lang-btn");
   for (var i = 0; i < btns.length; i++) {
     btns[i].className = "lang-btn" + (btns[i].getAttribute("data-lang") === lang ? " active" : "");
+  }
+
+  // Handle RTL for Arabic
+  var cmdEl = document.getElementById("cmd");
+  if (lang === "ar") {
+    cmdEl.classList.add("rtl");
+    cmdEl.setAttribute("dir", "rtl");
+  } else {
+    cmdEl.classList.remove("rtl");
+    cmdEl.removeAttribute("dir");
   }
 
   // Rebuild example buttons
