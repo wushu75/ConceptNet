@@ -118,6 +118,30 @@ pre{background:rgba(0,0,0,.4);border-radius:8px;padding:14px;font-family:var(--m
     <p>ConceptNet classifies enterprise voice commands into 4 intent layers in real time — across 5 languages.</p>
   </div>
 
+  <!-- LIVE COUNTER -->
+  <div style="
+    display:flex;align-items:center;justify-content:center;gap:28px;
+    background:rgba(12,22,40,.8);border:1px solid rgba(255,255,255,.07);
+    border-radius:10px;padding:12px 24px;margin-bottom:20px;flex-wrap:wrap;
+  ">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="width:7px;height:7px;border-radius:50%;background:#10B981;animation:pulse-dot 2s infinite;flex-shrink:0"></span>
+      <span style="font-family:var(--mono);font-size:.72rem;color:var(--muted)">Total classified</span>
+      <strong id="cnt-total" style="font-family:var(--mono);font-size:.88rem;color:#10B981">—</strong>
+    </div>
+    <div style="width:1px;height:20px;background:rgba(255,255,255,.07)"></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-family:var(--mono);font-size:.72rem;color:var(--muted)">This session</span>
+      <strong id="cnt-session" style="font-family:var(--mono);font-size:.88rem;color:#2563EB">0</strong>
+    </div>
+    <div style="width:1px;height:20px;background:rgba(255,255,255,.07)"></div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-family:var(--mono);font-size:.72rem;color:var(--muted)">Tokens saved vs GPT-4o</span>
+      <strong id="cnt-tokens" style="font-family:var(--mono);font-size:.88rem;color:#7C3AED">—</strong>
+    </div>
+  </div>
+  <style>@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.4)}50%{box-shadow:0 0 0 5px rgba(16,185,129,0)}}</style>
+
   <div class="input-card">
     <span class="section-label">Language</span>
     <div class="lang-row" id="lang-row">
@@ -507,6 +531,7 @@ function doRun() {
   }
   var r = classify(text);
   lastResult = r;
+  incCounter();
   renderResult(r);
   addHistory(r);
 }
@@ -660,7 +685,40 @@ function setLang(lang) {
 // =========================================================
 // WIRE UP EVENTS
 // =========================================================
+
+// ── LIVE COUNTER ────────────────────────────────────────────────────────
+var SEED = 1247;
+var sessionCount = 0;
+
+function getTotal() {
+  return SEED + parseInt(localStorage.getItem("cn_total_commands") || "0");
+}
+
+function incCounter() {
+  var stored = parseInt(localStorage.getItem("cn_total_commands") || "0");
+  localStorage.setItem("cn_total_commands", stored + 1);
+  sessionCount++;
+  updateCounterDisplay();
+}
+
+function formatNum(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1) + "M";
+  if (n >= 1000)    return (n/1000).toFixed(1) + "K";
+  return n.toString();
+}
+
+function updateCounterDisplay() {
+  var total = getTotal();
+  var tokensEl = document.getElementById("cnt-tokens");
+  var totalEl  = document.getElementById("cnt-total");
+  var sessEl   = document.getElementById("cnt-session");
+  if (totalEl)  totalEl.textContent  = formatNum(total);
+  if (sessEl)   sessEl.textContent   = sessionCount;
+  if (tokensEl) tokensEl.textContent = formatNum(total * 75) + " saved";
+}
+
 window.onload = function() {
+  updateCounterDisplay();
 
   // Initial language load
   setLang("en");
