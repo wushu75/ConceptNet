@@ -1044,6 +1044,33 @@
 
         <!-- Content -->
         <div class="hero-content">
+
+          <!-- LIVE COUNTER — above raising badge -->
+          <style>
+          .cn-counter{display:inline-flex;align-items:center;gap:0;border:1px solid rgba(37,99,235,.18);border-radius:100px;overflow:hidden;margin-bottom:14px;background:rgba(37,99,235,.04)}
+          .cn-cell{display:flex;align-items:center;gap:5px;padding:5px 14px;border-right:1px solid rgba(37,99,235,.12)}
+          .cn-cell:last-child{border-right:none}
+          .cn-lbl{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#64748B}
+          .cn-val{font-family:monospace;font-size:.75rem;font-weight:700}
+          .cn-dot{width:6px;height:6px;border-radius:50%;background:#10B981;animation:cndot 2s infinite;flex-shrink:0}
+          @keyframes cndot{0%,100%{opacity:1}50%{opacity:.3}}
+          </style>
+          <div class="cn-counter">
+            <div class="cn-cell">
+              <span class="cn-dot"></span>
+              <span class="cn-lbl">Commands</span>
+              <span class="cn-val" id="cnt-commands" style="color:#10B981">1.2K</span>
+            </div>
+            <div class="cn-cell">
+              <span class="cn-lbl">Languages</span>
+              <span class="cn-val" style="color:#2563EB">9</span>
+            </div>
+            <div class="cn-cell">
+              <span class="cn-lbl">Tokens saved</span>
+              <span class="cn-val" id="cnt-tokens" style="color:#7C3AED">93.5K</span>
+            </div>
+          </div>
+
           <div class="tag">Now Raising £500K Seed</div>
           <h1 class="hero-headline">
             The first <em>voice‑native</em> agent OS for enterprise work
