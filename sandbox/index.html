@@ -127,6 +127,9 @@ pre{background:rgba(0,0,0,.4);border-radius:8px;padding:14px;font-family:var(--m
       <button class="lang-btn" data-lang="zh">CN Chinese</button>
       <button class="lang-btn" data-lang="ru">RU Russian</button>
       <button class="lang-btn" data-lang="ar">AR Arabic</button>
+      <button class="lang-btn" data-lang="de">DE German</button>
+      <button class="lang-btn" data-lang="it">IT Italian</button>
+      <button class="lang-btn" data-lang="pt">PT Portuguese</button>
     </div>
     <span class="section-label">Your command</span>
     <div class="input-row">
@@ -250,6 +253,39 @@ var LANGS = {
       "\u062a\u062d\u062f\u064a\u062b \u0646\u0638\u0627\u0645 CRM \u062a\u0644\u0642\u0627\u0626\u064a\u0627 \u0628\u0639\u062f \u0643\u0644 \u0645\u0643\u0627\u0644\u0645\u0629",
       "\u0627\u0646\u0634\u0627\u0621 \u062a\u0630\u0643\u0631\u0629 \u062c\u064a\u0631\u0627 \u0627\u0630\u0627 \u0641\u0634\u0644 \u0627\u0644\u0646\u0634\u0631"
     ]
+  },
+  de: {
+    bcp: "de-DE",
+    ph:  "Versuchen: Vorstandssitzung fuer Dienstag planen",
+    ex:  [
+      "Vorstandssitzung fuer Dienstag planen",
+      "Bericht an den Kunden senden wenn der Vertrag unterzeichnet ist",
+      "Manager benachrichtigen bevor der Vertrag ablauft",
+      "CRM automatisch nach jedem Anruf aktualisieren",
+      "Jira-Ticket erstellen wenn der Build fehlschlaegt"
+    ]
+  },
+  it: {
+    bcp: "it-IT",
+    ph:  "Prova: Pianifica una riunione del consiglio",
+    ex:  [
+      "Pianifica una riunione del consiglio per martedi",
+      "Invia il rapporto al cliente quando il contratto e firmato",
+      "Avvisa il manager prima della scadenza del contratto",
+      "Aggiorna automaticamente il CRM dopo ogni chiamata",
+      "Crea un ticket Jira se il deploy fallisce"
+    ]
+  },
+  pt: {
+    bcp: "pt-BR",
+    ph:  "Tente: Agendar uma reuniao do conselho",
+    ex:  [
+      "Agendar uma reuniao do conselho para terca-feira",
+      "Enviar o relatorio ao cliente quando o contrato for assinado",
+      "Alertar o gerente antes do contrato expirar",
+      "Atualizar o CRM automaticamente apos cada chamada",
+      "Criar um ticket Jira se o deploy falhar"
+    ]
   }
 };
 
@@ -284,7 +320,16 @@ var ACTION_MAP = [
   { re:/انشاء.{0,10}(تذكرة|مهمة|طلب)/,                                                    tool:"TASKS",     action:"create_ticket",  verb:"create" },
   { re:/تلخيص|ملخص|موجز/,                                                                  tool:"AI",        action:"summarise",      verb:"summarise" },
   { re:/نشر|مشاركة|اعلان.{0,10}(سلاك|قناة)/,                                              tool:"COMMS",     action:"post_message",   verb:"post" },
-  { re:/صياغة|كتابة|اعداد.{0,10}(بريد|مقترح|تقرير)/,                                     tool:"DOCS",      action:"draft_document", verb:"draft" }
+  { re:/صياغة|كتابة|اعداد.{0,10}(بريد|مقترح|تقرير)/,                                     tool:"DOCS",      action:"draft_document", verb:"draft" },
+  { re:/\b(planen|vereinbaren|erstellen).{0,15}(meeting|sitzung|termin|besprechung)\b/i, tool:"CALENDAR", action:"create_event",   verb:"schedule" },
+  { re:/\b(senden|mailen|benachrichtigen|informieren)\b/i,                              tool:"EMAIL",    action:"send_message",   verb:"send" },
+  { re:/\b(aktualisieren|protokollieren|hinzufuegen).{0,15}(crm|salesforce)\b/i,       tool:"CRM",      action:"update_record",  verb:"update" },
+  { re:/\b(pianifica|organizza|crea).{0,15}(riunione|meeting|appuntamento)\b/i,        tool:"CALENDAR", action:"create_event",   verb:"schedule" },
+  { re:/\b(invia|notifica|avvisa|manda)\b/i,                                            tool:"EMAIL",    action:"send_message",   verb:"send" },
+  { re:/\b(aggiorna|registra|aggiungi).{0,15}(crm|salesforce)\b/i,                    tool:"CRM",      action:"update_record",  verb:"update" },
+  { re:/\b(agendar|marcar|criar).{0,15}(reuniao|meeting|evento)\b/i,                  tool:"CALENDAR", action:"create_event",   verb:"schedule" },
+  { re:/\b(enviar|notificar|avisar|mandar)\b/i,                                         tool:"EMAIL",    action:"send_message",   verb:"send" },
+  { re:/\b(atualizar|registrar|adicionar).{0,15}(crm|salesforce)\b/i,                 tool:"CRM",      action:"update_record",  verb:"update" }
 ];
 
 // Layer 3 triggers (check FIRST - most specific)
@@ -297,7 +342,13 @@ var PRED_PATTERNS = [
   /до\s+(.{3,60}?)(?:\s*,|$)/i,
   /\bdo istecheni/i,
   /قبل\s+(.{3,60}?)(?:\s*,|$)/,
-  /قبل\s+انتهاء\s+(.{3,60}?)(?:\s*,|$)/
+  /قبل\s+انتهاء\s+(.{3,60}?)(?:\s*,|$)/,
+  /\bbevor\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bvor\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bprima di\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bprima che\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bantes de\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bantes que\s+(.{3,60}?)(?:\s*,|$)/i
 ];
 
 // Layer 2 triggers (check SECOND)
@@ -318,7 +369,17 @@ var COND_PATTERNS = [
   /عند\s+(.{3,60}?)(?:\s*,|$)/,
   /عندما\s+(.{3,60}?)(?:\s*,|$)/,
   /اذا\s+(.{3,60}?)(?:\s*,|$)/,
-  /بعد\s+(?!كل|كلما)(.{3,60}?)(?:\s*,|$)/
+  /بعد\s+(?!كل|كلما)(.{3,60}?)(?:\s*,|$)/,
+  /\bwenn\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bsobald\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bnachdem\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bfalls\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bquando\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bse\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bdopo che\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bquando\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bse\s+(.{3,60}?)(?:\s*,|$)/i,
+  /\bapois\s+(.{3,60}?)(?:\s*,|$)/i
 ];
 
 // Layer 4 triggers (check LAST - only if no L2/L3)
@@ -329,7 +390,10 @@ var AUTO_WORDS = [
   "automaticamente","siempre","cada vez",
   "自动","每次","始终",
   "avtomaticheski","vsegda",
-  "تلقائيا","تلقائي","كلما","دائما","باستمرار","بشكل تلقائي"
+  "تلقائيا","تلقائي","كلما","دائما","باستمرار","بشكل تلقائي",
+  "automatisch","immer","jedes mal","kontinuierlich",
+  "automaticamente","sempre","ogni volta",
+  "automaticamente","sempre","toda vez","a cada"
 ];
 
 // =========================================================
