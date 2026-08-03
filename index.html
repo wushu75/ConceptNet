@@ -1073,33 +1073,36 @@
           </div>
 
           <!-- LIVE COUNTER STRIP -->
-          <div style="
-            display:flex;align-items:center;gap:0;
-            background:rgba(6,13,26,.8);
-            border:1px solid rgba(37,99,235,.25);
-            border-radius:12px;overflow:hidden;
-            margin-top:24px;flex-wrap:wrap;
-          ">
-            <div style="padding:12px 20px;border-right:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;flex:1;min-width:160px">
-              <span style="width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;box-shadow:0 0 6px rgba(16,185,129,.6);animation:pulse-dot 2s infinite"></span>
-              <span style="font-family:'DM Mono',monospace;font-size:.78rem;color:#64748B">Commands</span>
-              <strong id="cnt-commands" style="font-family:'DM Mono',monospace;font-size:.92rem;color:#10B981;margin-left:4px">—</strong>
-            </div>
-            <div style="padding:12px 20px;border-right:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;flex:1;min-width:160px">
-              <span style="font-family:'DM Mono',monospace;font-size:.78rem;color:#64748B">Languages</span>
-              <strong id="cnt-langs" style="font-family:'DM Mono',monospace;font-size:.92rem;color:#06B6D4;margin-left:4px">9</strong>
-            </div>
-            <div style="padding:12px 20px;border-right:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:8px;flex:1;min-width:160px">
-              <span style="font-family:'DM Mono',monospace;font-size:.78rem;color:#64748B">Tokens saved</span>
-              <strong id="cnt-tokens" style="font-family:'DM Mono',monospace;font-size:.92rem;color:#7C3AED;margin-left:4px">—</strong>
-            </div>
-            <a href="https://conceptnet.co.uk/sandbox/" target="_blank" style="padding:12px 20px;font-family:'DM Mono',monospace;font-size:.75rem;color:#2563EB;text-decoration:none;white-space:nowrap;letter-spacing:.04em;flex-shrink:0">
-              TRY SANDBOX →
-            </a>
-          </div>
           <style>
-          @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.4)}50%{box-shadow:0 0 0 5px rgba(16,185,129,0)}}
+          .counter-strip{display:flex;align-items:center;background:rgba(6,13,26,.85);border:1px solid rgba(37,99,235,.25);border-radius:12px;overflow:hidden;margin-top:24px;width:100%;max-width:520px}
+          .counter-cell{padding:10px 16px;display:flex;flex-direction:column;align-items:flex-start;gap:2px;flex:1;border-right:1px solid rgba(255,255,255,.06)}
+          .counter-cell:last-child{border-right:none;flex:0 0 auto}
+          .counter-label{font-family:monospace;font-size:.65rem;letter-spacing:.06em;color:#64748B;white-space:nowrap}
+          .counter-value{font-family:monospace;font-size:.95rem;font-weight:700;white-space:nowrap;line-height:1.2}
+          .counter-live{display:flex;align-items:center;gap:5px}
+          .pulse-dot{width:6px;height:6px;border-radius:50%;background:#10B981;flex-shrink:0;animation:pdot 2s infinite}
+          @keyframes pdot{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}50%{box-shadow:0 0 0 4px rgba(16,185,129,0)}}
           </style>
+          <div class="counter-strip">
+            <div class="counter-cell">
+              <div class="counter-live">
+                <span class="pulse-dot"></span>
+                <span class="counter-label">Commands</span>
+              </div>
+              <span class="counter-value" id="cnt-commands" style="color:#10B981">1.2K</span>
+            </div>
+            <div class="counter-cell">
+              <span class="counter-label">Languages</span>
+              <span class="counter-value" style="color:#06B6D4">9</span>
+            </div>
+            <div class="counter-cell">
+              <span class="counter-label">Tokens saved</span>
+              <span class="counter-value" id="cnt-tokens" style="color:#7C3AED">93.5K</span>
+            </div>
+            <div class="counter-cell">
+              <a href="https://conceptnet.co.uk/sandbox/" target="_blank" style="font-family:monospace;font-size:.7rem;color:#2563EB;text-decoration:none;letter-spacing:.04em;white-space:nowrap">TRY →</a>
+            </div>
+          </div>
 
           <div class="hero-actions">
             <a href="#early-access" class="btn btn-primary">
@@ -1651,57 +1654,35 @@
   </script>
 
 <script>
-// ── LIVE COUNTER ────────────────────────────────────────────────────────
-// Seeds a realistic base count and animates the numbers on load
-// Real usage increments stored in localStorage from the sandbox
+// ── LIVE COUNTER ───────────────────────────────────────────────
+var SEED = 1247;
 
-var SEED_COMMANDS = 1247;   // base count representing real testing + early usage
-var SEED_TOKENS   = 94180;  // avg ~75 tokens saved per classification vs GPT-4o
-
-function getCount() {
-  var stored = parseInt(localStorage.getItem("cn_total_commands") || "0");
-  return SEED_COMMANDS + stored;
+function getTotal() {
+  return SEED + parseInt(localStorage.getItem("cn_total_commands") || "0");
 }
 
-function getTokensSaved() {
-  var cmds = getCount();
-  return cmds * 75; // avg tokens saved per query vs GPT-4o
+function fmt(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1) + "M";
+  if (n >= 1000)    return (n/1000).toFixed(1) + "K";
+  return String(n);
 }
 
-function formatNum(n) {
-  if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
-  if (n >= 1000)    return (n / 1000).toFixed(1) + "K";
-  return n.toString();
-}
-
-function animateCount(el, target, prefix, suffix, duration) {
+function animTo(el, target, dur) {
   if (!el) return;
-  var start = 0;
-  var step  = target / (duration / 16);
-  var current = start;
-  var timer = setInterval(function() {
-    current += step;
-    if (current >= target) {
-      current = target;
-      clearInterval(timer);
-    }
-    el.textContent = (prefix || "") + formatNum(Math.round(current)) + (suffix || "");
+  var step = target / (dur / 16);
+  var cur  = 0;
+  var t = setInterval(function() {
+    cur += step;
+    if (cur >= target) { cur = target; clearInterval(t); }
+    el.textContent = fmt(Math.round(cur));
   }, 16);
 }
 
 window.addEventListener("DOMContentLoaded", function() {
-  var total  = getCount();
-  var tokens = getTokensSaved();
-
-  var cmdEl    = document.getElementById("cnt-commands");
-  var tokenEl  = document.getElementById("cnt-tokens");
-
-  animateCount(cmdEl,   total,  "", " classified", 1200);
-  animateCount(tokenEl, tokens, "", " saved",       1400);
-
-  // Also update sandbox counter if elements exist (shared script)
-  var sbEl = document.getElementById("sb-cnt");
-  if (sbEl) { sbEl.textContent = formatNum(total); }
+  var total  = getTotal();
+  var tokens = total * 75;
+  animTo(document.getElementById("cnt-commands"), total,  1400);
+  animTo(document.getElementById("cnt-tokens"),   tokens, 1600);
 });
 </script>
 </body>
