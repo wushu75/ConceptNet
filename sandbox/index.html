@@ -198,75 +198,61 @@ pre{background:rgba(0,0,0,.4);border-radius:8px;padding:14px;font-family:var(--m
 
 
 
-  <!-- COST CALCULATOR -->
-  <div class="calc-wrap" id="calc-wrap" style="display:none">
-    <div class="calc-header">
-      <span class="calc-title">💰 Annual Cost Calculator</span>
-      <span class="calc-subtitle">ConceptNet vs GPT-4o for your team</span>
+    <!-- COST CALCULATOR -->
+  <div class="panel" id="calc-wrap" style="display:none">
+    <div class="panel-hdr">
+      <span class="panel-lbl">💰 Annual Cost Calculator</span>
+      <span class="panel-sub">ConceptNet vs GPT-4o</span>
     </div>
-    <div class="calc-body">
-      <div class="calc-sliders">
-        <div class="calc-row">
-          <div class="calc-label-row">
-            <span class="calc-label">Team size</span>
-            <span class="calc-val-badge" id="cl-team">50 people</span>
-          </div>
-          <input type="range" id="sl-team" min="5" max="5000" value="50" step="5" oninput="recalcCost()"/>
-        </div>
-        <div class="calc-row">
-          <div class="calc-label-row">
-            <span class="calc-label">Voice queries per person per day</span>
-            <span class="calc-val-badge" id="cl-queries">20 queries</span>
-          </div>
-          <input type="range" id="sl-queries" min="5" max="200" value="20" step="5" oninput="recalcCost()"/>
-        </div>
-        <div class="calc-row">
-          <div class="calc-label-row">
-            <span class="calc-label">Voice minutes per person per day</span>
-            <span class="calc-val-badge" id="cl-voice">10 minutes</span>
-          </div>
-          <input type="range" id="sl-voice" min="1" max="120" value="10" step="1" oninput="recalcCost()"/>
-        </div>
+    <div class="panel-body">
+      <div class="sl-row">
+        <div class="sl-top"><span class="sl-name">Team size</span><span class="sl-val" id="cl-team">50 people</span></div>
+        <input type="range" id="sl-team" min="5" max="5000" value="50" step="5" oninput="recalcCost()"/>
       </div>
-
-      <div class="calc-results">
-        <div class="calc-result-card" style="border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.05)">
-          <div class="crc-label" style="color:#F87171">OpenAI GPT-4o</div>
-          <div class="crc-val" style="color:#F87171" id="cv-openai">-</div>
-          <div class="crc-sub" style="color:var(--muted)">per year</div>
-        </div>
-        <div class="calc-result-card" style="border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05)">
-          <div class="crc-label" style="color:#FCD34D">Anthropic Claude</div>
-          <div class="crc-val" style="color:#FCD34D" id="cv-claude">-</div>
-          <div class="crc-sub" style="color:var(--muted)">per year</div>
-        </div>
-        <div class="calc-result-card" style="border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.05)">
-          <div class="crc-label" style="color:#34D399">ConceptNet</div>
-          <div class="crc-val" style="color:#34D399" id="cv-cn">-</div>
-          <div class="crc-sub" style="color:var(--muted)">per year</div>
-        </div>
+      <div class="sl-row">
+        <div class="sl-top"><span class="sl-name">Voice queries per person / day</span><span class="sl-val" id="cl-queries">20 queries</span></div>
+        <input type="range" id="sl-queries" min="5" max="200" value="20" step="5" oninput="recalcCost()"/>
       </div>
-
-      <div class="calc-savings-banner">
-        <div class="csb-label">Your annual saving with ConceptNet</div>
-        <div class="csb-val" id="cv-saving">-</div>
-        <div class="csb-sub" id="cv-saving-sub">vs GPT-4o · token-free · no backend needed</div>
+      <div class="sl-row" style="margin-bottom:16px">
+        <div class="sl-top"><span class="sl-name">Voice minutes per person / day</span><span class="sl-val" id="cl-voice">10 minutes</span></div>
+        <input type="range" id="sl-voice" min="1" max="120" value="10" step="1" oninput="recalcCost()"/>
+      </div>
+      <div class="calc-row-item">
+        <div class="cr-dot" style="background:#EF4444"></div>
+        <span class="cr-name">OpenAI GPT-4o</span>
+        <span class="cr-amt" id="cv-openai" style="color:#F87171">-</span>
+        <span class="cr-pill" style="color:#F87171;border-color:rgba(239,68,68,.2)">/yr</span>
+      </div>
+      <div class="calc-row-item">
+        <div class="cr-dot" style="background:#F59E0B"></div>
+        <span class="cr-name">Anthropic Claude</span>
+        <span class="cr-amt" id="cv-claude" style="color:#FCD34D">-</span>
+        <span class="cr-pill" style="color:#FCD34D;border-color:rgba(245,158,11,.2)">/yr</span>
+      </div>
+      <div class="calc-row-item" style="border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.03)">
+        <div class="cr-dot" style="background:#10B981"></div>
+        <span class="cr-name" style="color:var(--white);font-weight:600">ConceptNet</span>
+        <span class="cr-amt" id="cv-cn" style="color:#34D399">-</span>
+        <span class="cr-pill" style="color:#34D399;border-color:rgba(16,185,129,.2)">/yr</span>
+      </div>
+      <div class="saving-row">
+        <span class="sv-label">Your annual saving</span>
+        <span class="sv-amt" id="cv-saving">-</span>
+        <span class="sv-sub" id="cv-saving-sub">vs GPT-4o</span>
       </div>
     </div>
   </div>
 
   <!-- AGENT EXECUTION -->
   <div class="agent-wrap" id="agent-wrap">
-    <div class="agent-header">
-      <span class="agent-title">Agent Execution Simulator</span>
-      <button class="run-agent-btn" id="run-agent-btn">
-        ▶ Run Agent
-      </button>
+    <div class="agent-hdr">
+      <span class="agent-lbl">⚡ Agent Execution Simulator</span>
+      <button class="run-agent-btn" id="run-agent-btn">▶ Run Agent</button>
     </div>
     <div class="agent-steps" id="agent-steps"></div>
     <div class="agent-result" id="agent-result">
-      <div class="agent-result-title">✓ Execution Complete</div>
-      <div class="agent-result-body" id="agent-result-body"></div>
+      <span class="ar-check">✓</span>
+      <span class="ar-text" id="agent-result-body">Execution complete.</span>
     </div>
   </div>
 
@@ -1092,9 +1078,9 @@ function runAgentSimulation() {
       var time = document.getElementById("atime-" + i);
       var det  = document.getElementById("adetail-" + i);
       if (!row) return;
-      row.className  = "agent-step running";
-      icon.className = "step-icon running";
-      icon.innerHTML = "<span class='spinner'></span>";
+      row.className = "agent-step running";
+      row.dataset.state = 'running';
+      document.getElementById('aicon-'+idx).innerHTML = "<span class='spinner'></span>";
       time.textContent = "running...";
     }, totalMs);
 
@@ -1112,12 +1098,12 @@ function runAgentSimulation() {
         var isLast    = idx === steps.length - 1;
 
         if (isWaiting) {
-          row.className  = "agent-step waiting";
+          row.className = "agent-step waiting";
           icon.className = "step-icon waiting";
           icon.innerHTML = "⏳";
           time.textContent = "monitoring";
         } else {
-          row.className  = "agent-step done";
+          row.className = "agent-step done";
           icon.className = "step-icon done";
           icon.innerHTML = step.icon;
           time.textContent = step.ms + "ms";
