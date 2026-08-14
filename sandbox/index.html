@@ -197,6 +197,64 @@ pre{background:rgba(0,0,0,.4);border-radius:8px;padding:14px;font-family:var(--m
   </div>
 
 
+
+  <!-- COST CALCULATOR -->
+  <div class="calc-wrap" id="calc-wrap" style="display:none">
+    <div class="calc-header">
+      <span class="calc-title">💰 Annual Cost Calculator</span>
+      <span class="calc-subtitle">ConceptNet vs GPT-4o for your team</span>
+    </div>
+    <div class="calc-body">
+      <div class="calc-sliders">
+        <div class="calc-row">
+          <div class="calc-label-row">
+            <span class="calc-label">Team size</span>
+            <span class="calc-val-badge" id="cl-team">50 people</span>
+          </div>
+          <input type="range" id="sl-team" min="5" max="5000" value="50" step="5" oninput="recalcCost()"/>
+        </div>
+        <div class="calc-row">
+          <div class="calc-label-row">
+            <span class="calc-label">Voice queries per person per day</span>
+            <span class="calc-val-badge" id="cl-queries">20 queries</span>
+          </div>
+          <input type="range" id="sl-queries" min="5" max="200" value="20" step="5" oninput="recalcCost()"/>
+        </div>
+        <div class="calc-row">
+          <div class="calc-label-row">
+            <span class="calc-label">Voice minutes per person per day</span>
+            <span class="calc-val-badge" id="cl-voice">10 minutes</span>
+          </div>
+          <input type="range" id="sl-voice" min="1" max="120" value="10" step="1" oninput="recalcCost()"/>
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="calc-result-card" style="border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.05)">
+          <div class="crc-label" style="color:#F87171">OpenAI GPT-4o</div>
+          <div class="crc-val" style="color:#F87171" id="cv-openai">-</div>
+          <div class="crc-sub" style="color:var(--muted)">per year</div>
+        </div>
+        <div class="calc-result-card" style="border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05)">
+          <div class="crc-label" style="color:#FCD34D">Anthropic Claude</div>
+          <div class="crc-val" style="color:#FCD34D" id="cv-claude">-</div>
+          <div class="crc-sub" style="color:var(--muted)">per year</div>
+        </div>
+        <div class="calc-result-card" style="border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.05)">
+          <div class="crc-label" style="color:#34D399">ConceptNet</div>
+          <div class="crc-val" style="color:#34D399" id="cv-cn">-</div>
+          <div class="crc-sub" style="color:var(--muted)">per year</div>
+        </div>
+      </div>
+
+      <div class="calc-savings-banner">
+        <div class="csb-label">Your annual saving with ConceptNet</div>
+        <div class="csb-val" id="cv-saving">-</div>
+        <div class="csb-sub" id="cv-saving-sub">vs GPT-4o · token-free · no backend needed</div>
+      </div>
+    </div>
+  </div>
+
   <!-- AGENT EXECUTION -->
   <div class="agent-wrap" id="agent-wrap">
     <div class="agent-header">
@@ -551,6 +609,8 @@ function doRun() {
   renderResult(r);
   addHistory(r);
   // Show agent execution panel
+  document.getElementById("calc-wrap").style.display = "block";
+  recalcCost();
   document.getElementById("agent-wrap").classList.add("show");
   document.getElementById("agent-steps").innerHTML = "";
   document.getElementById("agent-result").classList.remove("show");
@@ -846,6 +906,42 @@ window.onload = function() {
     };
   }
 };
+
+
+// =========================================================
+// COST CALCULATOR
+// =========================================================
+function fmtCost(n) {
+  if (n >= 1000000) return "$" + (n/1000000).toFixed(1) + "M";
+  if (n >= 1000)    return "$" + (n/1000).toFixed(0) + "K";
+  return "$" + Math.round(n);
+}
+
+function recalcCost() {
+  var team    = parseInt(document.getElementById("sl-team").value);
+  var queries = parseInt(document.getElementById("sl-queries").value);
+  var voice   = parseInt(document.getElementById("sl-voice").value);
+
+  document.getElementById("cl-team").textContent    = team + " people";
+  document.getElementById("cl-queries").textContent = queries + " queries";
+  document.getElementById("cl-voice").textContent   = voice + " minutes";
+
+  var totalQueries = team * queries * 365;
+  var totalVoice   = team * voice * 365;
+
+  var openai = totalQueries * 0.08 + totalVoice * 0.25;
+  var claude  = totalQueries * 0.06 + totalVoice * 0.30;
+  var cn      = totalQueries * 0.015 + totalVoice * 0.10;
+  var saving  = openai - cn;
+
+  document.getElementById("cv-openai").textContent = fmtCost(openai);
+  document.getElementById("cv-claude").textContent  = fmtCost(claude);
+  document.getElementById("cv-cn").textContent     = fmtCost(cn);
+  document.getElementById("cv-saving").textContent = fmtCost(saving);
+  document.getElementById("cv-saving-sub").textContent =
+    "vs GPT-4o · " + Math.round(openai/cn) + "x cheaper · token-free · no backend needed";
+}
+
 
 // =========================================================
 // AGENT EXECUTION SIMULATOR
