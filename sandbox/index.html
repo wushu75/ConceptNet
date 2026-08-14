@@ -196,6 +196,22 @@ pre{background:rgba(0,0,0,.4);border-radius:8px;padding:14px;font-family:var(--m
     </div>
   </div>
 
+
+  <!-- AGENT EXECUTION -->
+  <div class="agent-wrap" id="agent-wrap">
+    <div class="agent-header">
+      <span class="agent-title">Agent Execution Simulator</span>
+      <button class="run-agent-btn" id="run-agent-btn">
+        ▶ Run Agent
+      </button>
+    </div>
+    <div class="agent-steps" id="agent-steps"></div>
+    <div class="agent-result" id="agent-result">
+      <div class="agent-result-title">✓ Execution Complete</div>
+      <div class="agent-result-body" id="agent-result-body"></div>
+    </div>
+  </div>
+
   <div class="hist-wrap" id="hist-wrap">
     <div class="hist-lbl">Session history</div>
     <div id="hist-list"></div>
@@ -534,6 +550,13 @@ function doRun() {
   incCounter();
   renderResult(r);
   addHistory(r);
+  // Show agent execution panel
+  document.getElementById("agent-wrap").classList.add("show");
+  document.getElementById("agent-steps").innerHTML = "";
+  document.getElementById("agent-result").classList.remove("show");
+  var agBtn = document.getElementById("run-agent-btn");
+  agBtn.disabled = false;
+  agBtn.innerHTML = "▶ Run Agent";
 }
 
 function renderResult(r) {
@@ -823,6 +846,225 @@ window.onload = function() {
     };
   }
 };
+
+// =========================================================
+// AGENT EXECUTION SIMULATOR
+// =========================================================
+var agentRunning = false;
+
+var TOOL_STEPS = {
+  CALENDAR: [
+    {name:"Connecting to Calendar API",      detail:"Authenticating with Google Calendar / Outlook...",    ms:600,  icon:"📅"},
+    {name:"Parsing event parameters",        detail:"Extracting date, time, attendees from command...",    ms:800,  icon:"🔍"},
+    {name:"Checking availability",           detail:"Scanning calendar for conflicts...",                  ms:700,  icon:"🗓"},
+    {name:"Creating event",                  detail:"POST /calendar/v3/events → 201 Created",              ms:500,  icon:"✅"},
+    {name:"Sending invites",                 detail:"Notifying attendees via email...",                    ms:400,  icon:"📧"},
+  ],
+  EMAIL: [
+    {name:"Connecting to Email API",         detail:"Authenticating with mail server...",                  ms:500,  icon:"📧"},
+    {name:"Drafting message",                detail:"Generating email body from command intent...",         ms:900,  icon:"✍"},
+    {name:"Validating recipients",           detail:"Resolving contact from CRM / directory...",           ms:600,  icon:"👤"},
+    {name:"Sending email",                   detail:"POST /messages/send → 200 OK",                        ms:400,  icon:"✅"},
+  ],
+  CRM: [
+    {name:"Connecting to CRM",               detail:"Authenticating with Salesforce / HubSpot...",         ms:500,  icon:"💼"},
+    {name:"Locating record",                 detail:"GET /contacts?query=... → 1 record found",            ms:700,  icon:"🔍"},
+    {name:"Preparing update",                detail:"Mapping command fields to CRM schema...",              ms:600,  icon:"🔄"},
+    {name:"Writing record",                  detail:"PATCH /contacts/{id} → 200 OK",                       ms:400,  icon:"✅"},
+  ],
+  TASKS: [
+    {name:"Connecting to task system",       detail:"Authenticating with Jira / Linear...",                ms:500,  icon:"🎫"},
+    {name:"Creating ticket",                 detail:"Generating issue title and description...",            ms:700,  icon:"✍"},
+    {name:"Assigning team",                  detail:"Resolving assignee from command context...",           ms:500,  icon:"👤"},
+    {name:"Posting ticket",                  detail:"POST /issues → 201 Created  #CN-284",                 ms:400,  icon:"✅"},
+  ],
+  DOCS: [
+    {name:"Connecting to document system",   detail:"Authenticating with Google Docs / Notion...",         ms:500,  icon:"📄"},
+    {name:"Generating draft",                detail:"Composing document from command context...",           ms:1100, icon:"✍"},
+    {name:"Formatting document",             detail:"Applying enterprise template...",                      ms:600,  icon:"🎨"},
+    {name:"Saving document",                 detail:"POST /documents → 201 Created",                       ms:400,  icon:"✅"},
+  ],
+  ANALYTICS: [
+    {name:"Connecting to analytics",         detail:"Authenticating with BI platform...",                  ms:500,  icon:"📊"},
+    {name:"Building query",                  detail:"Translating intent to SQL / API query...",             ms:800,  icon:"🔍"},
+    {name:"Fetching data",                   detail:"GET /reports?period=... → 200 OK",                    ms:900,  icon:"📈"},
+    {name:"Formatting report",               detail:"Structuring results for delivery...",                  ms:400,  icon:"✅"},
+  ],
+  COMMS: [
+    {name:"Connecting to Slack / Teams",     detail:"Authenticating with workspace...",                    ms:400,  icon:"💬"},
+    {name:"Resolving channel",               detail:"Finding #channel from command context...",             ms:500,  icon:"🔍"},
+    {name:"Composing message",               detail:"Formatting content for channel post...",               ms:600,  icon:"✍"},
+    {name:"Posting message",                 detail:"POST /chat.postMessage → 200 OK",                     ms:300,  icon:"✅"},
+  ],
+  AI: [
+    {name:"Loading context",                 detail:"Retrieving source documents / transcripts...",        ms:600,  icon:"📚"},
+    {name:"Running summarisation",           detail:"Processing with local AI model...",                   ms:1100, icon:"🤖"},
+    {name:"Formatting output",               detail:"Structuring summary with key points...",               ms:400,  icon:"✅"},
+  ],
+  WORKFLOW: [
+    {name:"Parsing command",                 detail:"Extracting workflow parameters...",                   ms:500,  icon:"🔍"},
+    {name:"Routing to handler",              detail:"Matching intent to workflow engine...",                ms:600,  icon:"🔄"},
+    {name:"Executing workflow",              detail:"Running automation sequence...",                       ms:800,  icon:"⚙"},
+    {name:"Confirming completion",           detail:"Workflow executed successfully",                       ms:300,  icon:"✅"},
+  ],
+};
+
+// Extra steps for L2 (condition) and L3 (prediction) and L4 (autonomous)
+var TRIGGER_STEPS = {
+  condition: [
+    {name:"Setting up trigger monitor",     detail:"Registering condition listener...",                   ms:600,  icon:"👁"},
+    {name:"Condition registered",           detail:"Agent will execute when condition is met",             ms:300,  icon:"⏳", waiting:true},
+  ],
+  prediction: [
+    {name:"Calculating prediction window",  detail:"Estimating event timeline from context...",           ms:700,  icon:"🔮"},
+    {name:"Scheduling proactive action",    detail:"Agent queued to execute before event",                ms:300,  icon:"⏰"},
+  ],
+  autonomous: [
+    {name:"Registering autonomous agent",   detail:"Creating persistent background listener...",          ms:700,  icon:"🤖"},
+    {name:"Agent deployed autonomously",    detail:"Will execute on every matching event — no prompting needed", ms:300, icon:"♾", waiting:true},
+  ],
+};
+
+var RESULT_MESSAGES = {
+  CALENDAR: "Event created and invites sent. Attendees notified. Calendar updated.",
+  EMAIL:    "Email drafted and delivered. Thread logged in CRM.",
+  CRM:      "CRM record updated. Activity logged. Team notified.",
+  TASKS:    "Ticket created and assigned. Sprint board updated.",
+  DOCS:     "Document drafted and saved. Link shared with team.",
+  ANALYTICS:"Report generated and delivered. Data refreshed.",
+  COMMS:    "Message posted to channel. Team notified.",
+  AI:       "Summary complete. Key points extracted and formatted.",
+  WORKFLOW: "Workflow executed. All steps completed successfully.",
+};
+
+function buildAgentSteps(r) {
+  var tool  = r.workflow_json.tool;
+  var steps = (TOOL_STEPS[tool] || TOOL_STEPS["WORKFLOW"]).slice();
+
+  // Insert trigger steps before final "success" step for L2/L3/L4
+  var extra = [];
+  if (r.autonomous)           extra = TRIGGER_STEPS.autonomous;
+  else if (r.prediction)      extra = TRIGGER_STEPS.prediction;
+  else if (r.condition)       extra = TRIGGER_STEPS.condition;
+
+  if (extra.length) {
+    // Insert before last step
+    steps.splice(steps.length - 1, 0, extra[0], extra[1]);
+  }
+  return steps;
+}
+
+function renderAgentSteps(steps) {
+  var el = document.getElementById("agent-steps");
+  el.innerHTML = "";
+  for (var i = 0; i < steps.length; i++) {
+    var s = steps[i];
+    var div = document.createElement("div");
+    div.className = "agent-step pending";
+    div.id = "astep-" + i;
+    div.innerHTML =
+      "<div class='step-icon pending' id='aicon-" + i + "'>" + s.icon + "</div>" +
+      "<div class='step-content'>" +
+        "<div class='step-name' id='aname-" + i + "'>" + s.name + "</div>" +
+        "<div class='step-detail' id='adetail-" + i + "'>" + s.detail + "</div>" +
+      "</div>" +
+      "<div class='step-time' id='atime-" + i + "'></div>";
+    el.appendChild(div);
+  }
+}
+
+function runAgentSimulation() {
+  if (!lastResult || agentRunning) return;
+  agentRunning = true;
+
+  var btn = document.getElementById("run-agent-btn");
+  btn.disabled = true;
+  btn.innerHTML = "<span class='spinner'></span> Running...";
+
+  document.getElementById("agent-result").classList.remove("show");
+
+  var steps = buildAgentSteps(lastResult);
+  renderAgentSteps(steps);
+
+  var totalMs = 0;
+
+  steps.forEach(function(s, i) {
+    // Show as running after delay
+    setTimeout(function() {
+      var row  = document.getElementById("astep-" + i);
+      var icon = document.getElementById("aicon-" + i);
+      var time = document.getElementById("atime-" + i);
+      var det  = document.getElementById("adetail-" + i);
+      if (!row) return;
+      row.className  = "agent-step running";
+      icon.className = "step-icon running";
+      icon.innerHTML = "<span class='spinner'></span>";
+      time.textContent = "running...";
+    }, totalMs);
+
+    totalMs += s.ms;
+
+    // Show as done after step duration
+    setTimeout((function(step, idx) {
+      return function() {
+        var row  = document.getElementById("astep-" + idx);
+        var icon = document.getElementById("aicon-" + idx);
+        var time = document.getElementById("atime-" + idx);
+        if (!row) return;
+
+        var isWaiting = step.waiting;
+        var isLast    = idx === steps.length - 1;
+
+        if (isWaiting) {
+          row.className  = "agent-step waiting";
+          icon.className = "step-icon waiting";
+          icon.innerHTML = "⏳";
+          time.textContent = "monitoring";
+        } else {
+          row.className  = "agent-step done";
+          icon.className = "step-icon done";
+          icon.innerHTML = step.icon;
+          time.textContent = step.ms + "ms";
+        }
+
+        // Show result after last step
+        if (isLast) {
+          setTimeout(function() {
+            var res  = document.getElementById("agent-result");
+            var body = document.getElementById("agent-result-body");
+            var tool = lastResult.workflow_json.tool;
+            var msg  = RESULT_MESSAGES[tool] || "Workflow executed successfully.";
+
+            // Add trigger context if L2/L3/L4
+            if (lastResult.autonomous) {
+              msg += " Agent is now running autonomously — no further prompting needed.";
+            } else if (lastResult.prediction) {
+              msg += " Agent is queued and will execute proactively before: " + lastResult.prediction + ".";
+            } else if (lastResult.condition) {
+              msg += " Agent is monitoring and will execute when: " + lastResult.condition + ".";
+            }
+
+            body.textContent = msg;
+            res.classList.add("show");
+
+            btn.disabled = false;
+            btn.innerHTML = "▶ Run Again";
+            agentRunning = false;
+          }, 400);
+        }
+      };
+    })(s, i), totalMs);
+  });
+}
+
+// Wire up run agent button
+window.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("run-agent-btn").addEventListener("click", runAgentSimulation);
+});
+
+// Show agent wrap after classification
+var _origDoRun = doRun;
+
 </script>
 </body>
 </html>
