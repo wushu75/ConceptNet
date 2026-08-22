@@ -1,0 +1,37 @@
+
+# ConceptNet Intent Grammar — Constrained Output Schema
+# Exactly 4 valid outputs — no hallucination possible
+
+GRAMMAR := LAYER_1 | LAYER_2 | LAYER_3 | LAYER_4
+
+LAYER_1 := {
+    "intent_layer": 1,
+    "intent_label": "Basic",
+    "trigger": null,
+    "execution_mode": "immediate"
+}
+
+LAYER_2 := {
+    "intent_layer": 2,
+    "intent_label": "Context-Aware",
+    "trigger": CONDITION_CLAUSE,
+    "execution_mode": "conditional"
+}
+
+LAYER_3 := {
+    "intent_layer": 3,
+    "intent_label": "Predictive",
+    "trigger": PREDICTION_CLAUSE,
+    "execution_mode": "anticipatory"
+}
+
+LAYER_4 := {
+    "intent_layer": 4,
+    "intent_label": "Autonomous",
+    "trigger": REPEAT_CLAUSE,
+    "execution_mode": "autonomous"
+}
+
+CONDITION_CLAUSE  := "when" TEXT | "if" TEXT | "after" TEXT | "once" TEXT
+PREDICTION_CLAUSE := "before" TEXT | "in advance of" TEXT
+REPEAT_CLAUSE     := "always" | "automatically" | "every time" | "whenever" | "continuously"
