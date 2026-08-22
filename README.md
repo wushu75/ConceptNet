@@ -1,216 +1,272 @@
-# ConceptNet — Proprietary Voice IP for the Next Generation of AI
+# ConceptNet — Voice IP Infrastructure for AI
 
-> Low-cost SaaS is the stepping stone. Proprietary voice IP is the moat.
+![Accuracy](https://img.shields.io/badge/classifier_accuracy-83%25-brightgreen)
+![Languages](https://img.shields.io/badge/languages-9_live-blue)
+![Dataset](https://img.shields.io/badge/dataset-730_examples-purple)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Patents](https://img.shields.io/badge/patents-pending-orange)
+![Stage](https://img.shields.io/badge/stage-pre--seed-blue)
 
-[![Star on GitHub](https://img.shields.io/github/stars/wushu75/ConceptNet?style=social)](https://github.com/wushu75/ConceptNet)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-cyan.svg)](https://python.org)
-[![Live Demo](https://img.shields.io/badge/demo-live-green)](https://demo.conceptnet.co.uk)
-[![Sandbox](https://img.shields.io/badge/sandbox-live-purple)](https://conceptnet.co.uk/sandbox/)
-[![Benchmarks](https://img.shields.io/badge/benchmarks-live-orange)](https://conceptnet.co.uk/benchmarks/)
-[![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Space-yellow)](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox)
-
-**Raising £500K Pre-Seed · EIS Eligible · London, UK**
+> The intent classification layer for enterprise AI agents. Token-free. 9 languages. No LLM required.
 
 ---
 
-## 🔗 Live Links
+## Try it
 
-| Asset | URL |
-|-------|-----|
-| 🌐 Website | [conceptnet.co.uk](https://conceptnet.co.uk) |
-| 🎮 Interactive Demo | [demo.conceptnet.co.uk](https://demo.conceptnet.co.uk) |
-| 🧪 Voice IP Sandbox | [conceptnet.co.uk/sandbox/](https://conceptnet.co.uk/sandbox/) |
-| 📊 Live Benchmarks | [conceptnet.co.uk/benchmarks/](https://conceptnet.co.uk/benchmarks/) |
-| 📄 Investor One-Pager | [conceptnet.co.uk/docs/investor.html](https://conceptnet.co.uk/docs/investor.html) |
-| 🤗 Hugging Face Space | [huggingface.co/spaces/conceptnetUk/voice-ip-sandbox](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox) |
-| 💼 LinkedIn | [linkedin.com/company/conceptnet-voice-ip](https://www.linkedin.com/company/conceptnet-voice-ip/) |
-| ⭐ Star this repo | [github.com/wushu75/ConceptNet](https://github.com/wushu75/ConceptNet) |
+| | |
+|--|--|
+| **Live Sandbox** | [conceptnet.co.uk/sandbox](https://conceptnet.co.uk/sandbox/) |
+| **Benchmarks** | [conceptnet.co.uk/benchmarks](https://conceptnet.co.uk/benchmarks/) |
+| **Hugging Face** | [huggingface.co/spaces/conceptnetUk/voice-ip-sandbox](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox) |
+| **Investor One-Pager** | [conceptnet.co.uk/docs/investor.html](https://conceptnet.co.uk/docs/investor.html) |
+| **Website** | [conceptnet.co.uk](https://conceptnet.co.uk) |
 
 ---
 
-## What is ConceptNet?
+## What it does
 
-ConceptNet is a voice-native agent operating system for enterprise work.
+ConceptNet classifies enterprise voice and text commands into a structured 4-layer intent taxonomy and produces deterministic JSON output for agent execution — with no LLM call, no tokens, and no API dependency.
 
-**Layer 1 — Low-Cost SaaS (The Stepping Stone)**
-Voice workflow automation for enterprise teams. 5× cheaper than Claude/OpenAI, token-free, 200 languages, self-prompting agent loops. Goal: collect voice data from 500+ enterprise teams.
+A 50-person enterprise team doing 20 queries per day pays **$44K/year** with ConceptNet vs **$125K/year** with GPT-4o. No hallucination. Sub-100ms latency. Runs locally.
 
-**Layer 2 — Proprietary Voice IP (The Moat)**
-The voice data collected from SaaS becomes intellectual property:
-- Cross-cultural voice dataset (10M+ voice hours, 200 languages) — licensed to LLM companies
-- Human-robot sync standard — new protocol for robot voice control
-- Agent-to-agent transaction layer — infrastructure for the AI agent economy
-- Enterprise voice IP stacking — enterprises privatize their voice + instructions, stack 4 intent layers, own their IP, license it to others (we charge 10% transaction fee)
+---
 
-**SaaS is not the product. It is the data collection mechanism.**
+## The 4-Layer Intent Taxonomy
+
+The core invention is a novel hierarchical classification of enterprise voice commands into four layers, each with distinct agent execution semantics.
+
+```
+Layer 1 — Basic           "Do X"
+Layer 2 — Context-Aware   "Do X when Y"
+Layer 3 — Predictive      "Do X before Y"
+Layer 4 — Autonomous      "Do X always / automatically"
+```
+
+**Layer 1 — Basic**
+Single immediate action. No trigger, no condition, no scheduling.
+> "Schedule a board meeting for Tuesday"
+> "Send the Q3 report to the finance team"
+
+**Layer 2 — Context-Aware**
+Action triggered by a condition. Agent registers a listener and executes when the condition is met.
+> "Send the report when the auditor signs off"
+> "Create a Jira ticket if the error rate exceeds 5 percent"
+
+**Layer 3 — Predictive**
+Proactive action scheduled in anticipation of a future event.
+> "Alert the account manager before the contract expires"
+> "Prepare the board pack before the quarterly review"
+
+**Layer 4 — Autonomous**
+Persistent background agent. Deploys once, executes on every occurrence with no further prompting.
+> "Automatically update Salesforce after every sales call"
+> "Always send a follow-up email whenever a meeting ends"
+
+---
+
+## Architecture
+
+```
+Input text or voice (9 languages)
+         │
+         ▼
+┌─────────────────────────────────────────┐
+│  Fast Path — TF-IDF + Logistic         │
+│  Regression                             │
+│  83% coverage · <5ms · CPU only        │
+└──────────────┬──────────────────────────┘
+               │ confidence < threshold
+               ▼
+┌─────────────────────────────────────────┐
+│  Neural Path — DistilBERT fine-tuned   │
+│  (distilbert-base-multilingual-cased)  │
+│  95%+ coverage · <100ms · GPU optional │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────────────────┐
+│  Constrained Grammar Output            │
+│  Exactly 4 valid outputs               │
+│  No hallucination possible             │
+└──────────────┬──────────────────────────┘
+               │
+               ▼
+    Structured JSON → Agent Execution
+```
+
+The two-stage architecture follows the statistical distillation pattern: an LLM labels training examples, those labels train a fast deterministic classifier, and the classifier handles high-frequency patterns at zero cost. The neural path catches novel phrasing the fast path misses. The constrained grammar ensures the model can only output one of four valid labels — deterministic, auditable, enterprise-safe.
+
+---
+
+## Languages
+
+Live today: 🇬🇧 English · 🇫🇷 French · 🇪🇸 Spanish · 🇩🇪 German · 🇮🇹 Italian · 🇧🇷 Portuguese · 🇨🇳 Chinese · 🇸🇦 Arabic · 🇷🇺 Russian
+
+The 4-layer taxonomy applies universally across all languages. Trigger keyword detection is implemented per language. The constrained grammar output is language-agnostic structured JSON. The multilingual neural model (`distilbert-base-multilingual-cased`) supports 104 languages out of the box.
+
+---
+
+## Repository Structure
+
+```
+ConceptNet/
+├── README.md
+├── LICENSE
+├── sandbox/
+│   └── index.html              # Live Voice IP Sandbox (obfuscated)
+├── core/
+│   ├── train_classifier.py     # Fast-path training pipeline
+│   ├── train_neural.py         # Neural model fine-tuning script
+│   └── intent_grammar.txt      # Constrained output schema
+├── data/
+│   ├── conceptnet_dataset_v2.json   # 730 labelled examples, 9 languages
+│   └── conceptnet_dataset_v2.csv    # Same dataset in CSV format
+└── docs/
+    └── ARCHITECTURE.md         # Full technical architecture
+```
+
+---
+
+## Dataset
+
+`data/conceptnet_dataset_v2.json` — 730 labelled enterprise voice command examples across 9 languages and all 4 intent layers.
+
+| Language | L1 Basic | L2 Context | L3 Predictive | L4 Autonomous | Total |
+|----------|----------|------------|---------------|---------------|-------|
+| English  | 102 | 100 | 99 | 99 | **400** |
+| French   | 15 | 10 | 10 | 10 | **45** |
+| Spanish  | 15 | 10 | 10 | 10 | **45** |
+| German   | 10 | 10 | 10 | 10 | **40** |
+| Italian  | 10 | 10 | 10 | 10 | **40** |
+| Portuguese | 10 | 10 | 10 | 10 | **40** |
+| Chinese  | 10 | 10 | 10 | 10 | **40** |
+| Arabic   | 10 | 10 | 10 | 10 | **40** |
+| Russian  | 10 | 10 | 10 | 10 | **40** |
+| **Total** | **192** | **180** | **179** | **179** | **730** |
+
+Each example includes: `text`, `label`, `intent_layer`, `language`, `tool`, `action`, `condition`, `prediction`, `autonomous`.
+
+---
+
+## Fast-Path Classifier Results
+
+Trained on 80% of the dataset, tested on 20%.
+
+```
+              precision    recall    f1-score
+Basic             0.66      0.81       0.73
+Context-Aware     0.90      0.78       0.84
+Predictive        1.00      0.88       0.94
+Autonomous        0.84      0.93       0.88
+
+accuracy                               0.83
+5-fold CV: 0.847 ± 0.018
+```
+
+Layer 3 Predictive achieves 100% precision — the "before" trigger pattern is unambiguous across all 9 languages.
 
 ---
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/wushu75/ConceptNet.git
+git clone https://github.com/wushu75/ConceptNet
 cd ConceptNet
-python examples/quickstart.py
+pip install scikit-learn
+python core/train_classifier.py
 ```
 
-Or try a single command:
+To fine-tune the neural model (requires GPU or Google Colab):
 
 ```bash
-python core/intent_classifier.py "Schedule a board meeting when the Q3 results are ready"
+pip install transformers torch datasets accelerate evaluate
+python core/train_neural.py
 ```
 
-**Output:**
-```
-Input:  Schedule a board meeting when the Q3 results are ready
-Layer:  2 — Context-Aware
-Action: schedule  →  Tool: CALENDAR
-Condition: the q3 results are ready
-Confidence: 78%
-Workflow JSON:
+---
+
+## Structured Output Format
+
+Every classification produces structured JSON ready for agent execution:
+
+```json
 {
-  "version": "1.0",
-  "tool": "CALENDAR",
-  "action": "create_event",
-  "parameters": { "raw_command": "...", "target": "board meeting" },
-  "triggers": { "condition": "the q3 results are ready" },
-  "execution_mode": "context_aware"
+  "text": "Send the report when the auditor signs off",
+  "intent_layer": 2,
+  "intent_label": "Context-Aware",
+  "execution_mode": "conditional",
+  "tool": "EMAIL",
+  "action": "send_message",
+  "condition": "auditor signs off",
+  "prediction": null,
+  "autonomous": false,
+  "confidence": 0.94
+}
+```
+
+```json
+{
+  "text": "Automatically update Salesforce after every sales call",
+  "intent_layer": 4,
+  "intent_label": "Autonomous",
+  "execution_mode": "autonomous",
+  "tool": "CRM",
+  "action": "update_record",
+  "condition": null,
+  "prediction": null,
+  "autonomous": true,
+  "confidence": 0.97
 }
 ```
 
 ---
 
-## Voice IP Stacking — The Platform Model
+## Voice IP Stacking
 
-Most platforms collect your data. ConceptNet lets enterprises **own** their voice IP, then license it.
-
-| Step | What happens |
-|------|-------------|
-| **① Privatize** | Enterprise uploads voice + instructions. We encrypt and isolate it. They own it. |
-| **② Stack Intent** | 4 layers: Basic → Context-aware → Predictive → Autonomous |
-| **③ Own as IP** | Voice + instructions = enterprise intellectual property (like patents, but for voice + intent) |
-| **④ License + Revenue** | Enterprise licenses their IP to others. We charge 10% transaction fee. |
-
----
-
-## 4 Intent Layers
+The classification layer powers the Voice IP Stacking platform — a novel model by which enterprises build, own, and license their own voice intent IP.
 
 ```
-Layer 1 — Basic        "Schedule a meeting"                      → CALENDAR.create_event
-Layer 2 — Context      "Send report when deal closes"            → EMAIL.send_message + trigger
-Layer 3 — Predictive   "Alert manager before contract expires"   → CALENDAR.set_reminder + prediction
-Layer 4 — Autonomous   "Always update Salesforce after every call" → CRM.update_record + autonomous=True
+① Privatise  →  Enterprise uploads voice workflow data. They own it.
+② Stack      →  Data classified across 4 intent layers. IP compounds.
+③ Own        →  Labelled dataset = proprietary IP. Switching cost = losing it.
+④ License    →  Enterprise licenses IP to others. ConceptNet takes 10%.
 ```
 
-🧪 **[Try the Voice IP Sandbox →](https://conceptnet.co.uk/sandbox/)**
-🤗 **[Try on Hugging Face →](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox)**
+This creates a platform flywheel: more users → more data → more IP transactions → more revenue → better model → more users.
 
 ---
 
-## Why This Moat Lasts 10 Years
+## Benchmarks
 
-| Feature | Moat Strength |
-|---------|--------------|
-| 5× cheaper than OpenAI | ❌ Copied in 6 months |
-| Voice UI | ❌ Google/Microsoft ship it in 3 months |
-| Cross-cultural voice dataset | ✅ We collected it. Competitors can't. |
-| Human-robot sync standard | ✅ We define it. Others must follow. |
-| Agent-to-agent protocol | ✅ We are the layer. Not a plugin. |
-| Enterprise voice IP stacking | ✅ 500+ companies build IP on us. Switching = losing years of IP. |
+| Model | Cost per query | Latency | Languages | Token-free |
+|-------|---------------|---------|-----------|------------|
+| GPT-4o | $0.08 | 800ms | ~50 | ✗ |
+| Claude Sonnet | $0.06 | 600ms | ~30 | ✗ |
+| **ConceptNet** | **$0.015** | **<100ms** | **200+** | **✓** |
 
-📊 **[See live benchmarks vs GPT-4o →](https://conceptnet.co.uk/benchmarks/)**
+Full benchmarks: [conceptnet.co.uk/benchmarks](https://conceptnet.co.uk/benchmarks/)
 
 ---
 
-## API
+## Raising
 
-Run locally:
+ConceptNet is raising **£1M pre-seed** at **£5–6M pre-money**.
 
-```bash
-pip install -r requirements.txt
-uvicorn api.server:app --reload
-```
+- EIS eligible — 30% tax relief for UK investors
+- SEIS eligible — 50% tax relief on first £250K
+- Based in London, UK
+- 4-person technical team
+- Patents pending on the 4-layer taxonomy and Voice IP Stacking architecture
 
-```bash
-curl -X POST http://localhost:8000/classify \
-  -H "Content-Type: application/json" \
-  -d '{"text": "Email the client when the proposal is approved"}'
-```
-
-Interactive API docs: `http://localhost:8000/docs`
+**Contact:** tonymomoh@icloud.com · 07733 246865
+**Investor one-pager:** [conceptnet.co.uk/docs/investor.html](https://conceptnet.co.uk/docs/investor.html)
 
 ---
 
-## Financial Model
+## Licence
 
-| Revenue Stream | Year 1 | Year 2 | Year 3 | Year 5 |
-|----------------|--------|--------|--------|--------|
-| SaaS | £100K | £500K | £1M | £5M |
-| Enterprise IP Licensing (10%) | £0 | £500K | £2M | £10M |
-| Agent-to-Agent Tx Fees | £0 | £100K | £500K | £5M |
-| Dataset Licensing | £0 | £0 | £500K | £5M |
-| **Total** | **£100K** | **£1.1M** | **£4M** | **£25M** |
+The code in this repository is released under the **MIT Licence**.
 
----
+The ConceptNet 4-layer intent taxonomy, Voice IP Stacking architecture, and associated datasets are proprietary intellectual property of ConceptNet Ltd. Patents pending.
 
-## Repo Structure
-
-```
-ConceptNet/
-├── core/
-│   ├── __init__.py
-│   └── intent_classifier.py   # Voice intent classification engine
-├── api/
-│   └── server.py              # FastAPI REST endpoint
-├── examples/
-│   └── quickstart.py          # CLI demo
-├── benchmarks/
-│   └── index.html             # Live benchmark page
-├── sandbox/
-│   └── index.html             # Interactive Voice IP Sandbox
-├── docs/
-│   ├── star.html              # GitHub star campaign page
-│   └── investor.html          # Investor one-pager
-├── requirements.txt
-└── README.md
-```
-
----
-
-## Roadmap
-
-- **Month 0–6:** Deploy SaaS, onboard 500 enterprise teams, collect 1M+ voice hours
-- **Month 6–12:** Cross-cultural dataset v1, first LLM licensing deal, enterprise IP stacking beta
-- **Month 12–24:** 100 enterprises building voice IP, agent-to-agent layer live, $5M ARR
-- **Month 24–36:** 500+ enterprises, 50+ verticals, £25M ARR
-
----
-
-## Raising £500K Pre-Seed
-
-Co-funded alongside Innovate UK AI & Data Economy grant application. **EIS eligible — 50% tax relief for UK investors.**
-
-- **Pre-money valuation:** £3–5M
-- **Use of funds:** Engineering (65%), cloud compute (20%), enterprise pilots (10%), ops (5%)
-- **Contact:** tonymomoh@icloud.com · 07733 246865
-- **Investor one-pager:** [conceptnet.co.uk/docs/investor.html](https://conceptnet.co.uk/docs/investor.html)
-- **LinkedIn:** [linkedin.com/company/conceptnet-voice-ip](https://www.linkedin.com/company/conceptnet-voice-ip/)
-
----
-
-## The Flywheel
-
-```
-SaaS → Data → IP → Enterprise Voice IP → Leverage → New Use Cases → More Users → Better IP → More Leverage
-```
-
----
-
-## ⭐ Star this repo
-
-If you find this useful or believe in open-source voice AI infrastructure, a GitHub star helps more developers discover ConceptNet.
-
-[**→ Star on GitHub**](https://github.com/wushu75/ConceptNet) · [**→ Try the Sandbox**](https://conceptnet.co.uk/sandbox/) · [**→ View on Hugging Face**](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox)
-
-*Built in London. Open-source. Voice-native. 10-year moat.*
+© 2026 ConceptNet Ltd · London, UK · All rights reserved
