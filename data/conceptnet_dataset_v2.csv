@@ -1,0 +1,731 @@
+text,label,intent_layer,language,tool,action,condition,prediction,autonomous
+Schedule a demo if the lead responds positively,context_aware,2,en,CALENDAR,create_event,trigger_condition,,False
+Automatically log all customer calls to HubSpot,autonomous,4,en,CRM,update_record,,,True
+Prepare the monthly report before the all-hands,predictive,3,en,ANALYTICS,fetch_report,,prediction_window,False
+Alert the DevOps team before the maintenance window,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Schedule a call after the proposal is sent,context_aware,2,en,CALENDAR,create_event,trigger_condition,,False
+Registra la chiamata in Salesforce,basic,1,it,CRM,update_record,,,False
+Otpravit ezhenedelnyy otchet komande,basic,1,ru,EMAIL,send_message,,,False
+Reserver un appel avec le client,basic,1,fr,WORKFLOW,execute,,,False
+Summarise the client call,basic,1,en,AI,summarise,,,False
+Planifier un appel quand le client repond,context_aware,2,fr,CALENDAR,create_event,trigger_condition,,False
+Remind the team before the sprint deadline,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Enregistrer l appel dans Salesforce,basic,1,fr,CRM,update_record,,,False
+发送每周报告给团队,basic,1,zh,WORKFLOW,execute,,,False
+Otpravit predlozhenie o prodlenii pered istecheniem kontrakta,predictive,3,ru,EMAIL,send_message,,prediction_window,False
+Pianifica una riunione del consiglio per martedi,basic,1,it,CALENDAR,create_event,,,False
+Send the agenda for tomorrow's meeting,basic,1,en,EMAIL,send_message,,,False
+Post the results to the channel,basic,1,en,COMMS,post_message,,,False
+جدولة اجتماع مراجعة بعد العرض التقديمي,context_aware,2,ar,WORKFLOW,execute,trigger_condition,,False
+انشاء تذكرة جيرا لخطا تسجيل الدخول,basic,1,ar,TASKS,create_ticket,,,False
+Automatically send the customer a satisfaction survey after every delivery,autonomous,4,en,EMAIL,send_message,,,True
+合同签署后发送报告给客户,context_aware,2,zh,WORKFLOW,execute,trigger_condition,,False
+Zaregistrirovat zvonok v Salesforce,basic,1,ru,CRM,update_record,,,False
+Atualizar automaticamente o Salesforce apos cada ligacao de vendas,autonomous,4,pt,CRM,update_record,,,True
+Pipeline kontinuierlich ueberwachen und inaktive Deals markieren,autonomous,4,de,ANALYTICS,fetch_report,,,True
+Enviar el balance cuando se cierren las cuentas,context_aware,2,es,EMAIL,send_message,trigger_condition,,False
+Notify the board before the audit,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Keep posting the sprint velocity to the product channel weekly,autonomous,4,en,COMMS,post_message,,,True
+Share the deck in the project channel,basic,1,en,WORKFLOW,execute,,,False
+Prepare the demo environment before the prospect call,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Alert the account team before the contract renewal window,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Avtomaticheski obnovlyat Salesforce posle kazhdogo zvonka po prodazham,autonomous,4,ru,CRM,update_record,,,True
+Alerter les finances avant l echeance du paiement,predictive,3,fr,WORKFLOW,execute,,prediction_window,False
+Send the compliance checklist before the certification audit,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Envoyer le devis de renouvellement avant l expiration du contrat,predictive,3,fr,EMAIL,send_message,,prediction_window,False
+Zaplanirovat zasedanie soveta direktorov na vtornik,basic,1,ru,CALENDAR,create_event,,,False
+Uvedomit komandu posle zaversheniya razvertki,context_aware,2,ru,WORKFLOW,execute,trigger_condition,,False
+Pubblica le note di rilascio quando la build va in produzione,context_aware,2,it,COMMS,post_message,trigger_condition,,False
+Always book a renewal call 60 days before expiry,autonomous,4,en,CALENDAR,create_event,,,True
+Email the report after the data sync completes,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Notify the team once the deployment is complete,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Notify the client of the delay,basic,1,en,WORKFLOW,execute,,,False
+Create a ticket if the response time exceeds SLA,context_aware,2,en,TASKS,create_ticket,trigger_condition,,False
+Retrieve the pipeline breakdown,basic,1,en,ANALYTICS,fetch_report,,,False
+Pianifica una chiamata quando il cliente risponde,context_aware,2,it,WORKFLOW,execute,trigger_condition,,False
+اشعار الفريق بعد اكتمال النشر,context_aware,2,ar,COMMS,post_message,trigger_condition,,False
+Send the board update before the AGM,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Monitora continuamente la pipeline e segnala le trattative inattive,autonomous,4,it,ANALYTICS,fetch_report,,,True
+Draft the RFP response before the submission deadline,predictive,3,en,DOCS,draft_document,,prediction_window,False
+Always create a support ticket when a customer emails the help address,autonomous,4,en,EMAIL,send_message,,,True
+Kundenbetreuer benachrichtigen bevor der Vertrag ablaeuft,predictive,3,de,WORKFLOW,execute,,prediction_window,False
+Schedule a 1-1 with the account manager,basic,1,en,CALENDAR,create_event,,,False
+Log the feedback if the NPS score drops below 7,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Send the project brief to the client,basic,1,en,EMAIL,send_message,,,False
+Avtomaticheski zapisyvat vse zvonki klientov v HubSpot,autonomous,4,ru,CRM,update_record,,,True
+Prepare the QA checklist before the release,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Prepare the exit interview docs before the employee leaves,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Remind the team before the company offsite,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Automatically post the daily active users metric to the product channel,autonomous,4,en,COMMS,post_message,,,True
+Send the renewal quote before the contract lapses,predictive,3,en,EMAIL,send_message,,prediction_window,False
+File a ticket if the uptime drops below 99 percent,context_aware,2,en,TASKS,create_ticket,trigger_condition,,False
+Automatically send the weekly report every Monday morning,autonomous,4,en,EMAIL,send_message,,,True
+Registrar automaticamente todas las llamadas de clientes en HubSpot,autonomous,4,es,CRM,update_record,,,True
+Alert the engineering team before the code freeze,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Programar una reunion del consejo para el martes,basic,1,es,CALENDAR,create_event,,,False
+Pianifica sempre un debriefing dopo ogni chiamata con il cliente,autonomous,4,it,WORKFLOW,execute,,,True
+Automatically send a welcome sequence whenever a new user signs up,autonomous,4,en,EMAIL,send_message,,,True
+Prepare the board pack before the quarterly review,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+مراقبة خط الانتاج باستمرار والاشارة الى الصفقات الراكدة,autonomous,4,ar,WORKFLOW,execute,,,True
+Sostavit predlozhenie pered pitchom,predictive,3,ru,DOCS,draft_document,,prediction_window,False
+Create a follow-up task if no reply in 3 days,context_aware,2,en,TASKS,create_ticket,trigger_condition,,False
+Pull the pipeline report for the board,basic,1,en,ANALYTICS,fetch_report,,,False
+Alert the customer before their subscription auto-renews,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Besprechungsnotizen zusammenfassen,basic,1,de,AI,summarise,,,False
+Post the results when the board meeting finishes,context_aware,2,en,COMMS,post_message,trigger_condition,,False
+Sozdat zadachu Jira dlya oshibki vkhoda,basic,1,ru,TASKS,create_ticket,,,False
+Keep the sales leaderboard updated in real time,autonomous,4,en,CRM,update_record,,,True
+Invia il rapporto settimanale al team,basic,1,it,EMAIL,send_message,,,False
+Notify the designer when the copy is approved,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Automatically create a task for the CSM whenever an NPS detractor responds,autonomous,4,en,TASKS,create_ticket,,,True
+Automatically update Salesforce after every sales call,autonomous,4,en,CRM,update_record,,,True
+Continuously sync the calendar across all team members,autonomous,4,en,WORKFLOW,execute,,,True
+每次会议结束后自动发送跟进邮件,autonomous,4,zh,WORKFLOW,execute,,,True
+Send a Slack alert if CPU usage exceeds 90 percent,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Always post the release summary to the company all-hands channel,autonomous,4,en,AI,summarise,,,True
+Notify the security team if a login anomaly is detected,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Automatically post release notes to the engineering channel,autonomous,4,en,COMMS,post_message,,,True
+Siempre crear un ticket de Jira cuando se informa un error,autonomous,4,es,TASKS,create_ticket,,,True
+客户演示前向团队简报,predictive,3,zh,WORKFLOW,execute,,prediction_window,False
+Mettre a jour le CRM avec le nouveau contact,basic,1,fr,CRM,update_record,,,False
+Informar a equipe antes da apresentacao ao cliente,predictive,3,pt,WORKFLOW,execute,,prediction_window,False
+Draft the case study,basic,1,en,DOCS,draft_document,,,False
+Prepare the onboarding docs before the client starts,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Nach jeder Besprechung immer eine Follow-up-E-Mail senden,autonomous,4,de,EMAIL,send_message,,,True
+Send the invoice reminder to the client,basic,1,en,EMAIL,send_message,,,False
+Send the summary report once the analysis is complete,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Automatically send the invoice whenever a project milestone completes,autonomous,4,en,EMAIL,send_message,,,True
+Email the contract to legal,basic,1,en,EMAIL,send_message,,,False
+Prepare the training materials before the new hire starts,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+客户回复后安排通话,context_aware,2,zh,WORKFLOW,execute,trigger_condition,,False
+صياغة اقتراح المتابعة دائما بعد كل عرض توضيحي,autonomous,4,ar,DOCS,draft_document,,,True
+Publicar automaticamente o resumo do standup diario no Slack,autonomous,4,pt,COMMS,post_message,,,True
+Alert the product team before the user research session,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Q3-Pipeline-Bericht abrufen,basic,1,de,ANALYTICS,fetch_report,,,False
+Send the incident report before the postmortem review,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Schedule a call when the client replies,context_aware,2,en,CALENDAR,create_event,trigger_condition,,False
+Informa l investitore prima della riunione di presentazione,predictive,3,it,CALENDAR,create_event,,prediction_window,False
+Alert the account team before the QBR,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Opublikovat primechaniya k vypusku kogda sborka zapustitsya,context_aware,2,ru,COMMS,post_message,trigger_condition,,False
+Autonomously flag any deal without activity for 14 days,autonomous,4,en,WORKFLOW,execute,,,True
+Crear un ticket de Jira para el error de inicio de sesion,basic,1,es,TASKS,create_ticket,,,False
+Always generate a case study draft after a customer win,autonomous,4,en,DOCS,draft_document,,,True
+Always update the account health score after every customer interaction,autonomous,4,en,CRM,update_record,,,True
+Log the demo notes in HubSpot,basic,1,en,CRM,update_record,,,False
+Notify the account manager when a contract is at risk,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Create a ticket for the data migration,basic,1,en,TASKS,create_ticket,,,False
+Continuously track NPS and flag scores below 7,autonomous,4,en,WORKFLOW,execute,,,True
+Always draft a proposal whenever a discovery call is logged,autonomous,4,en,CRM,update_record,,,True
+Schedule a review after the feature ships,context_aware,2,en,CALENDAR,create_event,trigger_condition,,False
+每次通话后自动更新CRM系统,autonomous,4,zh,CRM,update_record,,,True
+Envoyer la facture a l equipe financiere,basic,1,fr,EMAIL,send_message,,,False
+Rediger la proposition avant l argumentaire,predictive,3,fr,DOCS,draft_document,,prediction_window,False
+Automatically trigger a health check email 30 days after onboarding,autonomous,4,en,EMAIL,send_message,,,True
+Notificar a equipe assim que a implantacao for concluida,context_aware,2,pt,WORKFLOW,execute,trigger_condition,,False
+Prepare the due diligence pack before the investor meeting,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Uvedomit finansy esli sdelka budet zakryta,context_aware,2,ru,WORKFLOW,execute,trigger_condition,,False
+Prepare the go-to-market plan before the product launch,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Send the partnership agreement to legal,basic,1,en,EMAIL,send_message,,,False
+جدولة اجتماع مجلس الادارة,basic,1,ar,WORKFLOW,execute,,,False
+Alert the finance team before the invoice run,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Enviar o balanco quando as contas forem fechadas,context_aware,2,pt,EMAIL,send_message,trigger_condition,,False
+Draft the follow-up email when the demo ends,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Post the update once QA approves,context_aware,2,en,CRM,update_record,trigger_condition,,False
+ارسال بريد المتابعة دائما بعد كل اجتماع,autonomous,4,ar,EMAIL,send_message,,,True
+Keep tracking the burn rate and alert the CFO if it accelerates,autonomous,4,en,WORKFLOW,execute,,,True
+Remind the manager before the probation review,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+اطلاع الفريق قبل عرض العميل التقديمي,predictive,3,ar,WORKFLOW,execute,,prediction_window,False
+Pull the ARR report,basic,1,en,ANALYTICS,fetch_report,,,False
+Send the P&L to the board when the accounts close,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Always post the support queue length to the ops Slack every hour,autonomous,4,en,COMMS,post_message,,,True
+Sozdat zadachu esli uroven oshibok prevysit 5 protsentov,context_aware,2,ru,TASKS,create_ticket,trigger_condition,,False
+Log the support call in the CRM,basic,1,en,CRM,update_record,,,False
+Create a task for the QA team,basic,1,en,TASKS,create_ticket,,,False
+Programar un resumen despues de la presentacion,context_aware,2,es,CALENDAR,create_event,trigger_condition,,False
+Alert compliance before the regulatory deadline,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Envoyer le rapport quand le contrat est signe,context_aware,2,fr,EMAIL,send_message,trigger_condition,,False
+Alert the CTO before the architecture review,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Redigir a proposta antes do pitch,predictive,3,pt,COMMS,post_message,,prediction_window,False
+Enviar el orden del dia antes de la reunion del consejo,predictive,3,es,EMAIL,send_message,,prediction_window,False
+Prepare the migration plan before the infrastructure change,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+تنبيه مدير الحساب قبل انتهاء العقد,predictive,3,ar,WORKFLOW,execute,,prediction_window,False
+Notify the manager if an employee misses their KPIs,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Keep the team notified whenever a new lead comes in,autonomous,4,en,WORKFLOW,execute,,,True
+总结会议记录,basic,1,zh,WORKFLOW,execute,,,False
+Send the welcome email before the client onboarding call,predictive,3,en,EMAIL,send_message,,prediction_window,False
+每天自动在Slack发布站会摘要,autonomous,4,zh,COMMS,post_message,,,True
+Publier les resultats quand la reunion du conseil se termine,context_aware,2,fr,COMMS,post_message,trigger_condition,,False
+Enviar a fatura quando o projeto for entregue,context_aware,2,pt,EMAIL,send_message,trigger_condition,,False
+Envoyer la facture quand le projet est livre,context_aware,2,fr,EMAIL,send_message,trigger_condition,,False
+Autonomously escalate tickets that have been open for over 48 hours,autonomous,4,en,TASKS,create_ticket,,,True
+Registrar automaticamente todas as ligacoes de clientes no HubSpot,autonomous,4,pt,CRM,update_record,,,True
+Fetch the report after the month closes,context_aware,2,en,ANALYTICS,fetch_report,trigger_condition,,False
+Prepare the pitch deck before the VC meeting,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Envoyer automatiquement le rapport hebdomadaire chaque lundi matin,autonomous,4,fr,EMAIL,send_message,,,True
+Draft the user research report,basic,1,en,ANALYTICS,fetch_report,,,False
+Avtomaticheski publikovat ezhednevnoe rezyme standup na Slack,autonomous,4,ru,COMMS,post_message,,,True
+Arrange a kickoff meeting,basic,1,en,CALENDAR,create_event,,,False
+Mettre a jour automatiquement le CRM quand une etape de transaction change,autonomous,4,fr,CRM,update_record,,,True
+Post to Teams when the deployment succeeds,context_aware,2,en,COMMS,post_message,trigger_condition,,False
+项目交付后发送发票,context_aware,2,zh,WORKFLOW,execute,trigger_condition,,False
+Brief the sales team before the territory review,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Preparar o pacote do conselho antes da revisao trimestral,predictive,3,pt,WORKFLOW,execute,,prediction_window,False
+Enregistrer automatiquement tous les appels clients dans HubSpot,autonomous,4,fr,CRM,update_record,,,True
+Post the recap when the event ends,context_aware,2,en,AI,summarise,trigger_condition,,False
+Schedule a review when the beta testing period ends,context_aware,2,en,CALENDAR,create_event,trigger_condition,,False
+انشاء تذكرة جيرا دائما عند الابلاغ عن خطا,autonomous,4,ar,TASKS,create_ticket,,,True
+Rechnung senden wenn das Projekt geliefert ist,context_aware,2,de,EMAIL,send_message,trigger_condition,,False
+جلب تقرير خط الانتاج للربع الثالث,basic,1,ar,ANALYTICS,fetch_report,,,False
+Schedule the investor update call,basic,1,en,CALENDAR,create_event,,,False
+每当报告错误时自动创建Jira工单,autonomous,4,zh,TASKS,create_ticket,,,True
+Notificar a finanzas si se gana el trato,context_aware,2,es,WORKFLOW,execute,trigger_condition,,False
+Always create a renewal opportunity in Salesforce 120 days before expiry,autonomous,4,en,CRM,update_record,,,True
+Publicar el anuncio en Teams,basic,1,es,COMMS,post_message,,,False
+Envoyer un message a l equipe de direction,basic,1,fr,EMAIL,send_message,,,False
+Enviar automaticamente o relatorio semanal toda segunda-feira de manha,autonomous,4,pt,EMAIL,send_message,,,True
+Team briefen bevor die Kundenpraesentation beginnt,predictive,3,de,WORKFLOW,execute,,prediction_window,False
+نشر ملاحظات الاصدار عند اطلاق النسخة,context_aware,2,ar,COMMS,post_message,trigger_condition,,False
+Remind the CEO before the all-hands presentation,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Always update the pipeline dashboard at end of day,autonomous,4,en,CRM,update_record,,,True
+Send the project brief before the kickoff meeting,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Log the expense report,basic,1,en,CRM,update_record,,,False
+Notificar a ingenieria una vez aprobadas las especificaciones,context_aware,2,es,WORKFLOW,execute,trigger_condition,,False
+Autonomously refresh the pricing model whenever costs change,autonomous,4,en,WORKFLOW,execute,,,True
+Continuously update the board pack with the latest metrics,autonomous,4,en,CRM,update_record,,,True
+Actualizar el CRM con el nuevo contacto,basic,1,es,CRM,update_record,,,False
+Always log competitor mentions from calls into the CRM,autonomous,4,en,CRM,update_record,,,True
+Napomnil komande pered srokom sprinta,predictive,3,ru,WORKFLOW,execute,,prediction_window,False
+Agendar uma reuniao do conselho para terca-feira,basic,1,pt,CALENDAR,create_event,,,False
+Create a Jira epic for the Q4 roadmap,basic,1,en,TASKS,create_ticket,,,False
+Schedule a team retrospective,basic,1,en,CALENDAR,create_event,,,False
+Share the deck when the investor confirms attendance,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Update the pipeline if the lead goes cold,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Always flag an overdue invoice in the CRM after 30 days,autonomous,4,en,CRM,update_record,,,True
+اشعار الهندسة بعد الموافقة على المواصفات,context_aware,2,ar,WORKFLOW,execute,trigger_condition,,False
+Crea un ticket se il tasso di errore supera il 5 percento,context_aware,2,it,TASKS,create_ticket,trigger_condition,,False
+Log the deal when it closes in Salesforce,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Crea un ticket Jira per il bug di accesso,basic,1,it,TASKS,create_ticket,,,False
+Riassumi le note della riunione,basic,1,it,CALENDAR,create_event,,,False
+Add a note to the HubSpot record,basic,1,en,CRM,update_record,,,False
+Post the announcement once leadership approves,context_aware,2,en,COMMS,post_message,trigger_condition,,False
+Log the complaint if a customer escalates,context_aware,2,en,CRM,update_record,trigger_condition,,False
+نشر التحديث على قناة سلاك,basic,1,ar,CRM,update_record,,,False
+Prepara il report del consiglio prima della revisione trimestrale,predictive,3,it,ANALYTICS,fetch_report,,prediction_window,False
+Create a Jira epic once the spec is signed off,context_aware,2,en,TASKS,create_ticket,trigger_condition,,False
+Continuously track SLA compliance and escalate breaches automatically,autonomous,4,en,WORKFLOW,execute,,,True
+Alert the team before the penetration test,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Toujours creer un ticket Jira quand un bug est signale,autonomous,4,fr,TASKS,create_ticket,,,True
+Notifica le finanze se il contratto viene vinto,context_aware,2,it,WORKFLOW,execute,trigger_condition,,False
+Remind the project lead before the milestone review,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Book a meeting with the design team,basic,1,en,CALENDAR,create_event,,,False
+Fetch the customer satisfaction scores,basic,1,en,WORKFLOW,execute,,,False
+Pubblica automaticamente il riepilogo dello standup quotidiano su Slack,autonomous,4,it,CRM,update_record,,,True
+Envoyer le bilan quand les comptes sont clos,context_aware,2,fr,EMAIL,send_message,trigger_condition,,False
+Draft the case study before the awards submission,predictive,3,en,DOCS,draft_document,,prediction_window,False
+Draft the case study when the client approves,context_aware,2,en,DOCS,draft_document,trigger_condition,,False
+Notifier l ingenierie une fois le cahier des charges approuve,context_aware,2,fr,WORKFLOW,execute,trigger_condition,,False
+Criar um ticket Jira para o bug de login,basic,1,pt,CRM,update_record,,,False
+Post the metrics when the quarter ends,context_aware,2,en,COMMS,post_message,trigger_condition,,False
+Enviar la cotizacion de renovacion antes de que venza el contrato,predictive,3,es,EMAIL,send_message,,prediction_window,False
+Continuously monitor uptime and page the on-call engineer if it drops,autonomous,4,en,WORKFLOW,execute,,,True
+Surveiller en continu le pipeline et signaler les transactions inactives,autonomous,4,fr,ANALYTICS,fetch_report,,,True
+Create a note in HubSpot for the call,basic,1,en,CRM,update_record,,,False
+Send the NDA to the legal team,basic,1,en,EMAIL,send_message,,,False
+Log the sale when payment is confirmed,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Send the proposal when the discovery call is logged,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Salesforce automatisch nach jedem Verkaufsgespraech aktualisieren,autonomous,4,de,CRM,update_record,,,True
+Brief the team before the client presentation,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Keep monitoring the email open rates and alert if they drop below 20 percent,autonomous,4,en,EMAIL,send_message,,,True
+Post the hiring announcement to LinkedIn,basic,1,en,COMMS,post_message,,,False
+Team benachrichtigen sobald die Bereitstellung abgeschlossen ist,context_aware,2,de,WORKFLOW,execute,trigger_condition,,False
+Draft the proposal document,basic,1,en,DOCS,draft_document,,,False
+Automatically generate an invoice when a contract is signed,autonomous,4,en,WORKFLOW,execute,,,True
+Anruf planen wenn der Kunde antwortet,context_aware,2,de,WORKFLOW,execute,trigger_condition,,False
+Informar al inversor antes de la reunion de presentacion,predictive,3,es,WORKFLOW,execute,,prediction_window,False
+Always update the forecast whenever a deal closes or slips,autonomous,4,en,CRM,update_record,,,True
+Schedule a review with the product team,basic,1,en,CALENDAR,create_event,,,False
+Aggiorna automaticamente Salesforce dopo ogni chiamata di vendita,autonomous,4,it,CRM,update_record,,,True
+冲刺截止前提醒团队,predictive,3,zh,WORKFLOW,execute,,prediction_window,False
+Send the onboarding email to the new hire,basic,1,en,EMAIL,send_message,,,False
+Automatically generate the sprint burndown chart at end of each day,autonomous,4,en,WORKFLOW,execute,,,True
+Send the product roadmap before the investor call,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Update the board deck when the latest numbers come in,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Publicar a atualizacao no canal do Slack,basic,1,pt,COMMS,post_message,,,False
+Send the compliance report before the deadline,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Alertar a finanzas antes del vencimiento del pago,predictive,3,es,WORKFLOW,execute,,prediction_window,False
+起草提案文件,basic,1,zh,WORKFLOW,execute,,,False
+Notify the client before the trial ends,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Update the project status in Jira,basic,1,en,CRM,update_record,,,False
+Obtener el informe del pipeline del tercer trimestre,basic,1,es,ANALYTICS,fetch_report,,,False
+Brief the account manager before the upsell conversation,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Email finance once the invoice is approved,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Schedule a debrief after the presentation,context_aware,2,en,CALENDAR,create_event,trigger_condition,,False
+Notificar o cliente antes do fim do periodo de teste,predictive,3,pt,WORKFLOW,execute,,prediction_window,False
+Registra automaticamente tutte le chiamate dei clienti in HubSpot,autonomous,4,it,CRM,update_record,,,True
+Enviar la factura al equipo de finanzas,basic,1,es,EMAIL,send_message,,,False
+Preparer le dossier du conseil avant la revue trimestrielle,predictive,3,fr,WORKFLOW,execute,,prediction_window,False
+Pull the sales forecast,basic,1,en,WORKFLOW,execute,,,False
+如果错误率超过5%则创建工单,context_aware,2,zh,WORKFLOW,execute,trigger_condition,,False
+规格批准后通知工程团队,context_aware,2,zh,WORKFLOW,execute,trigger_condition,,False
+Autonomously generate a risk report whenever a project is delayed,autonomous,4,en,ANALYTICS,fetch_report,,,True
+试用期结束前通知客户,predictive,3,zh,WORKFLOW,execute,,prediction_window,False
+Get the sales dashboard,basic,1,en,ANALYTICS,fetch_report,,,False
+Email the client if the proposal is approved,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Automatically update the investor dashboard with weekly metrics,autonomous,4,en,CRM,update_record,,,True
+每周一早上自动发送周报,autonomous,4,zh,WORKFLOW,execute,,,True
+Send the offer letter once the candidate accepts verbally,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Enviar o relatorio quando o auditor assinar,context_aware,2,pt,EMAIL,send_message,trigger_condition,,False
+Send the agenda before the board meeting,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Publier automatiquement le resume du standup quotidien sur Slack,autonomous,4,fr,COMMS,post_message,,,True
+Log the meeting notes once the call is done,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Automatically notify the team whenever a new competitor is mentioned,autonomous,4,en,WORKFLOW,execute,,,True
+تنبيه المالية قبل موعد السداد,predictive,3,ar,WORKFLOW,execute,,prediction_window,False
+Create a Jira task if the integration breaks,context_aware,2,en,TASKS,create_ticket,trigger_condition,,False
+Email the client when their support ticket is resolved,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Taeglich automatisch die Standup-Zusammenfassung auf Slack veroeffentlichen,autonomous,4,de,AI,summarise,,,True
+Notifica il cliente prima della fine del periodo di prova,predictive,3,it,WORKFLOW,execute,,prediction_window,False
+Automatically generate a daily sales report at 8am,autonomous,4,en,ANALYTICS,fetch_report,,,True
+Send the summary when the workshop ends,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Atualizar automaticamente o CRM quando uma fase do negocio mudar,autonomous,4,pt,CRM,update_record,,,True
+Update the deal stage in Salesforce,basic,1,en,CRM,update_record,,,False
+Always send the meeting summary to all attendees after every call,autonomous,4,en,EMAIL,send_message,,,True
+Prenota una chiamata con il cliente,basic,1,it,WORKFLOW,execute,,,False
+Enviar a pauta antes da reuniao do conselho,predictive,3,pt,EMAIL,send_message,,prediction_window,False
+Publier l annonce sur Teams,basic,1,fr,COMMS,post_message,,,False
+Notify the data team when the ETL job fails,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Post the sprint review summary to Slack,basic,1,en,AI,summarise,,,False
+Rappeler a l equipe avant la date limite du sprint,predictive,3,fr,WORKFLOW,execute,,prediction_window,False
+自动将所有客户通话记录到HubSpot,autonomous,4,zh,CRM,update_record,,,True
+Prepare the release checklist before the deployment window,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Nepreryvno otslezivat pipeline i otmechat ustarevshie sdelki,autonomous,4,ru,ANALYTICS,fetch_report,,,True
+Send the report once the data is validated,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Send the health check report before the customer review,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Poluchit otchet po pipeline za tretiy kvartal,basic,1,ru,ANALYTICS,fetch_report,,,False
+交易阶段变更时自动更新CRM,autonomous,4,zh,CRM,update_record,,,True
+اطلاع المستثمر قبل اجتماع التقديم,predictive,3,ar,WORKFLOW,execute,,prediction_window,False
+Automatically alert the CSM whenever a customer logs a critical issue,autonomous,4,en,CRM,update_record,,,True
+Pubblica l aggiornamento nel canale Slack,basic,1,it,CRM,update_record,,,False
+Notify the client after the payment clears,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+تحضير ملف مجلس الادارة قبل المراجعة الفصلية,predictive,3,ar,WORKFLOW,execute,,prediction_window,False
+Remind the legal team before the IP filing deadline,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Alertar al gerente de cuenta antes de que venza el contrato,predictive,3,es,WORKFLOW,execute,,prediction_window,False
+Create a Jira ticket if the tests fail,context_aware,2,en,TASKS,create_ticket,trigger_condition,,False
+Reservar una llamada con el cliente,basic,1,es,WORKFLOW,execute,,,False
+Toujours rediger une proposition de suivi apres chaque demonstration,autonomous,4,fr,DOCS,draft_document,,,True
+Actualizar automaticamente el CRM cuando cambia una etapa de trato,autonomous,4,es,CRM,update_record,,,True
+Remind the sales team before the end of quarter push,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Continuously monitor API response times and alert if latency spikes,autonomous,4,en,WORKFLOW,execute,,,True
+Toujours envoyer un email de suivi apres chaque reunion,autonomous,4,fr,EMAIL,send_message,,,True
+صياغة وثيقة الاقتراح,basic,1,ar,DOCS,draft_document,,,False
+ارسال التقرير الاسبوعي تلقائيا كل صباح اثنين,autonomous,4,ar,EMAIL,send_message,,,True
+Keep the product changelog updated whenever a feature ships,autonomous,4,en,CRM,update_record,,,True
+Create a follow-up task if the demo has no outcome,context_aware,2,en,TASKS,create_ticket,trigger_condition,,False
+Informa il team prima della presentazione al cliente,predictive,3,it,WORKFLOW,execute,,prediction_window,False
+Update the deal in HubSpot,basic,1,en,CRM,update_record,,,False
+Email the team when the contract is signed,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Summarise the competitor analysis,basic,1,en,AI,summarise,,,False
+Alert the legal team before the patent filing deadline,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Prepare the onboarding checklist before the new hire arrives,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Always notify the product team when a feature request gets 10 votes,autonomous,4,en,WORKFLOW,execute,,,True
+Monitorear continuamente el pipeline y marcar los tratos inactivos,autonomous,4,es,ANALYTICS,fetch_report,,,True
+推介会议前向投资者简报,predictive,3,zh,WORKFLOW,execute,,prediction_window,False
+Always create a follow-up task after every outbound call,autonomous,4,en,TASKS,create_ticket,,,True
+Alert the ops team before the peak traffic period,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Vsegda otpravlyat pismo s podtverzhdeniem posle kazhdoy vstrechi,autonomous,4,ru,WORKFLOW,execute,,,True
+انشاء تذكرة اذا تجاوز معدل الخطا 5 بالمئة,context_aware,2,ar,TASKS,create_ticket,trigger_condition,,False
+Alert the account manager before the contract expires,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Preduprezhdenie finansov do srokov platezha,predictive,3,ru,WORKFLOW,execute,,prediction_window,False
+Team erinnern bevor die Sprint-Deadline erreicht wird,predictive,3,de,WORKFLOW,execute,,prediction_window,False
+Send the OKR review before the quarterly planning session,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Always send a follow-up email whenever a meeting ends,autonomous,4,en,EMAIL,send_message,,,True
+Proinstrutirovat investora pered vstrochey pitcha,predictive,3,ru,WORKFLOW,execute,,prediction_window,False
+Podgotovit materialy dlya soveta do kvartalnogo obzora,predictive,3,ru,WORKFLOW,execute,,prediction_window,False
+تسجيل المكالمة في سيلزفورس,basic,1,ar,WORKFLOW,execute,,,False
+Crear una tarea para el equipo de desarrollo,basic,1,es,TASKS,create_ticket,,,False
+Vsegda sozdavat zadachu Jira kogda soobshchaetsya ob oshibke,autonomous,4,ru,TASKS,create_ticket,,,True
+Crear un ticket si la tasa de error supera el 5 por ciento,context_aware,2,es,TASKS,create_ticket,trigger_condition,,False
+Notificar a engenharia assim que a especificacao for aprovada,context_aware,2,pt,WORKFLOW,execute,trigger_condition,,False
+TL;DR the board pack,basic,1,en,WORKFLOW,execute,,,False
+Write the project proposal,basic,1,en,DOCS,draft_document,,,False
+Invia sempre una email di follow-up dopo ogni riunione,autonomous,4,it,CALENDAR,create_event,,,True
+Send the invoice when the milestone is reached,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Proinstrutirovat komandu pered prezentasiey klientu,predictive,3,ru,WORKFLOW,execute,,prediction_window,False
+Envoyer l ordre du jour avant la reunion du conseil,predictive,3,fr,EMAIL,send_message,,prediction_window,False
+تحديث نظام CRM تلقائيا عندما تتغير مرحلة الصفقة,autonomous,4,ar,CRM,update_record,,,True
+Post the announcement to all channels,basic,1,en,COMMS,post_message,,,False
+Obtenir le rapport du pipeline T3,basic,1,fr,ANALYTICS,fetch_report,,,False
+Always create a debrief task after every lost deal,autonomous,4,en,TASKS,create_ticket,,,True
+Automatically create a Jira subtask for every PR that needs review,autonomous,4,en,TASKS,create_ticket,,,True
+Schedule a retrospective after the sprint ends,context_aware,2,en,CALENDAR,create_event,trigger_condition,,False
+Autonomously update the CRM whenever a deal stage changes,autonomous,4,en,CRM,update_record,,,True
+Registrar la llamada en Salesforce,basic,1,es,CRM,update_record,,,False
+Send the Q3 report when the auditor signs off,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Anruf in Salesforce protokollieren,basic,1,de,CRM,update_record,,,False
+Alertar o gerente de contas antes do contrato expirar,predictive,3,pt,WORKFLOW,execute,,prediction_window,False
+Automatically assign new leads to the right sales rep based on territory,autonomous,4,en,WORKFLOW,execute,,,True
+合同到期前提醒客户经理,predictive,3,zh,WORKFLOW,execute,,prediction_window,False
+Fetch the Q3 pipeline report,basic,1,en,ANALYTICS,fetch_report,,,False
+Otpravit balans kogda scheta budut zakryty,context_aware,2,ru,EMAIL,send_message,trigger_condition,,False
+Vsegda planirovat briefing posle kazhdogo zvonka s klientom,autonomous,4,ru,WORKFLOW,execute,,,True
+Notificar al cliente antes de que termine la prueba,predictive,3,es,WORKFLOW,execute,,prediction_window,False
+Alerter le responsable de compte avant l expiration du contrat,predictive,3,fr,WORKFLOW,execute,,prediction_window,False
+Notifier le client avant la fin de l essai,predictive,3,fr,WORKFLOW,execute,,prediction_window,False
+Lembrar a equipe antes do prazo do sprint,predictive,3,pt,WORKFLOW,execute,,prediction_window,False
+Always log every demo in the CRM with the outcome,autonomous,4,en,CRM,update_record,,,True
+Send the agenda before the design review,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Notify engineering once the spec is approved,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Fetch the support ticket backlog,basic,1,en,CRM,update_record,,,False
+ارسال عرض التجديد قبل انتهاء العقد,predictive,3,ar,EMAIL,send_message,,prediction_window,False
+Pull the monthly revenue numbers,basic,1,en,WORKFLOW,execute,,,False
+Nach jeder Demo immer einen Follow-up-Vorschlag ausarbeiten,autonomous,4,de,WORKFLOW,execute,,,True
+Programar una llamada cuando el cliente responda,context_aware,2,es,CALENDAR,create_event,trigger_condition,,False
+Enviar el informe semanal al equipo,basic,1,es,EMAIL,send_message,,,False
+Draft an email to the board,basic,1,en,EMAIL,send_message,,,False
+Redigi il documento di proposta,basic,1,it,COMMS,post_message,,,False
+Update Salesforce if the deal moves to negotiation,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Update the CRM if the contact changes company,context_aware,2,en,CRM,update_record,trigger_condition,,False
+账目关闭后发送财务报表,context_aware,2,zh,WORKFLOW,execute,trigger_condition,,False
+Preparar el informe del consejo antes de la revision trimestral,predictive,3,es,ANALYTICS,fetch_report,,prediction_window,False
+Remind the account manager before the renewal date,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+董事会会议前发送议程,predictive,3,zh,WORKFLOW,execute,,prediction_window,False
+Book a flight for the conference,basic,1,en,CALENDAR,create_event,,,False
+Automatically send the weekly investor update every Friday,autonomous,4,en,EMAIL,send_message,,,True
+ارسال الميزانية عند اغلاق الحسابات,context_aware,2,ar,EMAIL,send_message,trigger_condition,,False
+Always add a calendar block for deep work every morning,autonomous,4,en,WORKFLOW,execute,,,True
+Send the invoice when the project is delivered,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Always assign a customer success manager to every new enterprise account,autonomous,4,en,WORKFLOW,execute,,,True
+Crea sempre un ticket Jira quando viene segnalato un bug,autonomous,4,it,TASKS,create_ticket,,,True
+Update the project tracker when a milestone is hit,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Draft the client proposal,basic,1,en,DOCS,draft_document,,,False
+Alle Kundenanrufe automatisch in HubSpot protokollieren,autonomous,4,de,CRM,update_record,,,True
+Verlaengerungsangebot senden bevor der Vertrag ablaeuft,predictive,3,de,EMAIL,send_message,,prediction_window,False
+Always schedule a debrief after every client call,autonomous,4,en,CALENDAR,create_event,,,True
+Always send a thank you note after every signed contract,autonomous,4,en,EMAIL,send_message,,,True
+Informar al equipo antes de la presentacion del cliente,predictive,3,es,WORKFLOW,execute,,prediction_window,False
+اشعار المالية اذا تم الفوز بالصفقة,context_aware,2,ar,WORKFLOW,execute,trigger_condition,,False
+Notificar o financeiro se o negocio for fechado,context_aware,2,pt,WORKFLOW,execute,trigger_condition,,False
+Always notify the account manager when a customer opens a proposal,autonomous,4,en,WORKFLOW,execute,,,True
+Book a call with the new prospect,basic,1,en,CALENDAR,create_event,,,False
+Send the welcome email to the new customer,basic,1,en,EMAIL,send_message,,,False
+Sempre agendar um debriefing apos cada ligacao com o cliente,autonomous,4,pt,CALENDAR,create_event,,,True
+Enviar la factura cuando se entregue el proyecto,context_aware,2,es,EMAIL,send_message,trigger_condition,,False
+Bericht senden wenn der Prufer unterzeichnet,context_aware,2,de,EMAIL,send_message,trigger_condition,,False
+Record the new lead in the CRM,basic,1,en,CRM,update_record,,,False
+Publicar la actualizacion en el canal de Slack,basic,1,es,CRM,update_record,,,False
+Draft the press release before the announcement,predictive,3,en,DOCS,draft_document,,prediction_window,False
+Post the update to the Slack channel,basic,1,en,CRM,update_record,,,False
+Create a Jira ticket for the login bug,basic,1,en,CRM,update_record,,,False
+预约与客户的通话,basic,1,zh,WORKFLOW,execute,,,False
+Continuously sync deal data between Salesforce and the finance system,autonomous,4,en,CRM,update_record,,,True
+获取第三季度销售渠道报告,basic,1,zh,WORKFLOW,execute,,,False
+Vorstandssitzung fuer Dienstag planen,basic,1,de,CALENDAR,create_event,,,False
+Nachbesprechung nach der Praesentation planen,context_aware,2,de,WORKFLOW,execute,trigger_condition,,False
+Send the survey before the product feedback session,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Continuously monitor the pipeline and flag stale deals,autonomous,4,en,ANALYTICS,fetch_report,,,True
+Notify the ops team if inventory drops below threshold,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+推介前起草提案,predictive,3,zh,WORKFLOW,execute,,prediction_window,False
+Update HubSpot when a lead moves to qualified,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Write the job description for the ML engineer,basic,1,en,DOCS,draft_document,,,False
+Send a reminder if the client misses the payment deadline,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Always notify the security team when a failed login attempt occurs,autonomous,4,en,CRM,update_record,,,True
+Zabronirovat zvonok s klientom,basic,1,ru,WORKFLOW,execute,,,False
+ارسال جدول الاعمال قبل اجتماع مجلس الادارة,predictive,3,ar,EMAIL,send_message,,prediction_window,False
+Schedule a debrief once the audit is complete,context_aware,2,en,CALENDAR,create_event,trigger_condition,,False
+Send the report after the meeting is transcribed,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Log the interaction when a customer contacts support,context_aware,2,en,CRM,update_record,trigger_condition,,False
+在Salesforce中记录通话,basic,1,zh,CRM,update_record,,,False
+Recordar al equipo antes de la fecha limite del sprint,predictive,3,es,WORKFLOW,execute,,prediction_window,False
+Create a follow-up task for the sales team,basic,1,en,TASKS,create_ticket,,,False
+Tagesordnung senden bevor die Vorstandssitzung beginnt,predictive,3,de,CALENDAR,create_event,,prediction_window,False
+Post the summary when the research is complete,context_aware,2,en,AI,summarise,trigger_condition,,False
+Notify the team before the data centre migration,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Send a message to the leadership team,basic,1,en,EMAIL,send_message,,,False
+Share the update in the leadership channel,basic,1,en,CRM,update_record,,,False
+Get the weekly active user stats,basic,1,en,WORKFLOW,execute,,,False
+Notify the board if the ARR target is missed,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Continuously sync contact data between Salesforce and HubSpot,autonomous,4,en,CRM,update_record,,,True
+تذكير الفريق قبل موعد تسليم السبرنت,predictive,3,ar,WORKFLOW,execute,,prediction_window,False
+Brief the investor relations team before earnings,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Automatically post the daily standup summary to Slack,autonomous,4,en,AI,summarise,,,True
+Enviar o relatorio semanal para a equipe,basic,1,pt,EMAIL,send_message,,,False
+Rechnung an das Finanzteam senden,basic,1,de,EMAIL,send_message,,,False
+Publicar las notas de lanzamiento cuando la compilacion este en produccion,context_aware,2,es,COMMS,post_message,trigger_condition,,False
+Keep sending check-in emails to churned customers every 90 days,autonomous,4,en,EMAIL,send_message,,,True
+Notify the account manager if the customer churns,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Keep scheduling check-ins with prospects every two weeks,autonomous,4,en,WORKFLOW,execute,,,True
+Aggiorna automaticamente il CRM quando cambia una fase della trattativa,autonomous,4,it,CRM,update_record,,,True
+Alert the finance team before the budget freeze,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+اشعار العميل قبل انتهاء فترة التجربة,predictive,3,ar,WORKFLOW,execute,,prediction_window,False
+Continuously update the competitive intelligence database,autonomous,4,en,CRM,update_record,,,True
+ارسال التقرير عند توقيع المدقق,context_aware,2,ar,EMAIL,send_message,trigger_condition,,False
+Vsegda sostavlyat predlozhenie po deystviyam posle kazhdoy demonstratsii,autonomous,4,ru,WORKFLOW,execute,,,True
+Redigir o documento de proposta,basic,1,pt,COMMS,post_message,,,False
+Draft the proposal before the pitch,predictive,3,en,DOCS,draft_document,,prediction_window,False
+Always add new customers to the onboarding Slack channel,autonomous,4,en,COMMS,post_message,,,True
+Create a task for the development team,basic,1,en,TASKS,create_ticket,,,False
+Automatically send a renewal reminder 90 days before contract end,autonomous,4,en,EMAIL,send_message,,,True
+Briefer l investisseur avant la reunion de presentation,predictive,3,fr,WORKFLOW,execute,,prediction_window,False
+Redigi sempre una proposta di follow-up dopo ogni demo,autonomous,4,it,COMMS,post_message,,,True
+部署完成后通知团队,context_aware,2,zh,WORKFLOW,execute,trigger_condition,,False
+Brief the leadership team before the strategy presentation,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Preduprezhdenie menedzhera po akkaunty do istecheniya srok dogovora,predictive,3,ru,WORKFLOW,execute,,prediction_window,False
+Creer une tache pour l equipe de developpement,basic,1,fr,TASKS,create_ticket,,,False
+Rezyumirovany zametki soveshchaniya,basic,1,ru,AI,summarise,,,False
+Book a conference room for Thursday,basic,1,en,CALENDAR,create_event,,,False
+Draft the press release,basic,1,en,DOCS,draft_document,,,False
+Prepare the handover notes before the team transition,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Draft the exit survey before the employee's last day,predictive,3,en,DOCS,draft_document,,prediction_window,False
+Publicar as notas de versao quando o build entrar em producao,context_aware,2,pt,COMMS,post_message,trigger_condition,,False
+Immer ein Jira-Ticket erstellen wenn ein Fehler gemeldet wird,autonomous,4,de,TASKS,create_ticket,,,True
+Sempre redigir uma proposta de acompanhamento apos cada demo,autonomous,4,pt,COMMS,post_message,,,True
+Automatically back up the database every night,autonomous,4,en,WORKFLOW,execute,,,True
+Alertar o financeiro antes do vencimento do pagamento,predictive,3,pt,WORKFLOW,execute,,prediction_window,False
+Post the product update to the blog channel,basic,1,en,CRM,update_record,,,False
+Always post the weekly KPI dashboard on Fridays,autonomous,4,en,ANALYTICS,fetch_report,,,True
+Post the release notes to the dev channel,basic,1,en,COMMS,post_message,,,False
+Post the update when the roadmap is finalised,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Keep emailing prospects until they respond or unsubscribe,autonomous,4,en,EMAIL,send_message,,,True
+Nach jedem Kundengespräch immer ein Nachbriefing planen,autonomous,4,de,WORKFLOW,execute,,,True
+Notify the CEO if revenue drops below target,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Always draft a follow-up proposal after every demo,autonomous,4,en,DOCS,draft_document,,,True
+Automatically send the board pack one week before every board meeting,autonomous,4,en,EMAIL,send_message,,,True
+Autonomously log all support tickets in the CRM,autonomous,4,en,CRM,update_record,,,True
+Send the summary before the weekly standup,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Remind the account team before the renewal conversation,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Brief the support team before the feature goes live,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Agendar um debriefing apos a apresentacao,context_aware,2,pt,CALENDAR,create_event,trigger_condition,,False
+Send the status update when the sprint review is done,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Book the client dinner for Friday,basic,1,en,CALENDAR,create_event,,,False
+Resumir as notas da reuniao,basic,1,pt,AI,summarise,,,False
+Log the outcome once the negotiation concludes,context_aware,2,en,CRM,update_record,trigger_condition,,False
+付款到期前提醒财务部门,predictive,3,zh,WORKFLOW,execute,,prediction_window,False
+Update the contact details in Salesforce,basic,1,en,CRM,update_record,,,False
+Notify finance if the deal is won,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Zapanirovat razrazhenie posle prezentatsii,context_aware,2,ru,WORKFLOW,execute,trigger_condition,,False
+Email the partner when the agreement is signed,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Enviar a fatura para a equipe financeira,basic,1,pt,EMAIL,send_message,,,False
+Fetch the churn rate for last quarter,basic,1,en,WORKFLOW,execute,,,False
+Invia il bilancio quando i conti sono chiusi,context_aware,2,it,EMAIL,send_message,trigger_condition,,False
+Post the release notes when the build goes live,context_aware,2,en,COMMS,post_message,trigger_condition,,False
+Remind the team lead before the performance review cycle,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Opublikovat obnovlenie v kanale Slack,basic,1,ru,CRM,update_record,,,False
+صياغة الاقتراح قبل جلسة التقديم,predictive,3,ar,DOCS,draft_document,,prediction_window,False
+Schedule a board meeting for Tuesday,basic,1,en,CALENDAR,create_event,,,False
+Ticket erstellen wenn die Fehlerrate 5 Prozent uebersteigt,context_aware,2,de,TASKS,create_ticket,trigger_condition,,False
+持续监控销售渠道并标记停滞的交易,autonomous,4,zh,WORKFLOW,execute,,,True
+Redigi la proposta prima del pitch,predictive,3,it,COMMS,post_message,,prediction_window,False
+Zapanirovat zvonok kogda klient otvetit,context_aware,2,ru,WORKFLOW,execute,trigger_condition,,False
+Siempre programar un resumen despues de cada llamada con el cliente,autonomous,4,es,CALENDAR,create_event,,,True
+Notify the team if the server restarts,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Briefer l equipe avant la presentation client,predictive,3,fr,WORKFLOW,execute,,prediction_window,False
+Continuously monitor error rates and create a ticket if above threshold,autonomous,4,en,TASKS,create_ticket,,,True
+Obter o relatorio do pipeline do terceiro trimestre,basic,1,pt,ANALYTICS,fetch_report,,,False
+Log the call if the prospect requests a callback,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Send the pre-read before the board presentation,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Automatically post customer feedback to the product Slack channel,autonomous,4,en,COMMS,post_message,,,True
+Automatically archive completed projects in Notion,autonomous,4,en,WORKFLOW,execute,,,True
+Continuously monitor social mentions and alert the marketing team,autonomous,4,en,WORKFLOW,execute,,,True
+合同到期前发送续约报价,predictive,3,zh,WORKFLOW,execute,,prediction_window,False
+Notifier les finances si la transaction est gagnee,context_aware,2,fr,WORKFLOW,execute,trigger_condition,,False
+Email the invoice to the finance team,basic,1,en,EMAIL,send_message,,,False
+Prepare the data export before the audit,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Schedule a retrospective if the sprint velocity drops,context_aware,2,en,CALENDAR,create_event,trigger_condition,,False
+Alert customer success before the health score drops,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Send the financial forecast before the board meeting,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Creer un ticket Jira pour le bug de connexion,basic,1,fr,TASKS,create_ticket,,,False
+Send the performance review template before appraisals,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Email the investor when the monthly metrics are ready,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Invia la fattura quando il progetto viene consegnato,context_aware,2,it,EMAIL,send_message,trigger_condition,,False
+Keep notifying the finance team whenever an expense is submitted,autonomous,4,en,WORKFLOW,execute,,,True
+Post the monthly metrics to Teams,basic,1,en,COMMS,post_message,,,False
+Informar o investidor antes da reuniao de apresentacao,predictive,3,pt,WORKFLOW,execute,,prediction_window,False
+Enviar a cotacao de renovacao antes do contrato expirar,predictive,3,pt,EMAIL,send_message,,prediction_window,False
+Redactar la propuesta antes del argumento de venta,predictive,3,es,DOCS,draft_document,,prediction_window,False
+Continuously scan for duplicate contacts and merge them automatically,autonomous,4,en,WORKFLOW,execute,,,True
+Notifica il team una volta completato il deployment,context_aware,2,it,WORKFLOW,execute,trigger_condition,,False
+Notifier l equipe une fois le deploiement termine,context_aware,2,fr,WORKFLOW,execute,trigger_condition,,False
+Resumir las notas de la reunion,basic,1,es,AI,summarise,,,False
+Write a follow-up email to the prospect,basic,1,en,EMAIL,send_message,,,False
+Enviar el informe cuando el auditor firme,context_aware,2,es,EMAIL,send_message,trigger_condition,,False
+Set up a demo call for next week,basic,1,en,WORKFLOW,execute,,,False
+Keep the CRM updated whenever a contact changes role,autonomous,4,en,CRM,update_record,,,True
+Create an issue for the mobile bug,basic,1,en,TASKS,create_ticket,,,False
+Notify the team when the new hire starts,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Compose the quarterly update email,basic,1,en,EMAIL,send_message,,,False
+Always update the project timeline in Jira when a task is completed,autonomous,4,en,CRM,update_record,,,True
+Prepare the investor update before the monthly check-in,predictive,3,en,CRM,update_record,,prediction_window,False
+Wochenbericht an das Team senden,basic,1,de,EMAIL,send_message,,,False
+Agendar uma ligacao quando o cliente responder,context_aware,2,pt,CALENDAR,create_event,trigger_condition,,False
+Send the agenda once the meeting is confirmed,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+File a bug report for the API issue,basic,1,en,TASKS,create_ticket,,,False
+تلخيص ملاحظات الاجتماع,basic,1,ar,AI,summarise,,,False
+Avtomaticheski obnovlyat CRM pri izmenenii etapa sdelki,autonomous,4,ru,CRM,update_record,,,True
+Draft the partnership proposal before the meeting,predictive,3,en,DOCS,draft_document,,prediction_window,False
+Send the travel briefing before the conference,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Prepare the competitive analysis before the strategy day,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Woechentlichen Bericht immer automatisch jeden Montag senden,autonomous,4,de,EMAIL,send_message,,,True
+季度审查前准备董事会材料,predictive,3,zh,WORKFLOW,execute,,prediction_window,False
+Recap the strategy meeting,basic,1,en,AI,summarise,,,False
+Draft the handover document once the project closes,context_aware,2,en,DOCS,draft_document,trigger_condition,,False
+حجز مكالمة مع العميل,basic,1,ar,WORKFLOW,execute,,,False
+Email the board when the fundraising round closes,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Remind the recruiter before the offer expires,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+CRM automatisch aktualisieren wenn sich eine Deal-Phase aendert,autonomous,4,de,CRM,update_record,,,True
+Invia l ordine del giorno prima della riunione del consiglio,predictive,3,it,CALENDAR,create_event,,prediction_window,False
+Log the feedback once the survey closes,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Create a task for the content team,basic,1,en,TASKS,create_ticket,,,False
+Always prepare a handover doc when a project closes,autonomous,4,en,WORKFLOW,execute,,,True
+为登录错误创建Jira工单,basic,1,zh,TASKS,create_ticket,,,False
+Send the system status report before the customer call,predictive,3,en,EMAIL,send_message,,prediction_window,False
+ارسال الفاتورة الى الفريق المالي,basic,1,ar,EMAIL,send_message,,,False
+Continuously run the weekly data quality check on the CRM,autonomous,4,en,CRM,update_record,,,True
+Send the budget request before the planning cycle closes,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Bilanz senden wenn die Konten geschlossen sind,context_aware,2,de,EMAIL,send_message,trigger_condition,,False
+Keep the engineering standup notes in Confluence updated daily,autonomous,4,en,CRM,update_record,,,True
+Kunden benachrichtigen bevor die Testphase endet,predictive,3,de,WORKFLOW,execute,,prediction_window,False
+Alert the delivery team before the launch date,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Open a ticket for the onboarding issue,basic,1,en,TASKS,create_ticket,,,False
+Toujours planifier un debrief apres chaque appel client,autonomous,4,fr,CALENDAR,create_event,,,True
+Avtomaticheski otpravlyat ezhenedelnyy otchet kazhdyy ponedelnik,autonomous,4,ru,ANALYTICS,fetch_report,,,True
+Send the agenda when attendees are confirmed,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Prepare the security audit before the compliance deadline,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Summarise the sales call,basic,1,en,AI,summarise,,,False
+Automatically send the satisfaction survey after every support close,autonomous,4,en,EMAIL,send_message,,,True
+Publicar automaticamente el resumen del standup diario en Slack,autonomous,4,es,COMMS,post_message,,,True
+将发票发送给财务团队,basic,1,zh,WORKFLOW,execute,,,False
+Otpravit povestku dnya pered zasedaniem soveta,predictive,3,ru,EMAIL,send_message,,prediction_window,False
+Planifier une reunion du conseil pour mardi,basic,1,fr,CALENDAR,create_event,,,False
+Otpravit schet finansovoy komande,basic,1,ru,EMAIL,send_message,,,False
+Uvedomit klienta pered okonchaniem probnogo perioda,predictive,3,ru,WORKFLOW,execute,,prediction_window,False
+Invia automaticamente il rapporto settimanale ogni lunedi mattina,autonomous,4,it,EMAIL,send_message,,,True
+版本上线后发布发布说明,context_aware,2,zh,WORKFLOW,execute,trigger_condition,,False
+Book a call with the client,basic,1,en,CALENDAR,create_event,,,False
+Schedule the product demo,basic,1,en,CALENDAR,create_event,,,False
+Summarise the meeting notes,basic,1,en,AI,summarise,,,False
+Email the customer when their trial is about to expire,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Engineering benachrichtigen sobald die Spezifikation genehmigt ist,context_aware,2,de,WORKFLOW,execute,trigger_condition,,False
+Invia la fattura al team finanziario,basic,1,it,EMAIL,send_message,,,False
+Notificar al equipo una vez completada la implementacion,context_aware,2,es,WORKFLOW,execute,trigger_condition,,False
+Investor briefen bevor das Pitch-Meeting stattfindet,predictive,3,de,WORKFLOW,execute,,prediction_window,False
+Book a room for the all-hands meeting,basic,1,en,CALENDAR,create_event,,,False
+Draft the terms of service update before the legal review,predictive,3,en,CRM,update_record,,prediction_window,False
+Siempre redactar una propuesta de seguimiento despues de cada demostracion,autonomous,4,es,DOCS,draft_document,,,True
+Pianifica un debriefing dopo la presentazione,context_aware,2,it,WORKFLOW,execute,trigger_condition,,False
+Notify legal when the NDA is ready,context_aware,2,en,WORKFLOW,execute,trigger_condition,,False
+Brief the board before the strategic planning session,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Prepare the renewal deck before the account review,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+成交后通知财务部门,context_aware,2,zh,WORKFLOW,execute,trigger_condition,,False
+جدولة مكالمة عند رد العميل,context_aware,2,ar,WORKFLOW,execute,trigger_condition,,False
+Post the team photo to the company Slack,basic,1,en,COMMS,post_message,,,False
+Draft the retrospective template before the sprint ends,predictive,3,en,DOCS,draft_document,,prediction_window,False
+Finanzen alertieren bevor die Zahlung faellig ist,predictive,3,de,WORKFLOW,execute,,prediction_window,False
+Summarise the product feedback session,basic,1,en,AI,summarise,,,False
+每次演示后自动起草跟进提案,autonomous,4,zh,WORKFLOW,execute,,,True
+Planifier un debrief apres la presentation,context_aware,2,fr,CALENDAR,create_event,trigger_condition,,False
+Criar um ticket se a taxa de erro ultrapassar 5 por cento,context_aware,2,pt,TASKS,create_ticket,trigger_condition,,False
+Update the lead status once they respond,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Uvedomit inzheneriyu posle odobreniya spetsifikatsiy,context_aware,2,ru,WORKFLOW,execute,trigger_condition,,False
+Continuously monitor the runway and alert if below 6 months,autonomous,4,en,WORKFLOW,execute,,,True
+演示结束后安排总结会议,context_aware,2,zh,WORKFLOW,execute,trigger_condition,,False
+Write the board presentation,basic,1,en,DOCS,draft_document,,,False
+تسجيل جميع مكالمات العملاء تلقائيا في هبسبوت,autonomous,4,ar,WORKFLOW,execute,,,True
+Update the CRM after the call ends,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Create a ticket for the performance bug,basic,1,en,TASKS,create_ticket,,,False
+Angebotsdokument verfassen,basic,1,de,DOCS,draft_document,,,False
+Planifier un entretien individuel avec le responsable de compte,basic,1,fr,CALENDAR,create_event,,,False
+Jira-Ticket fuer den Anmeldefehler erstellen,basic,1,de,TASKS,create_ticket,,,False
+Summarise the investor feedback,basic,1,en,AI,summarise,,,False
+每次客户通话后自动安排总结,autonomous,4,zh,WORKFLOW,execute,,,True
+Publier la mise a jour sur le canal Slack,basic,1,fr,COMMS,post_message,,,False
+在Slack频道发布更新,basic,1,zh,COMMS,post_message,,,False
+Automatically create an onboarding task list for every new customer,autonomous,4,en,TASKS,create_ticket,,,True
+Avvisa il responsabile account prima della scadenza del contratto,predictive,3,it,WORKFLOW,execute,,prediction_window,False
+Sempre criar um ticket Jira quando um bug for relatado,autonomous,4,pt,TASKS,create_ticket,,,True
+تحديث سيلزفورس تلقائيا بعد كل مكالمة مبيعات,autonomous,4,ar,CRM,update_record,,,True
+Post the launch announcement when the product goes live,context_aware,2,en,COMMS,post_message,trigger_condition,,False
+Notifica l ingegneria una volta approvate le specifiche,context_aware,2,it,WORKFLOW,execute,trigger_condition,,False
+Sostavit dokument predlozheniya,basic,1,ru,DOCS,draft_document,,,False
+Vorstandsunterlagen vorbereiten bevor die Quartalsueberpruefung stattfindet,predictive,3,de,CALENDAR,create_event,,prediction_window,False
+Always log the call outcome in HubSpot after every sales conversation,autonomous,4,en,CRM,update_record,,,True
+Fetch the marketing attribution data,basic,1,en,WORKFLOW,execute,,,False
+Avvisa le finanze prima della scadenza del pagamento,predictive,3,it,WORKFLOW,execute,,prediction_window,False
+Keep notifying the account team whenever a contract is at risk,autonomous,4,en,WORKFLOW,execute,,,True
+Automatically send the monthly P&L to the board,autonomous,4,en,EMAIL,send_message,,,True
+Registrar a ligacao no Salesforce,basic,1,pt,CRM,update_record,,,False
+Update the forecast if a deal slips to next quarter,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Always create a Jira ticket whenever a bug is reported,autonomous,4,en,TASKS,create_ticket,,,True
+Siempre enviar un correo de seguimiento despues de cada reunion,autonomous,4,es,EMAIL,send_message,,,True
+Enviar un mensaje al equipo de liderazgo,basic,1,es,EMAIL,send_message,,,False
+Rediger le document de proposition,basic,1,fr,DOCS,draft_document,,,False
+Update the CRM with the new contact,basic,1,en,CRM,update_record,,,False
+Prepare the competitive battlecard before the sales call,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Brief the team on the client feedback,basic,1,en,WORKFLOW,execute,,,False
+Mettre a jour automatiquement Salesforce apres chaque appel commercial,autonomous,4,fr,CRM,update_record,,,True
+Brief the marketing team before the campaign launch,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Versionshinweise veroeffentlichen wenn der Build live geht,context_aware,2,de,COMMS,post_message,trigger_condition,,False
+Post the announcement to Teams,basic,1,en,COMMS,post_message,,,False
+Sempre enviar um email de acompanhamento apos cada reuniao,autonomous,4,pt,EMAIL,send_message,,,True
+Brief the customer success team before the QBR,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Book a follow-up call if they request a demo,context_aware,2,en,CALENDAR,create_event,trigger_condition,,False
+Invia il preventivo di rinnovo prima della scadenza del contratto,predictive,3,it,EMAIL,send_message,,prediction_window,False
+Update im Slack-Kanal veroeffentlichen,basic,1,de,CRM,update_record,,,False
+ارسال التقرير الاسبوعي للفريق,basic,1,ar,EMAIL,send_message,,,False
+Otpravit otchet kogda auditor podpishet,context_aware,2,ru,EMAIL,send_message,trigger_condition,,False
+Show me the conversion rate data,basic,1,en,WORKFLOW,execute,,,False
+Anruf mit dem Kunden buchen,basic,1,de,WORKFLOW,execute,,,False
+نشر ملخص الاجتماع اليومي تلقائيا على سلاك,autonomous,4,ar,COMMS,post_message,,,True
+Redactar el documento de propuesta,basic,1,es,DOCS,draft_document,,,False
+Reservar uma ligacao com o cliente,basic,1,pt,WORKFLOW,execute,,,False
+Draft the quarterly business review before the client meeting,predictive,3,en,DOCS,draft_document,,prediction_window,False
+Remind the team before the VAT return is due,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Draft the renewal proposal if the contract expires in 30 days,context_aware,2,en,DOCS,draft_document,trigger_condition,,False
+Actualizar automaticamente Salesforce despues de cada llamada de ventas,autonomous,4,es,CRM,update_record,,,True
+Alert the team before the server maintenance window,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Announce the product launch in Slack,basic,1,en,COMMS,post_message,,,False
+Draft the SLA report before the monthly review,predictive,3,en,ANALYTICS,fetch_report,,prediction_window,False
+Always record a voice memo summary after every site visit,autonomous,4,en,AI,summarise,,,True
+Email the team when the quarterly goals are set,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Keep the team capacity tracker updated whenever someone books leave,autonomous,4,en,CALENDAR,create_event,,,True
+Always update the lead score whenever engagement changes,autonomous,4,en,CRM,update_record,,,True
+Send the proposal to the prospect,basic,1,en,EMAIL,send_message,,,False
+Ricorda al team prima della scadenza dello sprint,predictive,3,it,WORKFLOW,execute,,prediction_window,False
+Automatically send a Slack digest of all support tickets every morning,autonomous,4,en,EMAIL,send_message,,,True
+Create a ticket when a critical bug is reported,context_aware,2,en,TASKS,create_ticket,trigger_condition,,False
+Resumer les notes de reunion,basic,1,fr,AI,summarise,,,False
+Alert finance before the payment is due,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Invia il rapporto quando il revisore firma,context_aware,2,it,EMAIL,send_message,trigger_condition,,False
+Send the weekly report to the team,basic,1,en,EMAIL,send_message,,,False
+Brief the investor before the pitch meeting,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Ping the engineering team,basic,1,en,WORKFLOW,execute,,,False
+Alert the data team before the reporting cycle,predictive,3,en,ANALYTICS,fetch_report,,prediction_window,False
+Creer un ticket si le taux d erreur depasse 5 pour cent,context_aware,2,fr,TASKS,create_ticket,trigger_condition,,False
+Post the update when the feature is merged,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Update the CRM record when the trial converts,context_aware,2,en,CRM,update_record,trigger_condition,,False
+Draft the vendor review before the contract renewal,predictive,3,en,DOCS,draft_document,,prediction_window,False
+Send a Slack message if the build fails,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Envoyer le rapport hebdomadaire a l equipe,basic,1,fr,EMAIL,send_message,,,False
+Email the finance team when expenses are submitted,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+安排董事会会议,basic,1,zh,WORKFLOW,execute,,,False
+Programar una reunion individual con el gerente de cuenta,basic,1,es,CALENDAR,create_event,,,False
+Recupera il rapporto della pipeline del terzo trimestre,basic,1,it,ANALYTICS,fetch_report,,,False
+Log the call in Salesforce,basic,1,en,CRM,update_record,,,False
+Send the test plan before the QA cycle starts,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Send the NPS survey before the customer call,predictive,3,en,EMAIL,send_message,,prediction_window,False
+Keep the documentation updated whenever the API changes,autonomous,4,en,CRM,update_record,,,True
+Log the new deal in the CRM,basic,1,en,CRM,update_record,,,False
+Brief the sales team before the product launch,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Always send the signed contract to legal for filing,autonomous,4,en,EMAIL,send_message,,,True
+Email the client when the contract renewal is due,context_aware,2,en,EMAIL,send_message,trigger_condition,,False
+Angebot ausarbeiten bevor der Pitch stattfindet,predictive,3,de,WORKFLOW,execute,,prediction_window,False
+ارسال الفاتورة عند تسليم المشروع,context_aware,2,ar,EMAIL,send_message,trigger_condition,,False
+Post to Slack when the CI pipeline passes,context_aware,2,en,ANALYTICS,fetch_report,trigger_condition,,False
+Finanzen benachrichtigen wenn der Auftrag gewonnen wird,context_aware,2,de,WORKFLOW,execute,trigger_condition,,False
+Create a ticket if the error rate exceeds 5 percent,context_aware,2,en,TASKS,create_ticket,trigger_condition,,False
+Monitorar continuamente o pipeline e sinalizar negocios inativos,autonomous,4,pt,ANALYTICS,fetch_report,,,True
+Enviar automaticamente el informe semanal cada lunes por la manana,autonomous,4,es,EMAIL,send_message,,,True
+Write the executive summary,basic,1,en,AI,summarise,,,False
+جدولة اجتماع مراجعة دائما بعد كل مكالمة عميل,autonomous,4,ar,WORKFLOW,execute,,,True
+Brief the engineer before the on-call shift,predictive,3,en,WORKFLOW,execute,,prediction_window,False
+Draft the renewal email,basic,1,en,EMAIL,send_message,,,False
+Otpravit schet kogda proekt budet sdayn,context_aware,2,ru,EMAIL,send_message,trigger_condition,,False
+Raise a Jira ticket for the deployment,basic,1,en,TASKS,create_ticket,,,False
