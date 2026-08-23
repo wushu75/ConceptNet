@@ -21,6 +21,7 @@
 | **Hugging Face** | [huggingface.co/spaces/conceptnetUk/voice-ip-sandbox](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox) |
 | **Investor One-Pager** | [conceptnet.co.uk/docs/investor.html](https://conceptnet.co.uk/docs/investor.html) |
 | **Website** | [conceptnet.co.uk](https://conceptnet.co.uk) |
+| **Intent Classifier Model** | [huggingface.co/conceptnetUk/intent-classifier](https://huggingface.co/conceptnetUk/intent-classifier) | 
 
 ---
 
