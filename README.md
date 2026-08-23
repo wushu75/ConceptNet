@@ -6,6 +6,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Patents](https://img.shields.io/badge/patents-pending-orange)
 ![Stage](https://img.shields.io/badge/stage-pre--seed-blue)
+![Model](https://img.shields.io/badge/model-HuggingFace-yellow)
 
 > The intent classification layer for enterprise AI agents. Token-free. 9 languages. No LLM required.
 
