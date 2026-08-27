@@ -729,3 +729,30 @@ Brief the engineer before the on-call shift,predictive,3,en,WORKFLOW,execute,,pr
 Draft the renewal email,basic,1,en,EMAIL,send_message,,,False
 Otpravit schet kogda proekt budet sdayn,context_aware,2,ru,EMAIL,send_message,trigger_condition,,False
 Raise a Jira ticket for the deployment,basic,1,en,TASKS,create_ticket,,,False
+Send the renewal quote ahead of the contract expiry,predictive,3,en,EMAIL,send_message,,contract expiry,False
+Alert the manager ahead of the board meeting,predictive,3,en,CALENDAR,set_reminder,,board meeting,False
+Prepare the report ahead of the quarterly review,predictive,3,en,DOCS,draft_document,,quarterly review,False
+Notify the team ahead of the deadline,predictive,3,en,COMMS,post_message,,deadline,False
+Schedule a review ahead of the client presentation,predictive,3,en,CALENDAR,create_event,,client presentation,False
+Send the invoice in advance of the payment due date,predictive,3,en,EMAIL,send_message,,payment due date,False
+Alert the compliance team in advance of the audit,predictive,3,en,COMMS,post_message,,audit,False
+Brief the executive team in advance of the investor meeting,predictive,3,en,DOCS,draft_document,,investor meeting,False
+Prepare the data in advance of the analysis session,predictive,3,en,ANALYTICS,fetch_report,,analysis session,False
+Notify the client in advance of the contract renewal,predictive,3,en,EMAIL,send_message,,contract renewal,False
+Finish the proposal in time for the Monday meeting,predictive,3,en,DOCS,draft_document,,Monday meeting,False
+Send the report in time for the board presentation,predictive,3,en,EMAIL,send_message,,board presentation,False
+Get the data ready in time for the quarterly close,predictive,3,en,ANALYTICS,fetch_report,,quarterly close,False
+Alert the team in time for the deployment window,predictive,3,en,COMMS,post_message,,deployment window,False
+Prepare the agenda in time for the weekly standup,predictive,3,en,DOCS,draft_document,,weekly standup,False
+Send the briefing document prior to the client call,predictive,3,en,EMAIL,send_message,,client call,False
+Alert the risk team prior to the trading window opening,predictive,3,en,COMMS,post_message,,trading window opening,False
+Notify the manager prior to the contract expiry,predictive,3,en,EMAIL,send_message,,contract expiry,False
+Prepare the summary prior to the annual review,predictive,3,en,DOCS,draft_document,,annual review,False
+Send the update prior to the deadline,predictive,3,en,EMAIL,send_message,,deadline,False
+Have the report ready by the time the CEO arrives,predictive,3,en,DOCS,draft_document,,CEO arrives,False
+Alert the team by the time the market opens,predictive,3,en,COMMS,post_message,,market opens,False
+Send the invoice by the time the project closes,predictive,3,en,EMAIL,send_message,,project closes,False
+Prepare the handover notes by the time the shift ends,predictive,3,en,DOCS,draft_document,,shift ends,False
+Notify the client by the time the trial expires,predictive,3,en,EMAIL,send_message,,trial expires,False
+Always prepare the renewal pack before the contract expires,autonomous,4,en,DOCS,draft_document,,,True
+Always alert the manager ahead of every deadline,autonomous,4,en,COMMS,post_message,,,True
