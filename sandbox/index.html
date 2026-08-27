@@ -289,5 +289,32 @@ document.addEventListener('keydown',function(e){
   }
 });
 </script>
+
+<script>
+// Global counter — pings free API on every classification
+var _origDoRun = window._origDoRun || doRun;
+(function() {
+  var _realDoRun = doRun;
+  window.doRun = function() {
+    _realDoRun();
+    // Ping global counter
+    try {
+      fetch('https://api.countapi.xyz/hit/conceptnet.co.uk/sandbox', {mode:'no-cors'}).catch(function(){});
+    } catch(e) {}
+  };
+  // Also patch the run button directly
+  document.addEventListener('DOMContentLoaded', function() {
+    var btn = document.getElementById('run-btn');
+    if (btn) {
+      btn.addEventListener('click', function() {
+        try {
+          fetch('https://api.countapi.xyz/hit/conceptnet.co.uk/sandbox', {mode:'no-cors'}).catch(function(){});
+        } catch(e) {}
+      });
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
