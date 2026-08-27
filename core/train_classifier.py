@@ -1,3 +1,4 @@
+import os
 """
 ConceptNet Intent Classifier — Training Pipeline
 Trains a small fine-tuned model on the 4-layer intent taxonomy.
@@ -23,7 +24,7 @@ from pathlib import Path
 
 # ── Load dataset ──────────────────────────────────────────────────────────
 print("Loading dataset...")
-with open("conceptnet_dataset_v2.json", "r", encoding="utf-8") as f:
+with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "conceptnet_dataset_v2.json"), "r", encoding="utf-8") as f:
     data = json.load(f)
 
 texts  = [d["text"] for d in data]
@@ -112,7 +113,7 @@ from transformers import (
 from datasets import Dataset
 import numpy as np, json, evaluate
 
-with open("conceptnet_dataset_v2.json") as f:
+with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "conceptnet_dataset_v2.json")) as f:
     data = json.load(f)
 
 texts  = [d["text"] for d in data]
