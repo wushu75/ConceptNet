@@ -101,6 +101,26 @@ pre{background:rgba(0,0,0,.4);border-radius:8px;padding:14px;font-family:var(--m
   .nav-links{display:none}
 }
 </style>
+
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-37G1ZLPRMD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-37G1ZLPRMD');
+  // Track classify button clicks
+  document.addEventListener('click', function(e) {
+    if (e.target && e.target.id === 'run-btn') {
+      gtag('event', 'classify', {
+        'event_category': 'sandbox',
+        'event_label': 'command_classified'
+      });
+    }
+  });
+</script>
+
 </head>
 <body>
 <nav>
@@ -288,32 +308,6 @@ document.addEventListener('keydown',function(e){
     e.preventDefault();return false;
   }
 });
-</script>
-
-<script>
-// Global counter — pings free API on every classification
-var _origDoRun = window._origDoRun || doRun;
-(function() {
-  var _realDoRun = doRun;
-  window.doRun = function() {
-    _realDoRun();
-    // Ping global counter
-    try {
-      fetch('https://api.countapi.xyz/hit/conceptnet.co.uk/sandbox', {mode:'no-cors'}).catch(function(){});
-    } catch(e) {}
-  };
-  // Also patch the run button directly
-  document.addEventListener('DOMContentLoaded', function() {
-    var btn = document.getElementById('run-btn');
-    if (btn) {
-      btn.addEventListener('click', function() {
-        try {
-          fetch('https://api.countapi.xyz/hit/conceptnet.co.uk/sandbox', {mode:'no-cors'}).catch(function(){});
-        } catch(e) {}
-      });
-    }
-  });
-})();
 </script>
 
 </body>
