@@ -1449,6 +1449,99 @@
   <!-- ============================================================
        EARLY ACCESS SECTION
   ============================================================ -->
+
+  <!-- ML Researcher Verification Section -->
+  <section style="background:#0B1120;padding:80px 0;border-top:1px solid rgba(37,99,235,.12);border-bottom:1px solid rgba(37,99,235,.12);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:48px;">
+        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:100px;padding:6px 16px;font-size:.8rem;color:#10B981;margin-bottom:16px;">
+          🔬 Independent Peer Review — Hugging Face ML Community
+        </div>
+        <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:#F1F5F9;margin:0 0 12px;">
+          Someone tried to break it.<br>
+          <span style="color:#10B981;">They couldn't.</span>
+        </h2>
+        <p style="color:#94A3B8;font-size:1rem;max-width:560px;margin:0 auto;">
+          An independent ML researcher from the Hugging Face community ran adversarial holdout tests specifically designed to catch fake accuracy numbers. Here's what happened.
+        </p>
+      </div>
+
+      <!-- Timeline -->
+      <div style="max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:0;">
+
+        <!-- Step 1 -->
+        <div style="display:flex;gap:24px;align-items:flex-start;padding-bottom:32px;position:relative;">
+          <div style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:rgba(37,99,235,.2);border:2px solid #2563EB;display:flex;align-items:center;justify-content:center;color:#60A5FA;font-weight:700;font-size:.9rem;position:relative;z-index:1;">1</div>
+          <div style="position:absolute;left:19px;top:40px;width:2px;height:calc(100% - 8px);background:rgba(37,99,235,.2);"></div>
+          <div style="padding-top:8px;">
+            <div style="color:#F1F5F9;font-weight:700;margin-bottom:4px;">Researcher finds ConceptNet on Hugging Face</div>
+            <div style="color:#94A3B8;font-size:.9rem;">Runs standard test split evaluation — confirms <strong style="color:#10B981;">99.3% accuracy</strong>. Then goes further — designs adversarial grouped lexical-family holdout splits to test for memorisation and data leakage.</div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div style="display:flex;gap:24px;align-items:flex-start;padding-bottom:32px;position:relative;">
+          <div style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:rgba(124,58,237,.2);border:2px solid #7C3AED;display:flex;align-items:center;justify-content:center;color:#A78BFA;font-weight:700;font-size:.9rem;position:relative;z-index:1;">2</div>
+          <div style="position:absolute;left:19px;top:40px;width:2px;height:calc(100% - 8px);background:rgba(37,99,235,.2);"></div>
+          <div style="padding-top:8px;">
+            <div style="color:#F1F5F9;font-weight:700;margin-bottom:4px;">Adversarial holdout test — designed to break it</div>
+            <div style="color:#94A3B8;font-size:.9rem;">Grouped lexical-family holdout: <strong style="color:#A78BFA;">99.78%</strong>. His conclusion: the model genuinely learns intent — not surface patterns. He identifies 4 specific improvements including L3 paraphrase diversity.</div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div style="display:flex;gap:24px;align-items:flex-start;padding-bottom:32px;position:relative;">
+          <div style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:rgba(245,158,11,.2);border:2px solid #F59E0B;display:flex;align-items:center;justify-content:center;color:#FCD34D;font-weight:700;font-size:.9rem;position:relative;z-index:1;">3</div>
+          <div style="position:absolute;left:19px;top:40px;width:2px;height:calc(100% - 8px);background:rgba(37,99,235,.2);"></div>
+          <div style="padding-top:8px;">
+            <div style="color:#F1F5F9;font-weight:700;margin-bottom:4px;">All 4 issues fixed within 24 hours</div>
+            <div style="color:#94A3B8;font-size:.9rem;">Added 27 new L3 examples covering "ahead of", "in advance of", "prior to", "in time for", "by the time". Documented layer precedence. Fixed dataset path bug. Updated cascade reporting.</div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div style="display:flex;gap:24px;align-items:flex-start;">
+          <div style="flex-shrink:0;width:40px;height:40px;border-radius:50%;background:rgba(16,185,129,.2);border:2px solid #10B981;display:flex;align-items:center;justify-content:center;color:#10B981;font-weight:700;font-size:.9rem;">4</div>
+          <div style="padding-top:8px;">
+            <div style="color:#F1F5F9;font-weight:700;margin-bottom:4px;">Retrained — 100% accuracy</div>
+            <div style="color:#94A3B8;font-size:.9rem;">Updated 757-example dataset retrained. Epoch 4: <strong style="color:#10B981;">100%</strong>. Epoch 5: <strong style="color:#10B981;">100%</strong>. Adversarial holdout: <strong style="color:#10B981;">99.3%</strong> confirmed.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quote -->
+      <div style="max-width:640px;margin:48px auto 0;background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:16px;padding:28px 32px;text-align:center;">
+        <div style="color:#94A3B8;font-size:.85rem;margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em;">Independent Researcher — Hugging Face Community</div>
+        <div style="color:#F1F5F9;font-size:1.05rem;font-style:italic;line-height:1.6;margin-bottom:16px;">
+          "The obvious train/test leakage explanation did not survive that check."
+        </div>
+        <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;">
+          <div style="text-align:center;">
+            <div style="color:#10B981;font-size:1.4rem;font-weight:800;">99.3%</div>
+            <div style="color:#64748B;font-size:.75rem;">Adversarial holdout</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="color:#10B981;font-size:1.4rem;font-weight:800;">99.78%</div>
+            <div style="color:#64748B;font-size:.75rem;">Lexical holdout</div>
+          </div>
+          <div style="color:#10B981;font-size:1.4rem;font-weight:800;text-align:center;">
+            <div>100%</div>
+            <div style="color:#64748B;font-size:.75rem;">Standard test set</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="color:#10B981;font-size:1.4rem;font-weight:800;">24hrs</div>
+            <div style="color:#64748B;font-size:.75rem;">To fix all 4 issues</div>
+          </div>
+        </div>
+        <div style="margin-top:20px;">
+          <a href="https://discuss.huggingface.co/t/conceptnet-4-layer-enterprise-voice-intent-classifier-98-6-accuracy-9-languages-token-free-open-source/179274" target="_blank" style="color:#60A5FA;font-size:.85rem;text-decoration:none;">Read the full evaluation on Hugging Face →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <section class="early-access" id="early-access">
     <div class="container">
       <div class="ea-inner">
