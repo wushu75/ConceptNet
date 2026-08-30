@@ -144,37 +144,6 @@ curl -X POST \
   -d '{"inputs": "Alert the manager before the contract expires"}'
 ```
 
----
-
-### Talk to Lanre Integration Example
-
-```javascript
-// After transcribing constituent speech
-async function classifyConstituentRequest(transcribedText) {
-  const result = await classify(transcribedText);
-  
-  switch(result.label) {
-    case "Basic":
-      // L1 — Log as immediate action item
-      logUrgentIssue(transcribedText);
-      break;
-    case "Context-Aware":
-      // L2 — Register trigger, act when condition met
-      registerTrigger(transcribedText);
-      break;
-    case "Predictive":
-      // L3 — Schedule proactive alert before event
-      scheduleAlert(transcribedText);
-      break;
-    case "Autonomous":
-      // L4 — Subscribe constituent to ongoing updates
-      createSubscription(transcribedText);
-      break;
-  }
-  
-  return result;
-}
-```
 
 ---
 
