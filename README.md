@@ -178,6 +178,26 @@ The platform model that makes ConceptNet a 10-year moat:
 
 ---
 
+## DeepSeek Harness Plugin
+
+ConceptNet is available as a plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) — the 210K star open-source agent framework.
+
+```bash
+npm install conceptnet-dsh-plugin
+```
+
+```javascript
+import ConceptNetPlugin from 'conceptnet-dsh-plugin'
+const plugin = new ConceptNetPlugin({ hfToken: 'YOUR_TOKEN' })
+const result = await plugin.classify('Send report when contract is signed')
+// { intent_layer: 2, intent_label: 'Context-Aware', agent_action: 'register_trigger' }
+```
+
+**Plugin repo:** [github.com/wushu75/conceptnet-dsh-plugin](https://github.com/wushu75/conceptnet-dsh-plugin)
+**DSH Discussion:** [#5559](https://github.com/deepseek-ai/deepseek-harness/discussions/5559)
+
+---
+
 ## Traction
 
 - 🤗 **17 downloads** on Hugging Face
