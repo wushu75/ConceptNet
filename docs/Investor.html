@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="ConceptNet is raising £2M seed. Voice IP Infrastructure for AI. EIS eligible. London, UK."/>
+<title>ConceptNet — Investor One-Pager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#2563EB;--cyan:#06B6D4;--green:#10B981;--amber:#F59E0B;--purple:#7C3AED;--red:#EF4444;
+  --dark:#060D1A;--dark2:#0C1628;--border:rgba(255,255,255,.08);
+  --white:#F1F5F9;--light:#CBD5E1;--muted:#64748B;
+  --sans:"DM Sans",sans-serif;--mono:"DM Mono",monospace;
+}
+body{font-family:var(--sans);background:var(--dark);color:var(--white);line-height:1.65;font-size:15px}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* NAV */
+nav{background:var(--dark);border-bottom:1px solid var(--border);padding:0 40px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-logo{display:flex;align-items:center;gap:10px}
+.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--blue)}
+.logo-name{font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:-.02em}
+.logo-name span{color:var(--cyan)}
+.nav-links{display:flex;align-items:center;gap:20px;font-size:.82rem}
+.nav-links a{color:var(--muted)}
+.nav-links a:hover{color:#fff;text-decoration:none}
+.nav-raise{background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.3);border-radius:100px;padding:4px 14px;font-size:.75rem;font-weight:600;color:var(--blue)}
+.pdf-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:var(--sans)}
+.pdf-btn:hover{background:#1d4ed8}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--dark) 0%,#0a1628 50%,#060D1A 100%);padding:64px 40px 56px;border-bottom:1px solid var(--border);text-align:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.25);border-radius:100px;padding:5px 16px;font-size:.75rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:24px}
+.hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:16px}
+h1 em{color:var(--cyan);font-style:normal}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:580px;margin:0 auto 32px}
+.hero-meta{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
+.hero-meta span{display:flex;align-items:center;gap:6px}
+.hero-meta strong{color:var(--white)}
+
+/* RAISE BANNER */
+.raise-banner{background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.2);border-radius:16px;padding:28px 32px;margin:40px auto;max-width:800px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center}
+.rb-item .num{font-size:2rem;font-weight:800;letter-spacing:-.04em;margin-bottom:4px}
+.rb-item .lbl{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.rb-item .sub{font-size:.78rem;color:var(--muted);margin-top:4px}
+
+/* SECTIONS */
+.section{padding:56px 40px;border-bottom:1px solid var(--border);max-width:960px;margin:0 auto}
+.section-tag{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border-radius:100px;padding:3px 12px;margin-bottom:16px;border:1px solid}
+h2{font-size:1.6rem;font-weight:700;letter-spacing:-.03em;margin-bottom:8px}
+.section-sub{color:var(--muted);margin-bottom:32px;font-size:.95rem}
+
+/* PROBLEM GRID */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.problem-card{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:20px}
+.problem-card.bad{border-color:rgba(239,68,68,.2);background:rgba(239,68,68,.04)}
+.problem-card.good{border-color:rgba(16,185,129,.2);background:rgba(16,185,129,.04)}
+.pc-label{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+.pc-label.bad{color:var(--red)}
+.pc-label.good{color:var(--green)}
+.pc-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;font-size:.85rem;color:var(--light)}
+.pc-row:last-child{margin-bottom:0}
+.pc-icon{flex-shrink:0;margin-top:1px}
+
+/* LAYERS */
+.layers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.layer-card{border-radius:10px;padding:16px;border:1px solid}
+.layer-num{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;margin-bottom:8px;font-weight:600}
+.layer-name{font-size:.9rem;font-weight:700;margin-bottom:6px}
+.layer-pattern{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-bottom:8px}
+.layer-ex{font-size:.78rem;color:var(--muted);line-height:1.5}
+
+/* ARCHITECTURE */
+.arch-box{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:24px;font-family:var(--mono);font-size:.8rem;line-height:2;color:var(--light);margin-bottom:20px}
+.arch-box .step{display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:6px;margin-bottom:4px}
+.arch-box .step.fast{background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2)}
+.arch-box .step.neural{background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2)}
+.arch-box .step.grammar{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2)}
+.arch-box .step.output{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2)}
+.arch-box .arrow{color:var(--muted);text-align:center;font-size:.9rem;margin:2px 0}
+.step-badge{font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:4px;flex-shrink:0}
+.step-text{flex:1}
+.step-meta{font-size:.68rem;color:var(--muted)}
+
+/* ACCURACY */
+.accuracy-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.acc-card{background:var(--dark2);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+.acc-num{font-size:1.6rem;font-weight:800;letter-spacing:-.04em;margin-bottom:4px}
+.acc-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.team-card{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;gap:14px;align-items:flex-start}
+.team-avatar{width:40px;height:40px;border-radius:50%;background:rgba(37,99,235,.2);border:1px solid rgba(37,99,235,.3);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:var(--blue);flex-shrink:0}
+.team-name{font-weight:700;font-size:.92rem;margin-bottom:2px}
+.team-role{font-size:.78rem;color:var(--cyan);margin-bottom:6px}
+.team-bio{font-size:.78rem;color:var(--muted);line-height:1.5}
+
+/* STACKING */
+.stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.stack-card{border-radius:10px;padding:16px;border:1px solid}
+.stack-step{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;margin-bottom:8px;font-weight:600;text-transform:uppercase}
+.stack-title{font-size:.88rem;font-weight:700;margin-bottom:6px}
+.stack-desc{font-size:.75rem;color:var(--muted);line-height:1.5}
+.stack-result{font-size:.72rem;font-weight:700;margin-top:8px}
+
+/* FINANCIAL */
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
+td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,.04);color:var(--light)}
+tr:last-child td{border-bottom:none;font-weight:700;color:var(--white)}
+tr:last-child td:not(:first-child){color:var(--cyan)}
+.highlight-row td{background:rgba(37,99,235,.05)}
+
+/* BUDGET */
+.budget-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.budget-item{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--dark2);border:1px solid var(--border);border-radius:8px;font-size:.85rem}
+.budget-item .bi-label{color:var(--muted)}
+.budget-item .bi-val{font-family:var(--mono);font-weight:600;color:var(--white)}
+.budget-total{background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.25);border-radius:10px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;margin-top:16px}
+.budget-total .bt-label{font-weight:700}
+.budget-total .bt-val{font-family:var(--mono);font-size:1.2rem;font-weight:800;color:var(--cyan)}
+.budget-total .bt-sub{font-size:.75rem;color:var(--muted);margin-top:2px}
+
+/* TRACTION */
+.traction-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.traction-item{background:var(--dark2);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:14px;display:flex;align-items:flex-start;gap:10px}
+.ti-check{color:var(--green);font-size:1rem;flex-shrink:0;margin-top:1px}
+.ti-text{font-size:.82rem;color:var(--light);line-height:1.4}
+
+/* ROADMAP */
+.roadmap{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.rm-card{background:var(--dark2);border:1px solid var(--border);border-radius:10px;padding:16px}
+.rm-phase{font-family:var(--mono);font-size:.65rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.rm-title{font-size:.88rem;font-weight:700;margin-bottom:8px}
+.rm-items{font-size:.75rem;color:var(--muted);line-height:1.7}
+.rm-target{font-family:var(--mono);font-size:.72rem;color:var(--green);font-weight:700;margin-top:8px}
+
+/* SCENARIOS */
+.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scenario-card{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:20px}
+.sc-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:12px}
+.sc-num{font-size:2rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:4px}
+.sc-sub{font-size:.75rem;color:var(--muted);margin-bottom:12px}
+.sc-return{background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:6px;padding:8px 12px;font-size:.78rem;color:var(--green)}
+.sc-prob{font-size:.72rem;color:var(--muted);margin-top:8px}
+
+/* MOAT */
+.moat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.moat-card{background:var(--dark2);border:1px solid var(--border);border-radius:12px;padding:20px}
+.moat-icon{font-size:1.4rem;margin-bottom:10px}
+.moat-title{font-size:.92rem;font-weight:700;margin-bottom:6px}
+.moat-desc{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* EIS */
+.eis-box{background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.2);border-radius:12px;padding:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center}
+.eis-num{font-size:1.8rem;font-weight:800;color:var(--blue);margin-bottom:4px}
+.eis-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+
+/* FOOTER */
+footer{background:var(--dark2);border-top:1px solid var(--border);padding:40px;text-align:center}
+.footer-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px}
+.footer-links{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;font-size:.82rem;margin-bottom:20px}
+.footer-legal{font-size:.72rem;color:var(--muted)}
+
+@media(max-width:768px){
+  .layers,.stack-grid,.roadmap,.accuracy-grid{grid-template-columns:1fr 1fr}
+  .problem-grid,.team-grid,.moat-grid,.budget-grid,.scenario-grid{grid-template-columns:1fr}
+  .raise-banner,.eis-box{grid-template-columns:1fr}
+  .hero{padding:40px 20px}
+  .section{padding:40px 20px}
+  nav{padding:0 20px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-dot"></div>
+    <div class="logo-name">Concept<span>Net</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="https://conceptnet.co.uk/sandbox/" target="_blank">Sandbox</a>
+    <a href="https://conceptnet.co.uk/benchmarks/" target="_blank">Benchmarks</a>
+    <a href="https://github.com/wushu75/ConceptNet" target="_blank">GitHub</a>
+    <span class="nav-raise">Now Raising £2M · EIS</span>
+  </div>
+  <button class="pdf-btn" onclick="window.print()">⬇ Save as PDF</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">
+    <span class="dot"></span>
+    Investor One-Pager · Confidential · August 2026
+  </div>
+  <h1>The Voice IP <em>Infrastructure</em> for AI</h1>
+  <p class="hero-sub">Not a voice tool. The platform where enterprises collect voice data, build proprietary IP across 4 intent layers, own it, and license it to others. We charge 10%.</p>
+  <div class="hero-meta">
+    <span>📍 <strong>Kings Cross, London</strong></span>
+    <span>✉ <strong>tonymomoh@icloud.com</strong></span>
+    <span>📞 <strong>07733 246865</strong></span>
+    <span>🌐 <a href="https://conceptnet.co.uk" target="_blank">conceptnet.co.uk</a></span>
+  </div>
+
+  <div class="raise-banner">
+    <div class="rb-item">
+      <div class="num" style="color:var(--blue)">£2M</div>
+      <div class="lbl">Pre-Seed Raise</div>
+      <div class="sub">£250K SEIS · £750K EIS</div>
+    </div>
+    <div class="rb-item">
+      <div class="num" style="color:var(--cyan)">£5–6M</div>
+      <div class="lbl">Pre-Money Valuation</div>
+      <div class="sub">~16.7% dilution</div>
+    </div>
+    <div class="rb-item">
+      <div class="num" style="color:var(--green)">12mo</div>
+      <div class="lbl">Runway</div>
+      <div class="sub">4-person technical team</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<div class="section">
+  <span class="section-tag" style="color:var(--red);border-color:rgba(239,68,68,.3);background:rgba(239,68,68,.06)">The Problem</span>
+  <h2>Most AI moats last 2 years. Ours lasts 10.</h2>
+  <p class="section-sub">Features get copied in months. Proprietary voice IP compounds over a decade.</p>
+  <div class="problem-grid">
+    <div class="problem-card bad">
+      <div class="pc-label bad">✗ What most startups pitch</div>
+      <div class="pc-row"><span class="pc-icon">✗</span>5× cheaper — copied in 6 months</div>
+      <div class="pc-row"><span class="pc-icon">✗</span>Voice UI — Google ships it in 3 months</div>
+      <div class="pc-row"><span class="pc-icon">✗</span>Integrations — API marketplaces commoditise overnight</div>
+      <div class="pc-row"><span class="pc-icon">✗</span>Workflows — any agent copies in 48 hours</div>
+      <div class="pc-row"><span class="pc-icon">✗</span>Token costs — $125K/yr for a 50-person team on GPT-4o</div>
+    </div>
+    <div class="problem-card good">
+      <div class="pc-label good">✓ What lasts 10 years</div>
+      <div class="pc-row"><span class="pc-icon" style="color:var(--green)">✓</span>Proprietary voice dataset — we collected it, competitors can't</div>
+      <div class="pc-row"><span class="pc-icon" style="color:var(--green)">✓</span>4-layer intent taxonomy — novel, patents pending</div>
+      <div class="pc-row"><span class="pc-icon" style="color:var(--green)">✓</span>Constrained grammar model — deterministic, auditable</div>
+      <div class="pc-row"><span class="pc-icon" style="color:var(--green)">✓</span>Enterprise IP lock-in — switching = losing years of voice IP</div>
+      <div class="pc-row"><span class="pc-icon" style="color:var(--green)">✓</span>200 languages — vs ~50 for GPT-4o, ~30 for Claude</div>
+    </div>
+  </div>
+</div>
+
+<!-- 4-LAYER TAXONOMY -->
+<div class="section">
+  <span class="section-tag" style="color:var(--cyan);border-color:rgba(6,182,212,.3);background:rgba(6,182,212,.06)">The Invention</span>
+  <h2>The 4-Layer Intent Taxonomy</h2>
+  <p class="section-sub">A novel hierarchical classification of enterprise voice commands — each layer maps to a distinct agent execution semantic. Novel, patents pending.</p>
+  <div class="layers">
+    <div class="layer-card" style="border-color:rgba(37,99,235,.3);background:rgba(37,99,235,.05)">
+      <div class="layer-num" style="color:var(--blue)">LAYER 1</div>
+      <div class="layer-name">Basic</div>
+      <div class="layer-pattern">"Do X"</div>
+      <div class="layer-ex">Execute immediately. No trigger, no condition.<br><br>"Schedule a board meeting for Tuesday"</div>
+    </div>
+    <div class="layer-card" style="border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05)">
+      <div class="layer-num" style="color:var(--amber)">LAYER 2</div>
+      <div class="layer-name">Context-Aware</div>
+      <div class="layer-pattern">"Do X when Y"</div>
+      <div class="layer-ex">Register trigger, wait, execute on condition.<br><br>"Send report when the contract is signed"</div>
+    </div>
+    <div class="layer-card" style="border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.05)">
+      <div class="layer-num" style="color:var(--purple)">LAYER 3</div>
+      <div class="layer-name">Predictive</div>
+      <div class="layer-pattern">"Do X before Y"</div>
+      <div class="layer-ex">Calculate window, execute proactively.<br><br>"Alert manager before contract expires"</div>
+    </div>
+    <div class="layer-card" style="border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.05)">
+      <div class="layer-num" style="color:var(--green)">LAYER 4</div>
+      <div class="layer-name">Autonomous</div>
+      <div class="layer-pattern">"Do X always"</div>
+      <div class="layer-ex">Deploy persistent agent, no prompting ever again.<br><br>"Auto-update CRM after every call"</div>
+    </div>
+  </div>
+</div>
+
+<!-- ARCHITECTURE -->
+<div class="section">
+  <span class="section-tag" style="color:var(--purple);border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.06)">Technical Architecture</span>
+  <h2>Fast Path + Neural Model + Constrained Grammar</h2>
+  <p class="section-sub">Two-stage architecture. The fast path handles 83% of queries at sub-5ms with zero API cost. The neural path catches the rest. Constrained grammar means exactly 4 valid outputs — no hallucination.</p>
+  <div class="arch-box">
+    <div class="step" style="background:rgba(255,255,255,.03);border:1px solid var(--border)">
+      <span class="step-badge" style="background:rgba(6,182,212,.15);color:var(--cyan)">INPUT</span>
+      <span class="step-text">Voice or text command — 9 languages live, 200 at scale</span>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="step fast">
+      <span class="step-badge" style="background:rgba(37,99,235,.2);color:var(--blue)">FAST PATH</span>
+      <span class="step-text">TF-IDF + Logistic Regression — statistical distillation of LLM-labelled examples</span>
+      <span class="step-meta">83% coverage · &lt;5ms · CPU only · $0</span>
+    </div>
+    <div class="arrow">↓ if confidence &lt; threshold</div>
+    <div class="step neural">
+      <span class="step-badge" style="background:rgba(124,58,237,.2);color:var(--purple)">NEURAL PATH</span>
+      <span class="step-text">DistilBERT fine-tuned on 4-layer taxonomy — 104 languages, 134M params</span>
+      <span class="step-meta">95%+ coverage · &lt;100ms · GPU optional</span>
+    </div>
+    <div class="arrow">↓ constrained by</div>
+    <div class="step grammar">
+      <span class="step-badge" style="background:rgba(16,185,129,.2);color:var(--green)">GRAMMAR</span>
+      <span class="step-text">Constrained output schema — exactly 4 valid labels, deterministic, auditable</span>
+      <span class="step-meta">No hallucination possible · Enterprise-safe</span>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="step output">
+      <span class="step-badge" style="background:rgba(245,158,11,.2);color:var(--amber)">OUTPUT</span>
+      <span class="step-text">Structured JSON → Agent execution layer → Enterprise tool APIs</span>
+      <span class="step-meta">CALENDAR · EMAIL · CRM · TASKS · DOCS · ANALYTICS · COMMS</span>
+    </div>
+  </div>
+  <div class="accuracy-grid">
+    <div class="acc-card">
+      <div class="acc-num" style="color:var(--green)">83%</div>
+      <div class="acc-label">Overall accuracy</div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-num" style="color:var(--cyan)">100%</div>
+      <div class="acc-label">L3 Predictive precision</div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-num" style="color:var(--purple)">84.7%</div>
+      <div class="acc-label">5-fold CV accuracy</div>
+    </div>
+    <div class="acc-card">
+      <div class="acc-num" style="color:var(--amber)">&lt;5ms</div>
+      <div class="acc-label">Fast-path latency</div>
+    </div>
+  </div>
+</div>
+
+<!-- TEAM -->
+<div class="section">
+  <span class="section-tag" style="color:var(--amber);border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.06)">The Team</span>
+  <h2>Built by founders who ship</h2>
+  <p class="section-sub">Four-person technical team. The moat is the team's combined depth — the person who has spent the most time thinking about this problem, plus the credentials to build it properly.</p>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">TM</div>
+      <div>
+        <div class="team-name">Tony Momoh</div>
+        <div class="team-role">Founder & CEO · £65K/yr</div>
+        <div class="team-bio">Identified the problem, built the taxonomy, shipped the product. Sandbox, benchmarks, classifier, and Voice IP Stacking model — all live. Kings Cross, London.</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">CTO</div>
+      <div>
+        <div class="team-name">Tim Storey — CTO</div>
+        <div class="team-role">Chief Technology Officer · £600/day · Fractional → Full time post-raise</div>
+        <div class="team-bio">Exited founder. Has built and shipped real production systems. Brings engineering credibility and enterprise network for first pilot customers.</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">AI</div>
+      <div>
+        <div class="team-name">AI Scientist</div>
+        <div class="team-role">ML Research · £85K/yr</div>
+        <div class="team-bio">ML research depth. Responsible for neural model architecture, dataset quality, and constrained grammar implementation. Update expected next week.</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">ML</div>
+      <div>
+        <div class="team-name">ML Engineer</div>
+        <div class="team-role">Engineering · £75K/yr · Hire month 4</div>
+        <div class="team-bio">To be hired from the CTO's network. Responsible for production inference, API performance, and model deployment pipeline.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VOICE IP STACKING -->
+<div class="section">
+  <span class="section-tag" style="color:var(--green);border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.06)">Platform Model</span>
+  <h2>Voice IP Stacking — Enterprises Build Their Own Moat</h2>
+  <p class="section-sub">No platform lets enterprises build, own, and license their own voice IP. ConceptNet does. We charge 10% on every transaction.</p>
+  <div class="stack-grid">
+    <div class="stack-card" style="border-color:rgba(37,99,235,.3);background:rgba(37,99,235,.05)">
+      <div class="stack-step" style="color:var(--blue)">① Privatise</div>
+      <div class="stack-title">Enterprise uploads voice data</div>
+      <div class="stack-desc">Encrypted and isolated. They own it — not us, not public.</div>
+      <div class="stack-result" style="color:var(--blue)">→ Their IP. Not shared.</div>
+    </div>
+    <div class="stack-card" style="border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.05)">
+      <div class="stack-step" style="color:var(--amber)">② Stack Intent</div>
+      <div class="stack-title">4 escalating layers</div>
+      <div class="stack-desc">L1 → L2 → L3 → L4. Each layer = more valuable IP. Compounds over time.</div>
+      <div class="stack-result" style="color:var(--amber)">→ IP compounds</div>
+    </div>
+    <div class="stack-card" style="border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.05)">
+      <div class="stack-step" style="color:var(--purple)">③ Own as IP</div>
+      <div class="stack-title">Voice + intent = enterprise IP</div>
+      <div class="stack-desc">Like patents, but for voice workflows. Switching = losing years of IP.</div>
+      <div class="stack-result" style="color:var(--purple)">→ 10-year moat</div>
+    </div>
+    <div class="stack-card" style="border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.05)">
+      <div class="stack-step" style="color:var(--green)">④ License + Revenue</div>
+      <div class="stack-title">License it. We take 10%.</div>
+      <div class="stack-desc">Enterprise licenses their IP to others. Both win. Platform compounds.</div>
+      <div class="stack-result" style="color:var(--green)">→ Enterprise + us: revenue</div>
+    </div>
+  </div>
+</div>
+
+<!-- FINANCIAL MODEL -->
+<div class="section">
+  <span class="section-tag" style="color:var(--cyan);border-color:rgba(6,182,212,.3);background:rgba(6,182,212,.06)">Financial Model</span>
+  <h2>Three Revenue Streams</h2>
+  <p class="section-sub">SaaS is the wedge. IP licensing is the moat. Dataset licensing to LLM companies is the scale.</p>
+  <table style="margin-bottom:32px">
+    <thead>
+      <tr>
+        <th>Revenue Stream</th>
+        <th>Year 1</th>
+        <th>Year 2</th>
+        <th>Year 3</th>
+        <th>Year 5</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>SaaS — stepping stone, data collection</td>
+        <td>£100K</td><td>£500K</td><td>£1M</td><td>£5M</td>
+      </tr>
+      <tr>
+        <td>IP Licensing — 10% enterprise tx fee</td>
+        <td>£0</td><td>£500K</td><td>£2M</td><td>£10M</td>
+      </tr>
+      <tr>
+        <td>Dataset Licensing — to LLM companies</td>
+        <td>£0</td><td>£100K</td><td>£500K</td><td>£5M</td>
+      </tr>
+      <tr class="highlight-row">
+        <td><strong>Total ARR</strong></td>
+        <td><strong>£100K</strong></td>
+        <td><strong>£1.1M</strong></td>
+        <td><strong>£3.5M</strong></td>
+        <td><strong>£20M</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin-bottom:16px;font-size:1.2rem">Use of £2M</h2>
+  <div class="budget-grid">
+    <div class="budget-item"><span class="bi-label">CEO salary (£65K × 12mo)</span><span class="bi-val">£65,000</span></div>
+    <div class="budget-item"><span class="bi-label">CTO Tim (£600/day × 2 days × 48wk)</span><span class="bi-val">£57,600</span></div>
+    <div class="budget-item"><span class="bi-label">AI Scientist (£85K × 12mo)</span><span class="bi-val">£85,000</span></div>
+    <div class="budget-item"><span class="bi-label">ML Engineer (£75K × 10mo from M3)</span><span class="bi-val">£62,500</span></div>
+    <div class="budget-item"><span class="bi-label">Employer NI</span><span class="bi-val">£32,000</span></div>
+    <div class="budget-item"><span class="bi-label">GPU compute + model training</span><span class="bi-val">£60,000</span></div>
+    <div class="budget-item"><span class="bi-label">Data infrastructure</span><span class="bi-val">£20,000</span></div>
+    <div class="budget-item"><span class="bi-label">Enterprise pilots + GTM</span><span class="bi-val">£40,000</span></div>
+    <div class="budget-item"><span class="bi-label">Legal + IP filing</span><span class="bi-val">£25,000</span></div>
+    <div class="budget-item"><span class="bi-label">Tooling, marketing, accounting</span><span class="bi-val">£35,000</span></div>
+    <div class="budget-item"><span class="bi-label">SEIS/EIS advance assurance</span><span class="bi-val">£5,000</span></div>
+    <div class="budget-item"><span class="bi-label">Contingency (10%)</span><span class="bi-val">£50,325</span></div>
+  </div>
+  <div class="budget-total">
+    <div>
+      <div class="bt-label">Total spend over 12 months</div>
+      <div class="bt-sub">£1,463,750 buffer — reach Series A well capitalised</div>
+    </div>
+    <div class="bt-val">£536,250</div>
+  </div>
+</div>
+
+<!-- TRACTION -->
+<div class="section">
+  <span class="section-tag" style="color:var(--green);border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.06)">Traction</span>
+  <h2>Working product. Real code. Live today.</h2>
+  <p class="section-sub">Everything below is live and verifiable right now.</p>
+  <div class="traction-grid">
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Voice IP Sandbox live — 9 languages, mic input, real-time classification</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Fast-path classifier: 83% accuracy · Neural model: 100% accuracy (99.3% adversarial holdout — independently verified)</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">757-example multilingual dataset — 9 languages, all 4 layers</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Neural model trained — 100% accuracy — independently verified by Hugging Face ML community</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Live benchmarks vs GPT-4o — real latency and cost data</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Open source on GitHub — real Python code, training scripts, dataset</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Live on Hugging Face — discoverable by ML community</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">CTO confirmed — exited founder, engineering credentials</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Patent application filed — 4-layer taxonomy, Voice IP Stacking architecture</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Independent peer review — ML researcher confirmed 99.3% on adversarial holdout. "The obvious leakage explanation did not survive that check."</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">99 GitHub clones · 53 unique developers · 17 Hugging Face downloads — all organic</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Live API — callable via HF Inference endpoint today. First token request received within minutes of announcement.</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Pilot conversations — UK enterprise, Nigeria, Qatar, Mauritius government, civic tech (Talk to Lanre)</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">CTO Tim Storey confirmed — fractional £600/day, building production API in Rust + Chinese LLMs</span></div>
+    <div class="traction-item"><span class="ti-check">✓</span><span class="ti-text">Pre-money valuation: £14–17M — up from £5–6M at project start. Built £448K of product value before raising a penny.</span></div>
+  </div>
+</div>
+
+<!-- INVESTOR RETURNS -->
+<div class="section">
+  <span class="section-tag" style="color:var(--blue);border-color:rgba(37,99,235,.3);background:rgba(37,99,235,.06)">Investor Returns</span>
+  <h2>Three scenarios. All compelling.</h2>
+  <p class="section-sub">Investor effective cost: £1.4M net on £2M invested after 30% EIS tax relief on day one.</p>
+  <div class="scenario-grid">
+    <div class="scenario-card" style="border-color:rgba(100,116,139,.3)">
+      <div class="sc-label" style="color:var(--muted)">Conservative · 40% probability</div>
+      <div class="sc-num" style="color:var(--light)">£50M</div>
+      <div class="sc-sub">Year 5 valuation · £10M ARR</div>
+      <div class="sc-return">£2M → £16–20M return · 8–10× multiple</div>
+      <div class="sc-prob">Slow enterprise sales. Methodical execution.</div>
+    </div>
+    <div class="scenario-card" style="border-color:rgba(37,99,235,.3)">
+      <div class="sc-label" style="color:var(--blue)">Base Case · 40% probability</div>
+      <div class="sc-num" style="color:var(--blue)">£175M</div>
+      <div class="sc-sub">Year 5 valuation · £25M ARR</div>
+      <div class="sc-return">£2M → £50–58M return · 25–29× multiple</div>
+      <div class="sc-prob">Strong execution. First licensing deal year 1.</div>
+    </div>
+    <div class="scenario-card" style="border-color:rgba(16,185,129,.3)">
+      <div class="sc-label" style="color:var(--green)">Breakthrough · 20% probability</div>
+      <div class="sc-num" style="color:var(--green)">£500M</div>
+      <div class="sc-sub">Year 5 valuation · £55M ARR</div>
+      <div class="sc-return">£2M → £134–184M return · 67–92× multiple</div>
+      <div class="sc-prob">Dataset licensing + agent layer + IP marketplace all live.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MOAT -->
+<div class="section">
+  <span class="section-tag" style="color:var(--purple);border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.06)">The Moat</span>
+  <h2>Four compounding moats. Not features.</h2>
+  <p class="section-sub">The dog-walk investor said: "Pretty much any problem is assailable with AI very quickly, so the moat ends up being that you've just spent more time thinking about it." We have.</p>
+  <div class="moat-grid">
+    <div class="moat-card">
+      <div class="moat-icon">🧬</div>
+      <div class="moat-title">The Dataset</div>
+      <div class="moat-desc">730 labelled examples today. Grows with every enterprise user. Replicating this from scratch with a paid team costs £200K+ in labelling time. First-mover data advantage that compounds daily.</div>
+    </div>
+    <div class="moat-card">
+      <div class="moat-icon">📐</div>
+      <div class="moat-title">The Taxonomy</div>
+      <div class="moat-desc">The 4-layer intent model applied specifically to enterprise voice workflows is novel. No one has published this taxonomy. Patents pending. Priority date: August 2026.</div>
+    </div>
+    <div class="moat-card">
+      <div class="moat-icon">⚙️</div>
+      <div class="moat-title">The Architecture</div>
+      <div class="moat-desc">Fast-path statistical distillation + fine-tuned multilingual transformer + constrained grammar output. Built to the spec described by an exited founder with deep ML experience. Not replicable in an afternoon.</div>
+    </div>
+    <div class="moat-card">
+      <div class="moat-icon">👥</div>
+      <div class="moat-title">The Team</div>
+      <div class="moat-desc">CTO who has exited. AI scientist with ML depth. Founder who identified this problem before anyone else and has been obsessing over it since. The team moat is the one competitors can't clone.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<div class="section">
+  <span class="section-tag" style="color:var(--cyan);border-color:rgba(6,182,212,.3);background:rgba(6,182,212,.06)">Roadmap</span>
+  <h2>12 months to Series A</h2>
+  <p class="section-sub">Clear milestones. Funded by this raise.</p>
+  <div class="roadmap">
+    <div class="rm-card">
+      <div class="rm-phase">Now → Month 2</div>
+      <div class="rm-title">Foundation</div>
+      <div class="rm-items">Neural model: 100% accuracy ✓<br>Patent filed ✓<br>CTO Tim Storey confirmed ✓<br>API live ✓<br>First pilot integrations underway</div>
+      <div class="rm-target">Target: 10 paying customers · £10K MRR</div>
+    </div>
+    <div class="rm-card">
+      <div class="rm-phase">Month 2 → 4</div>
+      <div class="rm-title">Pilots</div>
+      <div class="rm-items">10 enterprise pilots onboarded<br>Dataset expanded 5,000+ examples<br>ML Engineer hired<br>First paying customer<br>SONAR embeddings integrated</div>
+      <div class="rm-target">Target: £100K ARR</div>
+    </div>
+    <div class="rm-card">
+      <div class="rm-phase">Month 4 → 8</div>
+      <div class="rm-title">Revenue</div>
+      <div class="rm-items">50 enterprise customers<br>First IP licensing deal signed<br>Dataset licensing conversation<br>Agent-to-agent layer v1<br>Series A preparation</div>
+      <div class="rm-target">Target: £500K ARR + Series A prep</div>
+    </div>
+    <div class="rm-card">
+      <div class="rm-phase">Month 8 → 12</div>
+      <div class="rm-title">Scale</div>
+      <div class="rm-items">200+ enterprise customers<br>IP marketplace operational<br>Dataset licensed to LLM company<br>Series A closed · £3M+ at £20M+ pre-money · £446K still in bank</div>
+      <div class="rm-target">Target: Series A closed</div>
+    </div>
+  </div>
+</div>
+
+<!-- EIS -->
+<div class="section">
+  <span class="section-tag" style="color:var(--blue);border-color:rgba(37,99,235,.3);background:rgba(37,99,235,.06)">EIS / SEIS</span>
+  <h2>Tax-advantaged from day one</h2>
+  <p class="section-sub">UK government-backed investment schemes reduce effective investor cost immediately.</p>
+  <div class="eis-box">
+    <div>
+      <div class="eis-num">50%</div>
+      <div class="eis-label">SEIS income tax relief on first £250K</div>
+    </div>
+    <div>
+      <div class="eis-num">30%</div>
+      <div class="eis-label">EIS income tax relief on remaining £750K</div>
+    </div>
+    <div>
+      <div class="eis-num">0%</div>
+      <div class="eis-label">Capital gains tax on exit</div>
+    </div>
+  </div>
+  <p style="color:var(--muted);font-size:.82rem;margin-top:16px;text-align:center">Effective investor cost on £1M invested: <strong style="color:var(--white)">£700K net</strong> after EIS relief. Every return multiple is calculated on £1.4M net after EIS.</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-dot"></div>
+    <div class="logo-name">Concept<span>Net</span></div>
+  </div>
+  <div class="footer-links">
+    <a href="https://conceptnet.co.uk" target="_blank">conceptnet.co.uk</a>
+    <a href="https://conceptnet.co.uk/sandbox/" target="_blank">Sandbox</a>
+    <a href="https://conceptnet.co.uk/benchmarks/" target="_blank">Benchmarks</a>
+    <a href="https://github.com/wushu75/ConceptNet" target="_blank">GitHub</a>
+    <a href="https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox" target="_blank">Hugging Face</a>
+    <a href="https://www.linkedin.com/company/conceptnet-voice-ip/" target="_blank">LinkedIn</a>
+    <a href="mailto:tonymomoh@icloud.com">tonymomoh@icloud.com</a>
+  </div>
+  <div class="footer-legal">
+    © 2026 ConceptNet Ltd · London, UK · Patents pending · Confidential<br>
+    £2M Seed · EIS Eligible · Pre-money: £14–17M · tonymomoh@icloud.com · 07733 246865
+  </div>
+</footer>
+
+</body>
+</html>
