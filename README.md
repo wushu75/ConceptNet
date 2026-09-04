@@ -202,7 +202,7 @@ The platform model that makes ConceptNet a 10-year moat:
 
 ## Raising
 
-- **Amount:** £1M Pre-Seed
+- **Amount:** £2M Pre-Seed
 - **Pre-money:** £5–8M
 - **EIS eligible:** 30% tax relief for UK investors
 - **Built before raise:** $600,000 / £408,000
