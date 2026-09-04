@@ -178,23 +178,15 @@ The platform model that makes ConceptNet a 10-year moat:
 
 ---
 
-## DeepSeek Harness Plugin
+## Plugin Ecosystem
 
-ConceptNet is available as a plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) — the 210K star open-source agent framework.
-
-```bash
-npm install conceptnet-dsh-plugin
-```
-
-```javascript
-import ConceptNetPlugin from 'conceptnet-dsh-plugin'
-const plugin = new ConceptNetPlugin({ hfToken: 'YOUR_TOKEN' })
-const result = await plugin.classify('Send report when contract is signed')
-// { intent_layer: 2, intent_label: 'Context-Aware', agent_action: 'register_trigger' }
-```
-
-**Plugin repo:** [github.com/wushu75/conceptnet-dsh-plugin](https://github.com/wushu75/conceptnet-dsh-plugin)
-**DSH Discussion:** [#5559](https://github.com/deepseek-ai/deepseek-harness/discussions/5559)
+| Platform | Plugin | Stars |
+|---------|--------|-------|
+| DeepSeek Harness | [conceptnet-dsh-plugin](https://github.com/wushu75/conceptnet-dsh-plugin) | 211K |
+| Qwen / Alibaba | [conceptnet-qwen-plugin](https://github.com/wushu75/conceptnet-qwen-plugin) | — |
+| Kimi / Moonshot | [conceptnet-kimi-plugin](https://github.com/wushu75/conceptnet-kimi-plugin) | — |
+| GLM / Zhipu | [conceptnet-glm-plugin](https://github.com/wushu75/conceptnet-glm-plugin) | — |
+| Doubao / ByteDance | [conceptnet-doubao-plugin](https://github.com/wushu75/conceptnet-doubao-plugin) | — |
 
 ---
 
