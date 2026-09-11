@@ -1,8 +1,8 @@
-# ConceptNet — Voice IP Infrastructure for AI
+# ConceptNet — Voice Intent Infrastructure for Enterprise AI
 
-> The intent classification layer for enterprise AI agents and government workflow automation.
+> The intent classification layer for enterprise AI agents, government workflow automation, and autonomous defence systems.
 
-**Raising £1M Pre-Seed · EIS Eligible · London, UK · [conceptnet.co.uk](https://conceptnet.co.uk)**
+**Raising £2M Seed · EIS Eligible · Kings Cross, London · [conceptnet.co.uk](https://conceptnet.co.uk)**
 
 [![Live Sandbox](https://img.shields.io/badge/sandbox-live-10B981?style=flat-square)](https://conceptnet.co.uk/sandbox/)
 [![HuggingFace](https://img.shields.io/badge/model-HuggingFace-yellow?style=flat-square)](https://huggingface.co/conceptnetUk/intent-classifier)
@@ -36,7 +36,7 @@ An independent ML researcher from the Hugging Face community ran adversarial hol
 
 ConceptNet classifies enterprise voice and text commands into 4 intent layers — producing structured JSON for agent execution automatically.
 
-**Token-free. 9 languages. No LLM required. Locally deployable.**
+**Token-free. 9 languages. No LLM required. Locally deployable. Air-gap capable.**
 
 ### The 4-Layer Intent Taxonomy
 
@@ -48,6 +48,8 @@ Every enterprise voice command — in any language, any industry, any country �
 | **L2 Context-Aware** | "Do X when Y" | Conditional trigger | "Send report when contract is signed" |
 | **L3 Predictive** | "Do X before Y" | Proactive | "Alert manager before deadline expires" |
 | **L4 Autonomous** | "Do X always" | Persistent agent | "Auto-update CRM after every call" |
+
+Nobody had defined this taxonomy. Nobody had built a dedicated classifier for it. We did. It's patented.
 
 ---
 
@@ -67,6 +69,16 @@ No hallucination · Deterministic · Auditable
          ↓
 Structured JSON → Agent execution → Enterprise tools
 ```
+
+### Why This Is Defensible
+
+| Property | What it means |
+|---------|--------------|
+| Constrained grammar | Exactly 4 outputs — hallucination mathematically impossible |
+| Token-free | No US cloud dependency — 3× cheaper than GPT-4o |
+| Air-gap capable | No internet required — defence and government grade |
+| Locally deployable | Data never leaves the organisation |
+| Patents pending | Novel taxonomy — no prior art |
 
 ### Cascade Performance
 
@@ -106,9 +118,23 @@ Mixed semantics: **L4 > L3 > L2 > L1**
 |--------|-------|
 | Total examples | **757** |
 | Languages | **9** — EN, FR, ES, DE, IT, PT, ZH, AR, RU |
-| Intent layers | **All 4** |
+| Intent layers | **All 4** — balanced distribution |
 | L3 surface forms | "before", "ahead of", "in advance of", "prior to", "in time for", "by the time" |
 | Format | JSON + CSV |
+
+---
+
+## Plugin Ecosystem
+
+ConceptNet is available as a plugin for all major Chinese AI agent frameworks:
+
+| Platform | Plugin | Community |
+|---------|--------|-----------|
+| DeepSeek Harness | [conceptnet-dsh-plugin](https://github.com/wushu75/conceptnet-dsh-plugin) | [Discussion #5559](https://github.com/deepseek-ai/deepseek-harness/discussions/5559) — 211K ⭐ |
+| Qwen / Alibaba | [conceptnet-qwen-plugin](https://github.com/wushu75/conceptnet-qwen-plugin) | QwenLM ecosystem |
+| Kimi / Moonshot | [conceptnet-kimi-plugin](https://github.com/wushu75/conceptnet-kimi-plugin) | Moonshot AI ecosystem |
+| GLM / Zhipu | [conceptnet-glm-plugin](https://github.com/wushu75/conceptnet-glm-plugin) | THUDM ecosystem |
+| Doubao / ByteDance | [conceptnet-doubao-plugin](https://github.com/wushu75/conceptnet-doubao-plugin) | ByteDance ecosystem |
 
 ---
 
@@ -119,8 +145,23 @@ Mixed semantics: **L4 > L3 > L2 > L1**
 | **Live Sandbox** | [conceptnet.co.uk/sandbox/](https://conceptnet.co.uk/sandbox/) |
 | **Hugging Face Model** | [huggingface.co/conceptnetUk/intent-classifier](https://huggingface.co/conceptnetUk/intent-classifier) |
 | **HF Space** | [huggingface.co/spaces/conceptnetUk/voice-ip-sandbox](https://huggingface.co/spaces/conceptnetUk/voice-ip-sandbox) |
-| **Benchmarks** | [conceptnet.co.uk/benchmarks/](https://conceptnet.co.uk/benchmarks/) |
-| **Website** | [conceptnet.co.uk](https://conceptnet.co.uk) |
+| **API Documentation** | [docs/API.md](docs/API.md) |
+| **Investor One-Pager** | [conceptnet.co.uk/docs/investor.html](https://conceptnet.co.uk/docs/investor.html) |
+
+---
+
+## Traction
+
+| Metric | Number |
+|--------|--------|
+| GitHub clones | **188** from **75 unique developers** |
+| HF model downloads | **17+** |
+| Independent peer review | ✅ Adversarial holdout confirmed |
+| API token requests | Active — first within minutes of announcing |
+| Plugin ecosystem | 5 Chinese AI platforms |
+| Government pipeline | Nigeria FIRS, Mauritius, Rivers State, Qatar, Ivory Coast |
+| Defence | UK Defence Innovation submitted — DIOL233749 |
+| Built before raise | **£448,000 / $600,000** |
 
 ---
 
@@ -144,8 +185,8 @@ ConceptNet/
 │   └── conceptnet_dataset_v2.csv
 ├── docs/
 │   ├── investor.html
-│   ├── ARCHITECTURE.md
-│   └── star.html
+│   ├── API.md
+│   └── ARCHITECTURE.md
 ├── sandbox/
 │   └── index.html             # Live sandbox
 ├── benchmarks/
@@ -159,15 +200,15 @@ ConceptNet/
 ## IP Protection
 
 - **Patents pending** — 4-layer taxonomy, Voice IP Stacking, constrained grammar architecture
-- **Classifier logic obfuscated** — production inference code not in this repo
+- **Classifier logic** — production inference code not in this repo
 - **Dataset** — released for research only, commercial use requires licence
 - **© 2026 ConceptNet Ltd** — all rights reserved
 
 ---
 
-## Voice IP Stacking
+## Voice IP Stacking — The Platform Model
 
-The platform model that makes ConceptNet a 10-year moat:
+The model that makes ConceptNet a 10-year moat:
 
 ```
 ① PRIVATISE  → Enterprise data encrypted. They own it entirely.
@@ -178,35 +219,17 @@ The platform model that makes ConceptNet a 10-year moat:
 
 ---
 
-## Plugin Ecosystem
-
-| Platform | Plugin | Stars |
-|---------|--------|-------|
-| DeepSeek Harness | [conceptnet-dsh-plugin](https://github.com/wushu75/conceptnet-dsh-plugin) | 211K |
-| Qwen / Alibaba | [conceptnet-qwen-plugin](https://github.com/wushu75/conceptnet-qwen-plugin) | — |
-| Kimi / Moonshot | [conceptnet-kimi-plugin](https://github.com/wushu75/conceptnet-kimi-plugin) | — |
-| GLM / Zhipu | [conceptnet-glm-plugin](https://github.com/wushu75/conceptnet-glm-plugin) | — |
-| Doubao / ByteDance | [conceptnet-doubao-plugin](https://github.com/wushu75/conceptnet-doubao-plugin) | — |
-
----
-
-## Traction
-
-- 🤗 **17 downloads** on Hugging Face
-- ⭐ **99 clones** from **53 unique developers** in 14 days
-- 🔬 **Independently verified** by ML community — adversarial holdout confirmed
-- 🌍 **Pilot conversations** across UK, Africa, Middle East
-- 📰 **Published** on Medium and Substack — 5,500+ followers
-
----
-
 ## Raising
 
-- **Amount:** £2M Pre-Seed
-- **Pre-money:** £5–8M
-- **EIS eligible:** 30% tax relief for UK investors
-- **Built before raise:** $600,000 / £408,000
-- **Contact:** tonymomoh@icloud.com · 07733 246865
+| Item | Detail |
+|------|--------|
+| Amount | **£2M Seed** |
+| Pre-money | **£15M** |
+| EIS eligible | **30% tax relief** for UK investors |
+| Built before raise | **$600,000 / £448,000** |
+| CTO | Tim Storey — confirmed fractional |
+| Defence | DASA DIOL233749 submitted |
+| Contact | tonymomoh@icloud.com · 07733 246865 |
 
 ---
 
